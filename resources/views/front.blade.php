@@ -15,7 +15,7 @@
                 background-color: #fff;
                 color: #636b6f;
                 font-family: 'Nunito', sans-serif;
-                font-weight: 201;
+                font-weight: 202;
                 height: 100vh;
                 margin: 0;
             }
