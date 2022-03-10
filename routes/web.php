@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,6 +21,12 @@ Auth::routes();
 // Rotte area Admin
 Route::middleware('auth')->namespace('Admin')->prefix('admin')->group(function() {
     Route::get('/home', 'HomeController@index')->name('home');
+    Route::resource('foods', 'FoodController');
+    Route::middleware('checkAdmin')->group(function () {
+        Route::resource('categories', 'CategoryController');
+        Route::resource('types', 'TypeController');
+        Route::resource('tags', 'TagController');
+    });
 });
 
 // Rotte pubbliche
