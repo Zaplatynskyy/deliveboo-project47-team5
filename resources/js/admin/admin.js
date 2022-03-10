@@ -6,6 +6,8 @@ const registrationForm = document.getElementById('registration_form');
 
 window.validationForm = function(){
 
+    
+
     let success = true;
     
     // controllo nome attività
