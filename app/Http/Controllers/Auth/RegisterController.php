@@ -8,6 +8,8 @@ use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class RegisterController extends Controller
 {
@@ -50,9 +52,16 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'max:100'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'address' => ['required', 'string', 'max:255'],
+            'p_iva' => ['required', 'numeric', 'digits:11', 'unique:users'],
+            'telephone' => ['required', 'numeric', 'digits_between:8,11', 'unique:users'],
+            'shipping' => ['nullable', 'numeric', 'between:00.90,99.90'],
+            'min_price' => ['nullable', 'numeric', 'between:00.90,99.90'],
+            'categories' => ['required', 'exists:categories,id'],
+            'image' => ['required', 'mimes:jpeg,jpg,bmp,png', 'max:2048']
         ]);
     }
 
@@ -64,10 +73,36 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
+        $newUser = new User();
+        $newUser->name = $data['name'];
+
+        $slug = Str::of($data['name'])->slug('-');
+        $count = 1;
+        while(User::where('slug', $slug)->first()) {
+            $slug = Str::of($data['name'])->slug('-').'-'.$count;
+            $count++;
+        }
+        $newUser->slug = $slug;
+
+        if (isset($data['image'])) {
+            $path = Storage::put('uploads', $data['image']);
+            $newUser->image = $path;
+        }
+
+        $newUser->email = $data['email'];
+        $newUser->password = Hash::make($data['password']);
+        $newUser->address = $data['address'];
+        $newUser->p_iva = $data['p_iva'];
+        $newUser->telephone = $data['telephone'];
+        $newUser->shipping = $data['shipping'];
+        $newUser->min_price = $data['min_price'];
+        $newUser->save();
+
+        if(isset($data['categories'])) {
+            $newUser->categories()->sync($data['categories']);
+        }
+
+        return $newUser;
+
     }
 }
