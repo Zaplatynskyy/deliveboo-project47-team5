@@ -104,7 +104,7 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\User\Desktop\boolean-full\esercizi\php\deliveboo-project47-team5\resources\js\front\front.js */"./resources/js/front/front.js");
+module.exports = __webpack_require__(/*! /Users/rob/Desktop/Boolean/progetto-finale/deliveboo-project47-team5/resources/js/front/front.js */"./resources/js/front/front.js");
 
 
 /***/ })
