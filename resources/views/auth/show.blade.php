@@ -28,15 +28,12 @@
                             @else
                                 <p class="my-4"><span class="my_bold">Ordine minimo:</span> 0€</p>
                             @endif
-                            {{-- @if ($user->type)
-                                <span class="badge badge-info">{{ $user->type->name }}</span>
-                            @endif --}}
-                            {{-- @if (count($user->tags) > 0)
-                                <h5 class="mt-3">Tags:</h5>
-                                @foreach ($user->tags as $tag)
-                                    <span class="badge badge-primary">{{ $tag->name }}</span>
+                            @if (count($user->categories) > 0)
+                                <h5 class="mt-3">Categories:</h5>
+                                @foreach ($user->categories as $category)
+                                    <span class="badge badge-primary">{{ $category->name }}</span>
                                 @endforeach
-                            @endif --}}
+                            @endif
                         </div>
                         <div class="buttons mt-4 d-flex">
                             <button type="button" class="btn btn-danger"><a class="text-white"

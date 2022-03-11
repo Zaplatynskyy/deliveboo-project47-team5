@@ -25,7 +25,6 @@ class OrderTableSeeder extends Seeder
             ],
             [
                 'name' => 'Francesco',
-
                 'cognome' => 'Diprè',
                 'user_id' => 1,
                 'address' => 'Via Pippo, 10',
