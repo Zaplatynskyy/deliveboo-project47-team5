@@ -23,15 +23,15 @@
                             <tbody>
                                 @foreach ($ordersApproved as $order)
                                     <tr>
-                                        <th>{{ $order->name }}</th>
-                                        <th>{{ $order->cognome }}</th>
-                                        <th>{{ $order->address }}</th>
-                                        <th>{{ $order->telephone }}</th>
-                                        <th>{{ $order->total }}€</th>
-                                        <th>
+                                        <td>{{ $order->name }}</td>
+                                        <td>{{ $order->cognome }}</td>
+                                        <td>{{ $order->address }}</td>
+                                        <td>{{ $order->telephone }}</td>
+                                        <td>{{ $order->total }}€</td>
+                                        <td>
                                             <button type="button" class="btn btn-info"><a class="text-white"
                                                     href="{{ route('orders.show', $order->id) }}">Visualizza</a></button>
-                                        </th>
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -54,15 +54,15 @@
                             <tbody>
                                 @foreach ($ordersNotApproved as $order)
                                     <tr>
-                                        <th>{{ $order->name }}</th>
-                                        <th>{{ $order->cognome }}</th>
-                                        <th>{{ $order->address }}</th>
-                                        <th>{{ $order->telephone }}</th>
-                                        <th>{{ $order->total }}€</th>
-                                        <th>
+                                        <td>{{ $order->name }}</td>
+                                        <td>{{ $order->cognome }}</td>
+                                        <td>{{ $order->address }}</td>
+                                        <td>{{ $order->telephone }}</td>
+                                        <td>{{ $order->total }}€</td>
+                                        <td>
                                             <button type="button" class="btn btn-info"><a class="text-white"
                                                     href="{{ route('orders.show', $order->id) }}">Visualizza</a></button>
-                                        </th>
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>
