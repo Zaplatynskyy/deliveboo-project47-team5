@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-10">
                 <div class="card">
-                    <div class="card-header">Food list</div>
+                    <div class="card-header">Menù</div>
                     <div class="card-body">
                         <div class="new-food">
                             <button type="button" class="btn btn-success mb-3"><a class="text-white"
@@ -17,8 +17,9 @@
                                     <tr>
                                         <th scope="col">#</th>
                                         <th scope="col">Name</th>
-                                        <th scope="col">Slug</th>
+                                        <th scope="col">Price</th>
                                         <th scope="col">Visible</th>
+                                        <th scope="col">Ingredients</th>
                                         <th scope="col">Actions</th>
                                     </tr>
                                 </thead>
@@ -27,8 +28,9 @@
                                         <tr class="my_item">
                                             <th scope="row">{{ $key + 1 }}</th>
                                             <td>{{ $food->name }}</td>
-                                            <td>{{ $food->slug }}</td>
+                                            <td>{{ $food->price }}€</td>
                                             <td>{{ $food->visible == 0 ? 'No' : 'Yes' }}</td>
+                                            <td>{{ $food->ingredients }}</td>
                                             <td>
                                                 <button type="button" class="btn btn-info mt-1"><a class="text-white"
                                                         href="{{ route('foods.show', $food->id) }}">View</a></button>

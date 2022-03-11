@@ -13,11 +13,11 @@ class CreateFoodTagTable extends Migration
      */
     public function up()
     {
-        Schema::create('tag_food', function (Blueprint $table) {
+        Schema::create('food_tag', function (Blueprint $table) {
             $table->id();
 
-            $table->unsignedBigInteger("tags_id");
-            $table->foreign("tags_id")->references("id")->on("tags")->onDelete('cascade');;
+            $table->unsignedBigInteger("tag_id");
+            $table->foreign("tag_id")->references("id")->on("tags")->onDelete('cascade');;
 
             $table->unsignedBigInteger("food_id");
             $table->foreign("food_id")->references("id")->on("foods")->onDelete('cascade');;
@@ -33,6 +33,6 @@ class CreateFoodTagTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tags_food');
+        Schema::dropIfExists('food_tag');
     }
 }
