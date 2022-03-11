@@ -22,12 +22,14 @@ Auth::routes();
 Route::middleware('auth')->namespace('Admin')->prefix('admin')->group(function() {
     Route::get('/home', 'HomeController@index')->name('home');
     Route::resource('foods', 'FoodController');
+    Route::resource('users', 'UserController');
     Route::middleware('checkAdmin')->group(function () {
         Route::resource('categories', 'CategoryController');
         Route::resource('types', 'TypeController');
         Route::resource('tags', 'TagController');
     });
 });
+
 
 // Rotte pubbliche
 Route::get('/', function () {

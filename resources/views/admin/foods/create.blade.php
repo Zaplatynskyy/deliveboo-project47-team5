@@ -18,11 +18,11 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="description">Descrizione</label>
-                                <textarea class="form-control @error('description') is-invalid @enderror" id="description"
-                                    rows="3" name="description"
-                                    placeholder="Inserisci la descrizione">{{ old('description') }}</textarea>
-                                @error('description')
+                                <label for="ingredients">Ingredienti</label>
+                                <textarea class="form-control @error('ingredients') is-invalid @enderror" id="ingredients"
+                                    rows="3" name="ingredients"
+                                    placeholder="Inserisci gli ingredienti">{{ old('ingredients') }}</textarea>
+                                @error('ingredients')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
                             </div>

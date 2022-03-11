@@ -14,17 +14,17 @@
                                 <img src="{{ asset("storage/{$food->image}") }}" alt="{{ $food->name }}"
                                     class="w-25">
                             @endif
-                            <p class="my-4">{{$food->description}}</p>
+                            <p class="my-4">{{$food->ingredients}}</p>
                             <p class="my-4">{{$food->price}} Euro</p>
                             <span
                                 class="badge {{ $food->visible ? 'badge-success' : 'badge-secondary' }}">{{ $food->visible ? 'Visible' : 'Not visible' }}</span>
                             @if ($food->type)
                                 <span class="badge badge-info">{{ $food->type->name }}</span>
                             @endif
-                            @if (count($food->filters) > 0)
-                                <h5 class="mt-3">Filters:</h5>
-                                @foreach ($food->filters as $filter)
-                                    <span class="badge badge-primary">{{ $filter->name }}</span>
+                            @if (count($food->tags) > 0)
+                                <h5 class="mt-3">Tags:</h5>
+                                @foreach ($food->tags as $tag)
+                                    <span class="badge badge-primary">{{ $tag->name }}</span>
                                 @endforeach
                             @endif
                         </div>
