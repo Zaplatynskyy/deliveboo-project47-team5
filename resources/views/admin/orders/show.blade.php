@@ -10,9 +10,9 @@
                     </div>
                     <div class="card-body">
                         <div class="order">
-                            <p class="my-4">{{ $order->address }}</p>
-                            <p class="my-4">{{ $order->telephone }}</p>
-                            <p class="my-4">{{ $order->total }}€</p>
+                            <p class="my-4"><span class="my_bold">Indirizzo:</span> {{ $order->address }}</p>
+                            <p class="my-4"><span class="my_bold">Telefono:</span> {{ $order->telephone }}</p>
+                            <p class="my-4"><span class="my_bold">Totale ordine:</span> {{ $order->total }}€</p>
                             <span
                                 class="badge {{ $order->accepted ? 'badge-success' : 'badge-danger' }}">{{ $order->accepted ? 'Ordine accettato' : 'Ordine non accettato' }}</span>
                             @if ($order->type)
@@ -39,7 +39,7 @@
                                 </form>
                             @endif
                             <button type="button" class="btn btn-info"><a class="text-white"
-                                    href="{{ route('orders.index') }}">Back to the list</a></button>
+                                    href="{{ route('orders.index') }}">Torna alla lista</a></button>
                         </div>
                     </div>
                 </div>
