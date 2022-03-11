@@ -6,7 +6,7 @@
             <div class="col-10">
                 <div class="card">
                     <div class="card-body">
-                        <form action="{{ route('foods.store') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('foods.store') }}" id="add_food_form" method="POST" onsubmit="return validationFormFood()" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
                                 <label for="name">Nome</label>
@@ -60,7 +60,7 @@
                                 <label class="d-block" for="inputGroupFile02"
                                     aria-describedby="inputGroupFileAddon02">Choose image</label>
                                 <input type="file" id="inputGroupFile02" name="image"
-                                    class="@error('image') is-invalid @enderror" onchange="previewUpload(event)">
+                                    class="@error('image') is-invalid @enderror" onchange="previewUpload(event)" required>
                                 @error('image')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
