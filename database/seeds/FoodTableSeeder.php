@@ -17,7 +17,7 @@ class FoodTableSeeder extends Seeder
             [
                 "name" => "Margherita",
                 "user_id" => 1,
-                "image" => "uploads/Pizza-margherita-fatta-in-casa-orizzontale.jpg",
+                "image" => "uploads/Pizza-margherita-fatta-in-casa-orizzontale.jpeg",
                 "price" => 5,
                 "types" => 1,
                 "ingredients" => "Pomodoro, Mozzarella, Basilico",
@@ -25,7 +25,7 @@ class FoodTableSeeder extends Seeder
             ],
             [
                 "name" => "Marinara",
-                "image" => "uploads/Pizza-margherita-fatta-in-casa-orizzontale.jpg",
+                "image" => "uploads/Pizza-margherita-fatta-in-casa-orizzontale.jpeg",
                 "user_id" => 1,
                 "types" => 1,
                 "price" => 4,
@@ -34,7 +34,7 @@ class FoodTableSeeder extends Seeder
             ],
             [
                 "name" => "Diavola",
-                "image" => "uploads/Pizza-margherita-fatta-in-casa-orizzontale.jpg",
+                "image" => "uploads/Pizza-margherita-fatta-in-casa-orizzontale.jpeg",
                 "user_id" => 1,
                 "types" => 1,
                 "price" => 6,

@@ -105,4 +105,6 @@ class RegisterController extends Controller
         return $newUser;
 
     }
+
+    
 }
