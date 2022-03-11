@@ -65,9 +65,22 @@ class OrderTableSeeder extends Seeder
             $newOrder->cognome = $order['cognome'];
             $newOrder->user_id = $order['user_id'];
             $newOrder->address = $order['address'];
-            $newOrder->telephone = '3'. rand(111111111,999999999);
-            $newOrder->total = rand(10,250);
+            $newOrder->telephone = '3' . rand(111111111, 999999999);
+            $newOrder->total = rand(10, 250);
             $newOrder->save();
+
+            $random = rand(1, 4);
+            $foods = [];
+            for ($i = 0; $i < $random; $i++) {
+                $newFood = rand(1, 3);
+                if (!in_array($newFood, $foods)) {
+                    $foods[] = $newFood;
+                }
+            }
+
+            foreach ($foods as $food) {
+                $newOrder->foods()->attach($food, ['quantity' => rand(1, 4)]);
+            }
         }
     }
 }
