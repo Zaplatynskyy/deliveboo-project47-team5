@@ -16,7 +16,7 @@ class FoodTableSeeder extends Seeder
         $foods = [
             [
                 "name" => "Margherita",
-                "user_id" => 1,
+                "user_id" => 2,
                 "image" => "uploads/Pizza-margherita-fatta-in-casa-orizzontale.jpeg",
                 "price" => 5,
                 "types" => 1,
@@ -26,7 +26,7 @@ class FoodTableSeeder extends Seeder
             [
                 "name" => "Marinara",
                 "image" => "uploads/Pizza-margherita-fatta-in-casa-orizzontale.jpeg",
-                "user_id" => 1,
+                "user_id" => 2,
                 "types" => 1,
                 "price" => 4,
                 "ingredients" => "Pomodoro, Aglio, Origano",
@@ -35,7 +35,7 @@ class FoodTableSeeder extends Seeder
             [
                 "name" => "Diavola",
                 "image" => "uploads/Pizza-margherita-fatta-in-casa-orizzontale.jpeg",
-                "user_id" => 1,
+                "user_id" => 2,
                 "types" => 1,
                 "price" => 6,
                 "ingredients" => "Pomodoro, Mozzarella, Salame",

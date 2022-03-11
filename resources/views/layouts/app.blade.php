@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Deliveboo</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/admin.js') }}" defer></script>
@@ -26,7 +26,7 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    Deliveboo
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -42,13 +42,13 @@
 
                             @if (Auth::user()->email == 'admin@admin.com')
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('home') }}">Users</a>
+                                    <a class="nav-link" href="{{ route('home') }}">Utenti</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('categories.index') }}">Categories</a>
+                                    <a class="nav-link" href="{{ route('categories.index') }}">Categorie ristoranti</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('types.index') }}">Types</a>
+                                    <a class="nav-link" href="{{ route('types.index') }}">Tipologie piatti</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('tags.index') }}">Tags</a>
@@ -58,7 +58,7 @@
                                     <a class="nav-link" href="{{ route('home') }}">Home</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('orders.index') }}">Orders</a>
+                                    <a class="nav-link" href="{{ route('orders.index') }}">Ordini</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('foods.index') }}">Menù</a>
@@ -90,12 +90,12 @@
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     @if (Auth::user()->email != 'admin@admin.com')
                                         <a class="dropdown-item" href="{{ route('users.edit', Auth::id()) }}">
-                                            Edit profile
+                                            Modifica profilo
                                         </a>
                                     @endif
                                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        Esci
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST"
