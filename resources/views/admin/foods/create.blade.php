@@ -58,7 +58,7 @@
                             <div class="form-group mb-3">
                                 <img src="" alt="" class="w-25 mb-3 my_image">
                                 <label class="d-block" for="inputGroupFile02"
-                                    aria-describedby="inputGroupFileAddon02">Choose image</label>
+                                    aria-describedby="inputGroupFileAddon02">Scegli immagine</label>
                                 <input type="file" id="inputGroupFile02" name="image"
                                     class="@error('image') is-invalid @enderror" onchange="previewUpload(event)" required>
                                 @error('image')
@@ -89,9 +89,9 @@
                                 @enderror
                             </div>
 
-                            <button type="submit" class="btn btn-primary btnP">Create</button>
+                            <button type="submit" class="btn btn-primary btnP">Crea</button>
                             <button type="button" class="btn btn-danger ml-1"><a class="text-white"
-                                    href="{{ route('foods.index') }}">Back to the list</a></button>
+                                    href="{{ route('foods.index') }}">Torna alla lista</a></button>
                         </form>
                     </div>
                 </div>

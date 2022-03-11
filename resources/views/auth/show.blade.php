@@ -29,7 +29,7 @@
                                 <p class="my-4"><span class="my_bold">Ordine minimo:</span> 0€</p>
                             @endif
                             @if (count($user->categories) > 0)
-                                <h5 class="mt-3">Categories:</h5>
+                                <h5 class="mt-3">Categorie:</h5>
                                 @foreach ($user->categories as $category)
                                     <span class="badge badge-primary">{{ $category->name }}</span>
                                 @endforeach
@@ -37,7 +37,7 @@
                         </div>
                         <div class="buttons mt-4 d-flex">
                             <button type="button" class="btn btn-danger"><a class="text-white"
-                                    href="{{ route('home') }}">Back to home</a></button>
+                                    href="{{ route('home') }}">Torna alla home</a></button>
                         </div>
                     </div>
                 </div>

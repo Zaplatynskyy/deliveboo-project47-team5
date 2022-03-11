@@ -5,16 +5,16 @@
         <div class="row justify-content-center">
             <div class="col-md-10">
                 <div class="card">
-                    <div class="card-header">Tag list</div>
+                    <div class="card-header">Lista dei tag</div>
                     <div class="card-body">
                         <div class="new-post">
                             <form class="d-flex mb-3" action="{{ route('tags.store') }}" method="POST" id="add_tag_form" onsubmit="return validationFormTag()">
-                                <button type="submit" class="btn btn-success mr-2 btnP">New tag</button>
+                                <button type="submit" class="btn btn-success mr-2 btnP">Crea nuovo</button>
                                 <div>
                                     @csrf
                                     <input value="@if (old('formType') == 'create') {{ old('name') }} @endif" type="text"
                                         class="form-control @if (old('formType') == 'create') is-invalid @endif" id="name"
-                                        placeholder="Insert the tag" name="name" required>
+                                        placeholder="Inserisci il tag" name="name" required>
                                     <input type="hidden" name="formType" value="create">
                                 </div>
                                 @if (old('formType') == 'create')
@@ -31,9 +31,9 @@
                                 <thead>
                                     <tr>
                                         <th scope="col">#</th>
-                                        <th scope="col">Name</th>
+                                        <th scope="col">Nome</th>
                                         <th scope="col">Slug</th>
-                                        <th scope="col">Actions</th>
+                                        <th scope="col">Azioni</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -75,13 +75,13 @@
                                             <td>
                                                 <div class="edit-buttons d-inline-block">
                                                     <button type="button"
-                                                        class="btn btn-warning btnP text-white toggleForm {{ old('oldName') == $tag->name ? 'd-none' : '' }}">Edit</button>
+                                                        class="btn btn-warning btnP text-white toggleForm {{ old('oldName') == $tag->name ? 'd-none' : '' }}">Modifica</button>
                                                     <button type="button"
-                                                        class="btn btn-warning btnP text-white submitForm {{ old('oldName') == $tag->name ? 'failed-validation' : 'd-none' }} ">Confirm</button>
+                                                        class="btn btn-warning btnP text-white submitForm {{ old('oldName') == $tag->name ? 'failed-validation' : 'd-none' }} ">Conferma</button>
                                                 </div>
                                                 <button type="submit" class="btn btn-danger btnToggle btnP"
                                                     data-toggle="modal" data-target="#exampleModal"
-                                                    data-slug="{{ $tag->id }}">Delete</button>
+                                                    data-slug="{{ $tag->id }}">Elimina</button>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -93,24 +93,24 @@
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title text-uppercase" id="exampleModalLabel">Attention! ❌</h5>
+                                            <h5 class="modal-title text-uppercase" id="exampleModalLabel">Attenzione! ❌</h5>
                                             <button type="button" class="close" data-dismiss="modal"
                                                 aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            Are you sure you want to delete this tag?
+                                            Sei sicuro di voler eliminare questo tag?
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-primary btnP"
-                                                data-dismiss="modal">Close</button>
+                                                data-dismiss="modal">Chiudi</button>
                                             <form action="" method="POST" class="my_form">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="button"
                                                     class="btn btn-danger toastClicker delete-tag btnP"
-                                                    data-dismiss="modal">Confirm</button>
+                                                    data-dismiss="modal">Conferma</button>
                                             </form>
                                         </div>
                                     </div>
@@ -121,7 +121,7 @@
                                 <div id="liveToast" class="toast hide" role="alert" aria-live="assertive"
                                     aria-atomic="true" data-delay="2000">
                                     <div class="toast-body">
-                                        Tag successfully deleted! 🗑
+                                        Tag eliminato con successo! 🗑
                                     </div>
                                 </div>
                             </div>

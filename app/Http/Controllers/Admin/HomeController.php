@@ -15,7 +15,7 @@ class HomeController extends Controller
         if (Auth::user()->email == 'admin@admin.com') {
             return redirect()->route('users.index');
         } else {
-            $orders = Order::where('accepted', null)->orderBy('created_at', 'desc')->get();
+            $orders = Order::where('accepted', null)->where('user_id', Auth::id())->orderBy('created_at', 'desc')->get();
             return view('admin.home', compact('orders'));
         }
     }

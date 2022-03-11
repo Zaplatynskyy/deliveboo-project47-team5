@@ -14,7 +14,7 @@
                             <p class="my-4">{{ $order->telephone }}</p>
                             <p class="my-4">{{ $order->total }}€</p>
                             <span
-                                class="badge {{ $order->accepted ? 'badge-success' : 'badge-secondary' }}">{{ $order->accepted ? 'Visible' : 'Not accepted' }}</span>
+                                class="badge {{ $order->accepted ? 'badge-success' : 'badge-danger' }}">{{ $order->accepted ? 'Ordine accettato' : 'Ordine non accettato' }}</span>
                             @if ($order->type)
                                 <span class="badge badge-info">{{ $order->type->name }}</span>
                             @endif
