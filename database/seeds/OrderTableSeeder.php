@@ -16,20 +16,20 @@ class OrderTableSeeder extends Seeder
     {
         $orders = [
             [
-                'name' => 'Pippo',
+                'name' => 'Leonardo',
                 'cognome' => 'Rosso',
                 'user_id' => 1,
                 'address' => 'Via X Settembre, 4',
-                'telephone' => '324343325',
+                'telephone' => '336344325',
                 'total' => '103.00'
             ],
             [
-                'name' => 'Andrea',
+                'name' => 'Francesco',
 
                 'cognome' => 'Diprè',
                 'user_id' => 1,
                 'address' => 'Via Pippo, 10',
-                'telephone' => '324734134',
+                'telephone' => '304774134',
                 'total' => '250.00'
             ],
         ];
