@@ -37268,100 +37268,188 @@ module.exports = function(module) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
+__webpack_require__(/*! ./bootstrap */ "./resources/js/admin/bootstrap.js");
+
+__webpack_require__(/*! ./validationFormUser */ "./resources/js/admin/validationFormUser.js");
+
+__webpack_require__(/*! ./modalToggle */ "./resources/js/admin/modalToggle.js");
+
+__webpack_require__(/*! ./editSubmitForm */ "./resources/js/admin/editSubmitForm.js");
+
+/***/ }),
+
+/***/ "./resources/js/admin/bootstrap.js":
+/*!*****************************************!*\
+  !*** ./resources/js/admin/bootstrap.js ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/**
+ * We'll load jQuery and the Bootstrap jQuery plugin which provides support
+ * for JavaScript based Bootstrap features such as modals and tabs. This
+ * code may be modified to fit the specific needs of your application.
+ */
+
+try {
+  window.Popper = __webpack_require__(/*! popper.js */ "./node_modules/popper.js/dist/esm/popper.js")["default"];
+  window.$ = window.jQuery = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+
+  __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.js");
+} catch (e) {}
+/**
+ * We'll load the axios HTTP library which allows us to easily issue requests
+ * to our Laravel back-end. This library automatically handles sending the
+ * CSRF token as a header based on the value of the "XSRF" token cookie.
+ */
+
+
+window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+/**
+ * Echo exposes an expressive API for subscribing to channels and listening
+ * for events that are broadcast by Laravel. Echo and event broadcasting
+ * allows your team to easily build robust real-time web applications.
+ */
+// import Echo from 'laravel-echo';
+// window.Pusher = require('pusher-js');
+// window.Echo = new Echo({
+//     broadcaster: 'pusher',
+//     key: process.env.MIX_PUSHER_APP_KEY,
+//     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
+//     forceTLS: true
+// });
+
+/***/ }),
+
+/***/ "./resources/js/admin/editSubmitForm.js":
+/*!**********************************************!*\
+  !*** ./resources/js/admin/editSubmitForm.js ***!
+  \**********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
 function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
 
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
-__webpack_require__(/*! ./bootstrap */ "./resources/js/admin/bootstrap.js");
+var editToggle = document.getElementsByClassName("toggleForm");
+var submitForm = document.getElementsByClassName("submitForm");
+var categoryName = document.getElementsByClassName("name");
+var categoryNameEdit = document.getElementsByClassName("name-input");
+var editForm = document.getElementsByClassName("edit-form");
 
-var registrationForm = document.getElementById('registration_form');
+if (editToggle != null && submitForm != null) {
+  var _loop = function _loop(i) {
+    editToggle[i].addEventListener("click", function () {
+      var invalidInput = document.querySelector('.my_validation');
 
-window.validationForm = function () {
-  var success = true; // controllo nome attività
+      if (invalidInput != undefined) {
+        var alertDanger = document.querySelector('.alert-danger');
+        var invalidSubmit = document.querySelector('.failed-validation.submitForm');
+        var invalidName = document.querySelector('div.name-input');
+        var oldName = invalidInput.getAttribute('data-old-name');
+        invalidInput.setAttribute('value', oldName);
+        invalidInput.classList.remove('is-invalid');
+        invalidName.classList.add('d-none');
+        alertDanger.classList.remove('d-flex');
+        alertDanger.classList.add('d-none');
+        invalidSubmit.classList.add('d-none');
+      }
 
-  if (registrationForm.name.value == '') {
-    console.log('in nome non può essere vuoto');
-    success = false;
-  } else if (registrationForm.name.value.length > 100) {
-    console.log('il nome non può superare i 100 caratteri');
-    success = false;
-  } // controllo email
+      var _iterator = _createForOfIteratorHelper(editToggle),
+          _step;
 
+      try {
+        for (_iterator.s(); !(_step = _iterator.n()).done;) {
+          var key = _step.value;
+          key.classList.remove("d-none");
+        }
+      } catch (err) {
+        _iterator.e(err);
+      } finally {
+        _iterator.f();
+      }
 
-  if (registrationForm.email.value == '') {
-    console.log('la mail non può essere vuoto');
-    success = false;
-  } else if (registrationForm.email.value.length > 255) {
-    console.log('la mail non può superare i 255 caratteri');
-    success = false;
-  } // controllo password
+      var _iterator2 = _createForOfIteratorHelper(submitForm),
+          _step2;
 
+      try {
+        for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+          var _key = _step2.value;
 
-  if (registrationForm.password.value == '') {
-    console.log('la password non può essere vuota');
-    success = false;
-  } else if (registrationForm.password.value.length < 8) {
-    console.log('la password deve contenere almeno 8 caratteri');
-    success = false;
-  } // controllo p_iva
+          _key.classList.add("d-none");
+        }
+      } catch (err) {
+        _iterator2.e(err);
+      } finally {
+        _iterator2.f();
+      }
 
+      this.classList.add("d-none");
+      submitForm[i].classList.remove("d-none");
 
-  if (registrationForm.p_iva.value == '') {
-    console.log('la p_iva non può essere vuoto');
-    success = false;
-  } else if (isNaN(registrationForm.p_iva.value)) {
-    console.log('la p_iva deve essere un numero');
-    success = false;
-  } else if (registrationForm.p_iva.value.length != 11) {
-    console.log('la p_iva deve essere di 11 caratteri');
-    success = false;
-  } // controllo telefono
+      var _iterator3 = _createForOfIteratorHelper(categoryName),
+          _step3;
 
+      try {
+        for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
+          var _key2 = _step3.value;
 
-  if (registrationForm.telephone.value == '') {
-    console.log('la telephone non può essere vuoto');
-    success = false;
-  } else if (isNaN(registrationForm.telephone.value)) {
-    console.log('la telephone deve essere un numero');
-    success = false;
-  } else if (registrationForm.telephone.value.length < 8 || registrationForm.telephone.value.length > 11) {
-    console.log('la telephone deve essere compreso tra gli 8 e gli 11 caratteri');
-    success = false;
-  } // controllo costo consegna
+          _key2.classList.remove("d-none");
+        }
+      } catch (err) {
+        _iterator3.e(err);
+      } finally {
+        _iterator3.f();
+      }
 
+      var _iterator4 = _createForOfIteratorHelper(categoryNameEdit),
+          _step4;
 
-  if (isNaN(registrationForm.shipping.value)) {
-    console.log('la shipping deve essere un numero');
-    success = false;
-  } else if (registrationForm.shipping.value != '') {
-    if (registrationForm.shipping.value < 0.90 || registrationForm.shipping.value > 99.90) {
-      console.log('la shipping deve essere compreso tra gli 8 e gli 11 caratteri');
-      success = false;
-    }
-  } // controllo ordine minimo
+      try {
+        for (_iterator4.s(); !(_step4 = _iterator4.n()).done;) {
+          var _key3 = _step4.value;
 
+          _key3.classList.add("d-none");
+        }
+      } catch (err) {
+        _iterator4.e(err);
+      } finally {
+        _iterator4.f();
+      }
 
-  if (isNaN(registrationForm.min_price.value)) {
-    console.log('la min_price deve essere un numero');
-    success = false;
-  } else if (registrationForm.min_price.value != '') {
-    if (registrationForm.min_price.value < 0.90 || registrationForm.min_price.value > 99.90) {
-      console.log('la min_price deve essere compreso tra gli 8 e gli 11 caratteri');
-      success = false;
-    }
-  } // controllo categorie
+      categoryName[i].classList.add("d-none");
+      categoryNameEdit[i].classList.remove("d-none");
+    });
+  };
 
-
-  var inputChecks = document.querySelectorAll('.form-check-input:checked');
-
-  if (inputChecks.length == 0) {
-    console.log('selezionare almeno una categoria');
+  for (var i = 0; i < editToggle.length; i++) {
+    _loop(i);
   }
 
-  return success;
-};
+  var _loop2 = function _loop2(_i) {
+    submitForm[_i].addEventListener("click", function () {
+      editForm[_i].submit();
+    });
+  };
+
+  for (var _i = 0; _i < submitForm.length; _i++) {
+    _loop2(_i);
+  }
+}
+
+/***/ }),
+
+/***/ "./resources/js/admin/modalToggle.js":
+/*!*******************************************!*\
+  !*** ./resources/js/admin/modalToggle.js ***!
+  \*******************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
 
 $(document).ready(function () {
   $(".toastClicker").click(function () {
@@ -37456,158 +37544,101 @@ if (buttonDeleteTag != null) {
   });
 }
 
-var editToggle = document.getElementsByClassName("toggleForm");
-var submitForm = document.getElementsByClassName("submitForm");
-var categoryName = document.getElementsByClassName("name");
-var categoryNameEdit = document.getElementsByClassName("name-input");
-var editForm = document.getElementsByClassName("edit-form");
-
-if (editToggle != null && submitForm != null) {
-  var _loop2 = function _loop2(_i) {
-    editToggle[_i].addEventListener("click", function () {
-      var invalidInput = document.querySelector('.my_validation');
-
-      if (invalidInput != undefined) {
-        var alertDanger = document.querySelector('.alert-danger');
-        var invalidSubmit = document.querySelector('.failed-validation.submitForm');
-        var invalidName = document.querySelector('div.name-input');
-        var oldName = invalidInput.getAttribute('data-old-name');
-        invalidInput.setAttribute('value', oldName);
-        invalidInput.classList.remove('is-invalid');
-        invalidName.classList.add('d-none');
-        alertDanger.classList.remove('d-flex');
-        alertDanger.classList.add('d-none');
-        invalidSubmit.classList.add('d-none');
-      }
-
-      var _iterator = _createForOfIteratorHelper(editToggle),
-          _step;
-
-      try {
-        for (_iterator.s(); !(_step = _iterator.n()).done;) {
-          var key = _step.value;
-          key.classList.remove("d-none");
-        }
-      } catch (err) {
-        _iterator.e(err);
-      } finally {
-        _iterator.f();
-      }
-
-      var _iterator2 = _createForOfIteratorHelper(submitForm),
-          _step2;
-
-      try {
-        for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
-          var _key = _step2.value;
-
-          _key.classList.add("d-none");
-        }
-      } catch (err) {
-        _iterator2.e(err);
-      } finally {
-        _iterator2.f();
-      }
-
-      this.classList.add("d-none");
-
-      submitForm[_i].classList.remove("d-none");
-
-      var _iterator3 = _createForOfIteratorHelper(categoryName),
-          _step3;
-
-      try {
-        for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
-          var _key2 = _step3.value;
-
-          _key2.classList.remove("d-none");
-        }
-      } catch (err) {
-        _iterator3.e(err);
-      } finally {
-        _iterator3.f();
-      }
-
-      var _iterator4 = _createForOfIteratorHelper(categoryNameEdit),
-          _step4;
-
-      try {
-        for (_iterator4.s(); !(_step4 = _iterator4.n()).done;) {
-          var _key3 = _step4.value;
-
-          _key3.classList.add("d-none");
-        }
-      } catch (err) {
-        _iterator4.e(err);
-      } finally {
-        _iterator4.f();
-      }
-
-      categoryName[_i].classList.add("d-none");
-
-      categoryNameEdit[_i].classList.remove("d-none");
-    });
-  };
-
-  for (var _i = 0; _i < editToggle.length; _i++) {
-    _loop2(_i);
-  }
-
-  var _loop3 = function _loop3(_i2) {
-    submitForm[_i2].addEventListener("click", function () {
-      editForm[_i2].submit();
-    });
-  };
-
-  for (var _i2 = 0; _i2 < submitForm.length; _i2++) {
-    _loop3(_i2);
-  }
-}
-
 /***/ }),
 
-/***/ "./resources/js/admin/bootstrap.js":
-/*!*****************************************!*\
-  !*** ./resources/js/admin/bootstrap.js ***!
-  \*****************************************/
+/***/ "./resources/js/admin/validationFormUser.js":
+/*!**************************************************!*\
+  !*** ./resources/js/admin/validationFormUser.js ***!
+  \**************************************************/
 /*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
-/**
- * We'll load jQuery and the Bootstrap jQuery plugin which provides support
- * for JavaScript based Bootstrap features such as modals and tabs. This
- * code may be modified to fit the specific needs of your application.
- */
+var registrationForm = document.getElementById('registration_form');
 
-try {
-  window.Popper = __webpack_require__(/*! popper.js */ "./node_modules/popper.js/dist/esm/popper.js")["default"];
-  window.$ = window.jQuery = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+window.validationForm = function () {
+  var success = true; // controllo nome attività
 
-  __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.js");
-} catch (e) {}
-/**
- * We'll load the axios HTTP library which allows us to easily issue requests
- * to our Laravel back-end. This library automatically handles sending the
- * CSRF token as a header based on the value of the "XSRF" token cookie.
- */
+  if (registrationForm.name.value == '') {
+    console.log('in nome non può essere vuoto');
+    success = false;
+  } else if (registrationForm.name.value.length > 100) {
+    console.log('il nome non può superare i 100 caratteri');
+    success = false;
+  } // controllo email
 
 
-window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-/**
- * Echo exposes an expressive API for subscribing to channels and listening
- * for events that are broadcast by Laravel. Echo and event broadcasting
- * allows your team to easily build robust real-time web applications.
- */
-// import Echo from 'laravel-echo';
-// window.Pusher = require('pusher-js');
-// window.Echo = new Echo({
-//     broadcaster: 'pusher',
-//     key: process.env.MIX_PUSHER_APP_KEY,
-//     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
-//     forceTLS: true
-// });
+  if (registrationForm.email.value == '') {
+    console.log('la mail non può essere vuoto');
+    success = false;
+  } else if (registrationForm.email.value.length > 255) {
+    console.log('la mail non può superare i 255 caratteri');
+    success = false;
+  } // controllo password
+
+
+  if (registrationForm.password.value == '') {
+    console.log('la password non può essere vuota');
+    success = false;
+  } else if (registrationForm.password.value.length < 8) {
+    console.log('la password deve contenere almeno 8 caratteri');
+    success = false;
+  } // controllo p_iva
+
+
+  if (registrationForm.p_iva.value == '') {
+    console.log('la p_iva non può essere vuoto');
+    success = false;
+  } else if (isNaN(registrationForm.p_iva.value)) {
+    console.log('la p_iva deve essere un numero');
+    success = false;
+  } else if (registrationForm.p_iva.value.length != 11) {
+    console.log('la p_iva deve essere di 11 caratteri');
+    success = false;
+  } // controllo telefono
+
+
+  if (registrationForm.telephone.value == '') {
+    console.log('la telephone non può essere vuoto');
+    success = false;
+  } else if (isNaN(registrationForm.telephone.value)) {
+    console.log('la telephone deve essere un numero');
+    success = false;
+  } else if (registrationForm.telephone.value.length < 8 || registrationForm.telephone.value.length > 11) {
+    console.log('la telephone deve essere compreso tra gli 8 e gli 11 caratteri');
+    success = false;
+  } // controllo costo consegna
+
+
+  if (isNaN(registrationForm.shipping.value)) {
+    console.log('la shipping deve essere un numero');
+    success = false;
+  } else if (registrationForm.shipping.value != '') {
+    if (registrationForm.shipping.value < 0.90 || registrationForm.shipping.value > 99.90) {
+      console.log('la shipping deve essere compreso tra gli 8 e gli 11 caratteri');
+      success = false;
+    }
+  } // controllo ordine minimo
+
+
+  if (isNaN(registrationForm.min_price.value)) {
+    console.log('la min_price deve essere un numero');
+    success = false;
+  } else if (registrationForm.min_price.value != '') {
+    if (registrationForm.min_price.value < 0.90 || registrationForm.min_price.value > 99.90) {
+      console.log('la min_price deve essere compreso tra gli 8 e gli 11 caratteri');
+      success = false;
+    }
+  } // controllo categorie
+
+
+  var inputChecks = document.querySelectorAll('.form-check-input:checked');
+
+  if (inputChecks.length == 0) {
+    console.log('selezionare almeno una categoria');
+  }
+
+  return success;
+};
 
 /***/ }),
 
@@ -37640,9 +37671,9 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/simonespirito/Downloads/Boolean/deliveboo-project47-team5-1/resources/js/admin/admin.js */"./resources/js/admin/admin.js");
-__webpack_require__(/*! /Users/simonespirito/Downloads/Boolean/deliveboo-project47-team5-1/resources/sass/admin/admin.scss */"./resources/sass/admin/admin.scss");
-module.exports = __webpack_require__(/*! /Users/simonespirito/Downloads/Boolean/deliveboo-project47-team5-1/resources/sass/front/front.scss */"./resources/sass/front/front.scss");
+__webpack_require__(/*! C:\Users\User\Desktop\boolean-full\esercizi\php\deliveboo-project47-team5\resources\js\admin\admin.js */"./resources/js/admin/admin.js");
+__webpack_require__(/*! C:\Users\User\Desktop\boolean-full\esercizi\php\deliveboo-project47-team5\resources\sass\admin\admin.scss */"./resources/sass/admin/admin.scss");
+module.exports = __webpack_require__(/*! C:\Users\User\Desktop\boolean-full\esercizi\php\deliveboo-project47-team5\resources\sass\front\front.scss */"./resources/sass/front/front.scss");
 
 
 /***/ })

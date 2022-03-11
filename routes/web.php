@@ -21,12 +21,16 @@ Auth::routes();
 // Rotte area Admin
 Route::middleware('auth')->namespace('Admin')->prefix('admin')->group(function() {
     Route::get('/home', 'HomeController@index')->name('home');
-    Route::resource('foods', 'FoodController');
-    Route::resource('users', 'UserController');
-    Route::get('/orders', 'OrderController@index')->name('orders.index');
-    Route::get('/orders/{id}', 'OrderController@show')->name('orders.show');
-    Route::patch('/orders/{id}/approves', 'OrderController@update')->name('orders.approves');
-    Route::patch('/orders/{id}/disapproves', 'OrderController@disapproves')->name('orders.disapproves');
+    
+    Route::middleware('checkUser')->group(function () {
+        Route::resource('foods', 'FoodController');
+        Route::resource('users', 'UserController');
+        Route::get('/orders', 'OrderController@index')->name('orders.index');
+        Route::get('/orders/{id}', 'OrderController@show')->name('orders.show');
+        Route::patch('/orders/{id}/approves', 'OrderController@update')->name('orders.approves');
+        Route::patch('/orders/{id}/disapproves', 'OrderController@disapproves')->name('orders.disapproves');
+    });
+
     Route::middleware('checkAdmin')->group(function () {
         Route::resource('categories', 'CategoryController');
         Route::resource('types', 'TypeController');
