@@ -6,14 +6,14 @@
             <div class="col-10">
                 <div class="card">
                     <div class="card-body">
-                        <form action="{{ route('foods.update', $food->id) }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('foods.update', $food->id) }}" method="POST" enctype="multipart/form-data" id="add_food_form" onsubmit="return validationFormFood()">
                             @csrf
                             @method('PUT')
                             <div class="form-group">
                                 <label for="name">Nome</label>
                                 <input value="{{ old('name') ?? $food->name }}" type="text"
                                     class="form-control @error('name') is-invalid @enderror" id="name"
-                                    placeholder="Insert the name" name="name">
+                                    placeholder="Insert the name" name="name" required>
                                 @error('name')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
@@ -33,7 +33,7 @@
 
                                 <input id="price" type="number" class="form-control @error('price') is-invalid @enderror"
                                     name="price" value="{{ old('price') ?? $food->price }}" step="0.1" min="0.90"
-                                    max="999.90" placeholder="Inserisci il prezzo">
+                                    max="999.90" placeholder="Inserisci il prezzo" required>
 
                                 @error('price')
                                     <span class="invalid-feedback" role="alert">
@@ -45,7 +45,7 @@
                             <div class="form-group">
                                 <label for="types">Tipologie</label>
                                 <select id="types" class="custom-select @error('type_id') is-invalid @enderror"
-                                    name="type_id">
+                                    name="type_id" required>
                                     <option value="">Seleziona le Tipologie</option>
                                     @foreach ($types as $type)
                                         <option {{ old('type_id', $food->type_id) == $type->id ? 'selected' : '' }}
@@ -67,7 +67,7 @@
                                 <label class="d-block" for="inputGroupFile02"
                                     aria-describedby="inputGroupFileAddon02">Choose image</label>
                                 <input type="file" id="inputGroupFile02" name="image"
-                                    class="@error('image') is-invalid @enderror" onchange="previewUpload(event)">
+                                    class="@error('image') is-invalid @enderror" onchange="previewUpload(event)" required>
                                 @error('image')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror

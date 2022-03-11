@@ -8,13 +8,13 @@
                     <div class="card-header">Tag list</div>
                     <div class="card-body">
                         <div class="new-post">
-                            <form class="d-flex mb-3" action="{{ route('tags.store') }}" method="POST">
+                            <form class="d-flex mb-3" action="{{ route('tags.store') }}" method="POST" id="add_tag_form" onsubmit="return validationFormTag()">
                                 <button type="submit" class="btn btn-success mr-2 btnP">New tag</button>
                                 <div>
                                     @csrf
                                     <input value="@if (old('formType') == 'create') {{ old('name') }} @endif" type="text"
                                         class="form-control @if (old('formType') == 'create') is-invalid @endif" id="name"
-                                        placeholder="Insert the tag" name="name">
+                                        placeholder="Insert the tag" name="name" required>
                                     <input type="hidden" name="formType" value="create">
                                 </div>
                                 @if (old('formType') == 'create')

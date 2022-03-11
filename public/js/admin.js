@@ -37272,6 +37272,10 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/admin/bootstrap.js");
 
 __webpack_require__(/*! ./validationFormUser */ "./resources/js/admin/validationFormUser.js");
 
+__webpack_require__(/*! ./validationFormFood */ "./resources/js/admin/validationFormFood.js");
+
+__webpack_require__(/*! ./validationFormAdmin */ "./resources/js/admin/validationFormAdmin.js");
+
 __webpack_require__(/*! ./modalToggle */ "./resources/js/admin/modalToggle.js");
 
 __webpack_require__(/*! ./editSubmitForm */ "./resources/js/admin/editSubmitForm.js");
@@ -37543,6 +37547,112 @@ if (buttonDeleteTag != null) {
     });
   });
 }
+
+/***/ }),
+
+/***/ "./resources/js/admin/validationFormAdmin.js":
+/*!***************************************************!*\
+  !*** ./resources/js/admin/validationFormAdmin.js ***!
+  \***************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+//----------VALIDATION CATEGORY
+var registrationFormCategory = document.getElementById('add_category_form');
+
+window.validationFormCategory = function () {
+  var success = true; // controllo nome categoria
+
+  if (registrationFormCategory.name.value == '') {
+    console.log('la categoria non può essere vuota');
+    success = false;
+  } else if (registrationFormCategory.name.value.length > 100) {
+    console.log('la categoria non può superare i 100 caratteri');
+    success = false;
+  }
+
+  return success;
+}; //----------VALIDATION TYPE
+
+
+var registrationFormType = document.getElementById('add_type_form');
+
+window.validationFormType = function () {
+  var success = true; // controllo nome tipo
+
+  if (registrationFormType.name.value == '') {
+    console.log('Il tipo non può essere vuoto');
+    success = false;
+  } else if (registrationFormType.name.value.length > 30) {
+    console.log('Il tipo non può superare i 30 caratteri');
+    success = false;
+  }
+
+  return success;
+}; //----------VALIDATION TAG
+
+
+var registrationFormTag = document.getElementById('add_tag_form');
+
+window.validationFormTag = function () {
+  var success = true; // controllo nome tag
+
+  if (registrationFormTag.name.value == '') {
+    console.log('Il tag non può essere vuoto');
+    success = false;
+  } else if (registrationFormTag.name.value.length > 30) {
+    console.log('Il tag non può superare i 30 caratteri');
+    success = false;
+  }
+
+  return success;
+};
+
+/***/ }),
+
+/***/ "./resources/js/admin/validationFormFood.js":
+/*!**************************************************!*\
+  !*** ./resources/js/admin/validationFormFood.js ***!
+  \**************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var registrationForm = document.getElementById('add_food_form');
+
+window.validationFormFood = function () {
+  var success = true; // controllo nome piatto
+
+  if (registrationForm.name.value == '') {
+    console.log('in nome non può essere vuoto');
+    success = false;
+  } else if (registrationForm.name.value.length > 100) {
+    console.log('il nome non può superare i 100 caratteri');
+    success = false;
+  } // controllo prezzo piatto
+
+
+  if (registrationForm.price.value == '') {
+    console.log('Inserire il prezzo');
+    success = false;
+  } else if (isNaN(registrationForm.price.value)) {
+    console.log('il prezzo deve essere un numero');
+    success = false;
+  } else if (registrationForm.price.value < 0 || registrationForm.price.value > 999.90) {
+    console.log('il prezzo deve essere compreso tra 0 e 999.90 €');
+    success = false;
+  } //controllo tipo selezionato
+
+
+  var select = document.getElementById('types');
+
+  if (!select.value) {
+    isSelected = 'non selezionato';
+    console.log('Selezionare almeno un tipo di piatto');
+    success = false;
+  }
+
+  return success;
+};
 
 /***/ }),
 
