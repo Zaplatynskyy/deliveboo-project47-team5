@@ -65,7 +65,7 @@ class OrderTableSeeder extends Seeder
             $newOrder->cognome = $order['cognome'];
             $newOrder->user_id = $order['user_id'];
             $newOrder->address = $order['address'];
-            $newOrder->telephone = '3'.rand(1111111111,9999999999);
+            $newOrder->telephone = '3'. rand(111111111,999999999);
             $newOrder->total = rand(10,250);
             $newOrder->save();
         }
