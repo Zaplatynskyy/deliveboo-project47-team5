@@ -134,7 +134,7 @@
                         <div class="form-group mb-3 text-center">
                             <img src="" alt="" class="w-25 mb-3 my_image">
                             <label class="d-block" for="inputGroupFile02"
-                                aria-describedby="inputGroupFileAddon02">Choose image</label>
+                                aria-describedby="inputGroupFileAddon02">Scegli immagine</label>
                             <input type="file" id="inputGroupFile02" name="image"
                                 class="@error('image') is-invalid @enderror" onchange="previewUpload(event)">
                             @error('image')
@@ -158,7 +158,7 @@
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary" id="registration_submit">
-                                    {{ __('Register') }}
+                                    Registrati
                                 </button>
                             </div>
                         </div>

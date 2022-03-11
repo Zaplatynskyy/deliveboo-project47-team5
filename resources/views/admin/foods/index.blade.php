@@ -9,18 +9,18 @@
                     <div class="card-body">
                         <div class="new-food">
                             <button type="button" class="btn btn-success mb-3"><a class="text-white"
-                                    href="{{ route('foods.create') }}">New food</a></button>
+                                    href="{{ route('foods.create') }}">Crea nuovo</a></button>
                         </div>
                         <div class="foods">
                             <table class="table table-striped">
                                 <thead>
                                     <tr>
                                         <th scope="col">#</th>
-                                        <th scope="col">Name</th>
-                                        <th scope="col">Price</th>
-                                        <th scope="col">Visible</th>
-                                        <th scope="col">Ingredients</th>
-                                        <th scope="col">Actions</th>
+                                        <th scope="col">Nome</th>
+                                        <th scope="col">Prezzo</th>
+                                        <th scope="col">Pubblicato</th>
+                                        <th scope="col">Ingredienti</th>
+                                        <th scope="col">Azioni</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -29,16 +29,16 @@
                                             <th scope="row">{{ $key + 1 }}</th>
                                             <td>{{ $food->name }}</td>
                                             <td>{{ $food->price }}€</td>
-                                            <td>{{ $food->visible == 0 ? 'No' : 'Yes' }}</td>
+                                            <td>{{ $food->visible == 0 ? 'No' : 'Si' }}</td>
                                             <td>{{ $food->ingredients }}</td>
                                             <td>
                                                 <button type="button" class="btn btn-info mt-1"><a class="text-white"
-                                                        href="{{ route('foods.show', $food->id) }}">View</a></button>
+                                                        href="{{ route('foods.show', $food->id) }}">Visualizza</a></button>
                                                 <button type="button" class="btn btn-warning mt-1"><a class="text-white"
-                                                        href="{{ route('foods.edit', $food->id) }}">Edit</a></button>
+                                                        href="{{ route('foods.edit', $food->id) }}">Modifica</a></button>
                                                 <button type="button" class="btn btn-danger mt-1 btnToggle btnP"
                                                     data-toggle="modal" data-target="#exampleModal"
-                                                    data-slug="{{ $food->id }}">Delete</button>
+                                                    data-slug="{{ $food->id }}">Elimina</button>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -50,24 +50,24 @@
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title text-uppercase" id="exampleModalLabel">Attention! ❌</h5>
+                                            <h5 class="modal-title text-uppercase" id="exampleModalLabel">Attenzione! ❌</h5>
                                             <button type="button" class="close" data-dismiss="modal"
                                                 aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            Are you sure you want to delete this food?
+                                            Sei sicuro di voler eliminare questo piatto?
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-primary btnP"
-                                                data-dismiss="modal">Close</button>
+                                                data-dismiss="modal">Chiudi</button>
                                             <form action="" method="POST"
                                                 class="my_form">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="button" class="btn btn-danger toastClicker my_button btnP"
-                                                    data-dismiss="modal">Confirm</button>
+                                                    data-dismiss="modal">Conferma</button>
                                             </form>
                                         </div>
                                     </div>
@@ -78,7 +78,7 @@
                                 <div id="liveToast" class="toast hide" role="alert" aria-live="assertive"
                                     aria-atomic="true" data-delay="2000">
                                     <div class="toast-body">
-                                        Food successfully deleted! 🗑
+                                        Piatto eliminato con successo! 🗑
                                     </div>
                                 </div>
                             </div>

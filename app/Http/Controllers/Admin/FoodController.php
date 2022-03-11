@@ -86,7 +86,11 @@ class FoodController extends Controller
      */
     public function show(Food $food)
     {
-        return view('admin.foods.show', compact('food'));
+        if (Auth::id() == $food->user->id) {
+            return view('admin.foods.show', compact('food'));
+        } else {
+            return redirect()->route('home');
+        }
     }
 
     /**
@@ -97,9 +101,13 @@ class FoodController extends Controller
      */
     public function edit(Food $food)
     {
-        $types = Type::all();
-        $tags = Tag::all();
-        return view('admin.foods.edit', compact('types', 'tags', 'food'));
+        if (Auth::id() == $food->user->id) {
+            $types = Type::all();
+            $tags = Tag::all();
+            return view('admin.foods.edit', compact('types', 'tags', 'food'));
+        } else {
+            return redirect()->route('home');
+        }
     }
 
     /**
@@ -122,7 +130,7 @@ class FoodController extends Controller
         $food->visible = isset($data['visible']);
         $food->type_id = $data['type_id'];
 
-        if(isset($data['image'])) {
+        if (isset($data['image'])) {
             Storage::delete($food->image);
             $path = Storage::put('uploads', $data['image']);
             $food->image = $path;
@@ -147,13 +155,13 @@ class FoodController extends Controller
     {
         $food->delete();
 
-        if(isset($food->image)) {
+        if (isset($food->image)) {
             Storage::delete($food->image);
         }
 
         $previous = URL::previous();
 
-        $url = '/admin/foods/'.$food->id;
+        $url = '/admin/foods/' . $food->id;
 
         if (str_ends_with($previous, $url)) {
             return redirect()->route('foods.index');

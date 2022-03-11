@@ -14,7 +14,7 @@ class CategoryTableSeeder extends Seeder
     public function run()
     {
         $categories = [
-            'Italiano', 'Pizzeria', 'Hamburgeria', 'Cinese', 'Giapponese', 'Indiano', 'Messicano', 'Kebab'
+            'Italiano', 'Pizzeria', 'Hamburgeria', 'Cinese', 'Giapponese', 'Indiano', 'Messicano', 'Kebab', 'Fast food', 'Piadineria', 'Gelateria'
         ];
 
         foreach ($categories as $category) {

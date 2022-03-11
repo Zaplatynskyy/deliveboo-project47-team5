@@ -18,18 +18,44 @@ class OrderTableSeeder extends Seeder
             [
                 'name' => 'Leonardo',
                 'cognome' => 'Rosso',
-                'user_id' => 1,
+                'user_id' => 2,
                 'address' => 'Via X Settembre, 4',
-                'telephone' => '336344325',
-                'total' => '103.00'
             ],
             [
-                'name' => 'Francesco',
-                'cognome' => 'Diprè',
-                'user_id' => 1,
-                'address' => 'Via Pippo, 10',
-                'telephone' => '304774134',
-                'total' => '250.00'
+                'name' => 'Onesto',
+                'cognome' => 'Focaccia',
+                'user_id' => 2,
+                'address' => 'Via Luca, 10',
+            ],
+            [
+                'name' => 'Sifrido',
+                'cognome' => 'Oliveto',
+                'user_id' => 2,
+                'address' => 'Via Centrale, 5',
+            ],
+            [
+                'name' => 'Osmildo',
+                'cognome' => 'Ponzetto',
+                'user_id' => 2,
+                'address' => 'Via Roma, 25',
+            ],
+            [
+                'name' => 'Tersina',
+                'cognome' => 'Ziano',
+                'user_id' => 2,
+                'address' => 'Via Giovani D\'ercole, 30',
+            ],
+            [
+                'name' => 'Primo',
+                'cognome' => 'Nardecchi',
+                'user_id' => 2,
+                'address' => 'Via Garibaldi, 28',
+            ],
+            [
+                'name' => 'Ruperto',
+                'cognome' => 'Aggravi',
+                'user_id' => 2,
+                'address' => 'Via Ponzi, 12',
             ],
         ];
 
@@ -39,8 +65,8 @@ class OrderTableSeeder extends Seeder
             $newOrder->cognome = $order['cognome'];
             $newOrder->user_id = $order['user_id'];
             $newOrder->address = $order['address'];
-            $newOrder->telephone = $order['telephone'];
-            $newOrder->total = $order['total'];
+            $newOrder->telephone = '3'.rand(1111111111,9999999999);
+            $newOrder->total = rand(10,250);
             $newOrder->save();
         }
     }
