@@ -90,7 +90,7 @@
                             </div>
 
                             <button type="submit" class="btn btn-primary btnP">Create</button>
-                            <button type="button" class="btn btn-danger ml-2"><a class="text-white"
+                            <button type="button" class="btn btn-danger ml-1"><a class="text-white"
                                     href="{{ route('foods.index') }}">Back to the list</a></button>
                         </form>
                     </div>

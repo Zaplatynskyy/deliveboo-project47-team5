@@ -21,7 +21,7 @@ class CreateOrdersTable extends Migration
             $table->string("address", 255);
             $table->bigInteger("telephone")->unique();
             $table->float("total", 6, 2);
-            $table->boolean("accepted")->default(false);
+            $table->boolean("accepted")->nullable();
             $table->timestamps();
         });
     }

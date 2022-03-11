@@ -55,7 +55,10 @@
                                     <a class="nav-link" href="{{ route('home') }}">Home</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('foods.index') }}">Foods</a>
+                                    <a class="nav-link" href="{{ route('orders.index') }}">Orders</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('foods.index') }}">Menù</a>
                                 </li>
                             @endif
                         @endauth
