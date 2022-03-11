@@ -17,6 +17,11 @@
                                         placeholder="Inserisci la tipologia" name="name" required>
                                     <input type="hidden" name="formType" value="create">
                                 </div>
+
+                                {{-- error js --}}
+                                <div id="type_input_name" class="error_js d-none"></div>
+                                {{-- error laravel --}}
+
                                 @if (old('formType') == 'create')
                                     @error('name')
                                         <div class="alert alert-danger ml-2 mb-0 py-0 px-4 d-flex align-items-center">

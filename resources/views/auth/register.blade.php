@@ -17,6 +17,9 @@
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
 
+                                {{-- error js --}}
+                                <div id="user_input_name" class="error_js d-none"></div>
+                                {{-- error laravel --}}
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -31,6 +34,9 @@
                             <div class="col-md-6">
                                 <input id="address" type="text" class="form-control @error('address') is-invalid @enderror" name="address" value="{{ old('address') }}" required>
 
+                                {{-- error js --}}
+                                <div id="user_input_address" class="error_js d-none"></div>
+                                {{-- error laravel --}}
                                 @error('address')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -45,6 +51,9 @@
                             <div class="col-md-6">
                                 <input id="p_iva" type="number" class="form-control @error('p_iva') is-invalid @enderror" name="p_iva" value="{{ old('p_iva') }}" required>
 
+                                {{-- error js --}}
+                                <div id="user_input_piva" class="error_js d-none"></div>
+                                {{-- error laravel --}}
                                 @error('p_iva')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -59,6 +68,9 @@
                             <div class="col-md-6">
                                 <input id="telephone" type="number" class="form-control @error('telephone') is-invalid @enderror" name="telephone" value="{{ old('telephone') }}" required>
 
+                                {{-- error js --}}
+                                <div id="user_input_telephone" class="error_js d-none"></div>
+                                {{-- error laravel --}}
                                 @error('telephone')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -73,6 +85,9 @@
                             <div class="col-md-6">
                                 <input id="shipping" type="number" class="form-control @error('shipping') is-invalid @enderror" name="shipping" value="{{ old('shipping') }}" step="0.10" min="0.90" max="99.90">
 
+                                {{-- error js --}}
+                                <div id="user_input_shipping" class="error_js d-none"></div>
+                                {{-- error laravel --}}
                                 @error('shipping')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -87,6 +102,9 @@
                             <div class="col-md-6">
                                 <input id="min_price" type="number" class="form-control @error('min_price') is-invalid @enderror" name="min_price" value="{{ old('min_price') }}" step="0.1" min="0.90" max="99.90">
 
+                                {{-- error js --}}
+                                <div id="user_input_min_price" class="error_js d-none"></div>
+                                {{-- error laravel --}}
                                 @error('min_price')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -101,6 +119,9 @@
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
 
+                                {{-- error js --}}
+                                <div id="user_input_email" class="error_js d-none"></div>
+                                {{-- error laravel --}}
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -115,6 +136,9 @@
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
 
+                                {{-- error js --}}
+                                <div id="user_input_password" class="error_js d-none"></div>
+                                {{-- error laravel --}}
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -150,6 +174,10 @@
                                     <label class="form-check-label" for="{{$catogory->slug}}">{{$catogory->name}}</label>
                                 </div>
                             @endforeach
+
+                            {{-- error js --}}
+                            <div id="user_input_categories" class="error_js d-none"></div>
+                            {{-- error laravel --}}
                             @error('categories')
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror

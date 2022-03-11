@@ -9,11 +9,26 @@ window.validationFormCategory = function(){
     // controllo nome categoria
 
     if( registrationFormCategory.name.value == '') {
-        console.log('la categoria non può essere vuota');
+        const categoryInputName = document.getElementById('category_input_name');
+
+        registrationFormCategory.name.classList.add("input_error_js");
+        categoryInputName.classList.remove("d-none");
+        categoryInputName.innerHTML = 'Il nome non può essere vuoto';
+
         success = false;
     } else if( registrationFormCategory.name.value.length > 100 ) {
-        console.log('la categoria non può superare i 100 caratteri');
+        const categoryInputName = document.getElementById('category_input_name');
+
+        registrationFormCategory.name.classList.add("input_error_js");
+        categoryInputName.classList.remove("d-none");
+        categoryInputName.innerHTML = 'La categoria non può superare i 100 caratteri';
+
         success = false;
+    } else if(success) {
+        const categoryInputName = document.getElementById('category_input_name');
+
+        registrationFormCategory.name.classList.remove("input_error_js");
+        categoryInputName.classList.add("d-none");
     }
 
     return success;
@@ -30,11 +45,26 @@ window.validationFormType = function(){
     // controllo nome tipo
 
     if( registrationFormType.name.value == '') {
-        console.log('Il tipo non può essere vuoto');
+        const typeInputName = document.getElementById('type_input_name');
+
+        registrationFormType.name.classList.add("input_error_js");
+        typeInputName.classList.remove("d-none");
+        typeInputName.innerHTML = 'Il nome non può essere vuoto';
+
         success = false;
     } else if( registrationFormType.name.value.length > 30 ) {
-        console.log('Il tipo non può superare i 30 caratteri');
+        const typeInputName = document.getElementById('type_input_name');
+
+        registrationFormType.name.classList.add("input_error_js");
+        typeInputName.classList.remove("d-none");
+        typeInputName.innerHTML = 'Il tipo non può superare i 30 caratteri';
+
         success = false;
+    } else if(success) {
+        const typeInputName = document.getElementById('type_input_name');
+
+        registrationFormType.name.classList.remove("input_error_js");
+        typeInputName.classList.add("d-none");
     }
 
     return success;
@@ -51,11 +81,26 @@ window.validationFormTag = function(){
     // controllo nome tag
 
     if( registrationFormTag.name.value == '') {
-        console.log('Il tag non può essere vuoto');
+        const tagInputName = document.getElementById('tag_input_name');
+
+        registrationFormTag.name.classList.add("input_error_js");
+        tagInputName.classList.remove("d-none");
+        tagInputName.innerHTML = 'Il nome non può essere vuoto';
+
         success = false;
     } else if( registrationFormTag.name.value.length > 30 ) {
-        console.log('Il tag non può superare i 30 caratteri');
+        const tagInputName = document.getElementById('tag_input_name');
+
+        registrationFormTag.name.classList.add("input_error_js");
+        tagInputName.classList.remove("d-none");
+        tagInputName.innerHTML = 'Il tag non può superare i 30 caratteri';
+
         success = false;
+    } else if(success) {
+        const tagInputName = document.getElementById('tag_input_name');
+
+        registrationFormTag.name.classList.remove("input_error_js");
+        tagInputName.classList.add("d-none");
     }
 
     return success;

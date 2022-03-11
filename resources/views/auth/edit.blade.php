@@ -20,6 +20,9 @@
                                         name="name" value="{{ old('name') ?? $user->name }}" required autocomplete="name"
                                         autofocus>
 
+                                {{-- error js --}}
+                                <div id="user_input_name" class="error_js d-none"></div>
+                                {{-- error laravel --}}
                                     @error('name')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -36,6 +39,9 @@
                                         class="form-control @error('address') is-invalid @enderror" name="address"
                                         value="{{ old('address') ?? $user->address }}" required>
 
+                                    {{-- error js --}}
+                                    <div id="user_input_address" class="error_js d-none"></div>
+                                    {{-- error laravel --}}
                                     @error('address')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -52,6 +58,9 @@
                                         class="form-control @error('p_iva') is-invalid @enderror" name="p_iva"
                                         value="{{ old('p_iva') ?? $user->p_iva }}" required>
 
+                                    {{-- error js --}}
+                                    <div id="user_input_piva" class="error_js d-none"></div>
+                                    {{-- error laravel --}}
                                     @error('p_iva')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -68,6 +77,9 @@
                                         class="form-control @error('telephone') is-invalid @enderror" name="telephone"
                                         value="{{ old('telephone') ?? $user->telephone }}" required>
 
+                                    {{-- error js --}}
+                                    <div id="user_input_telephone" class="error_js d-none"></div>
+                                    {{-- error laravel --}}
                                     @error('telephone')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -85,6 +97,9 @@
                                         value="{{ old('shipping') ?? $user->shipping }}" step="0.10" min="0.90"
                                         max="99.90">
 
+                                    {{-- error js --}}
+                                    <div id="user_input_shipping" class="error_js d-none"></div>
+                                    {{-- error laravel --}}
                                     @error('shipping')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -102,6 +117,9 @@
                                         value="{{ old('min_price') ?? $user->min_price }}" step="0.1" min="0.90"
                                         max="99.90">
 
+                                    {{-- error js --}}
+                                    <div id="user_input_min_price" class="error_js d-none"></div>
+                                    {{-- error laravel --}}
                                     @error('min_price')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -138,6 +156,10 @@
                                             for="{{ $category->slug }}">{{ $category->name }}</label>
                                     </div>
                                 @endforeach
+
+                                {{-- error js --}}
+                                <div id="user_input_categories" class="error_js d-none"></div>
+                                {{-- error laravel --}}
                                 @error('categories')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror

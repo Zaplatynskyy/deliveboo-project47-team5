@@ -14,6 +14,9 @@
                                 <input value="{{ old('name') ?? $food->name }}" type="text"
                                     class="form-control @error('name') is-invalid @enderror" id="name"
                                     placeholder="Insert the name" name="name" required>
+                                {{-- error js --}}
+                                <div id="food_input_name" class="error_js d-none"></div>
+                                {{-- error laravel --}}
                                 @error('name')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
@@ -34,7 +37,9 @@
                                 <input id="price" type="number" class="form-control @error('price') is-invalid @enderror"
                                     name="price" value="{{ old('price') ?? $food->price }}" step="0.1" min="0.90"
                                     max="999.90" placeholder="Inserisci il prezzo" required>
-
+                                {{-- error js --}}
+                                <div id="food_input_price" class="error_js d-none"></div>
+                                {{-- error laravel --}}
                                 @error('price')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -52,6 +57,9 @@
                                             value="{{ $type->id }}">{{ $type->name }}</option>
                                     @endforeach
                                 </select>
+                                {{-- error js --}}
+                                <div id="food_input_type" class="error_js d-none"></div>
+                                {{-- error laravel --}}
                                 @error('type_id')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
