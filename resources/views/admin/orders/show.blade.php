@@ -10,20 +10,30 @@
                     </div>
                     <div class="card-body">
                         <div class="order">
-                            <p class="my-4"><span class="my_bold">Indirizzo:</span> {{ $order->address }}</p>
-                            <p class="my-4"><span class="my_bold">Telefono:</span> {{ $order->telephone }}</p>
-                            <p class="my-4"><span class="my_bold">Totale ordine:</span> {{ $order->total }}€</p>
-                            <span
-                                class="badge {{ $order->accepted ? 'badge-success' : 'badge-danger' }}">{{ $order->accepted ? 'Ordine accettato' : 'Ordine non accettato' }}</span>
+                            <p class="my-4"><span class="my_bold">Indirizzo:</span> {{ $order->address }}
+                            </p>
+                            <p class="my-4"><span class="my_bold">Telefono:</span>
+                                {{ $order->telephone }}</p>
+                            <p class="my-4"><span class="my_bold">Totale ordine:</span>
+                                {{ $order->total }}€</p>
+                            @if ($order->accepted === 1)
+                                <span class="badge badge-success">Ordine accettato</span>
+                            @elseif ($order->accepted === 0)
+                                <span class="badge badge-danger">Ordine non accettato</span>
+                            @else
+                                <span class="badge badge-info text-white">Ordine in attesa</span>
+                            @endif
                             @if ($order->type)
                                 <span class="badge badge-info">{{ $order->type->name }}</span>
                             @endif
-                            {{-- @if (count($order->tags) > 0)
-                                <h5 class="mt-3">Tags:</h5>
-                                @foreach ($order->tags as $tag)
-                                    <span class="badge badge-primary">{{ $tag->name }}</span>
+                            <h5 class="mt-4">Dettagli ordine:</h5>
+                            <ul class="my-4">
+                                @foreach ($order->foods as $food)
+                                    <li>{{ $food->name }}<span
+                                            class="ml-5">x{{ $food->pivot->quantity }}</span>
+                                    </li>
                                 @endforeach
-                            @endif --}}
+                            </ul>
                         </div>
                         <div class="buttons mt-4 d-flex">
                             @if ($order->accepted === null)
@@ -39,7 +49,7 @@
                                 </form>
                             @endif
                             <button type="button" class="btn btn-info"><a class="text-white"
-                                    href="{{ route('orders.index') }}">Torna alla lista</a></button>
+                                    href="{{ url()->previous() }}">Torna alla lista</a></button>
                         </div>
                     </div>
                 </div>

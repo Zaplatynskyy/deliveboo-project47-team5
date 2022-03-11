@@ -75,7 +75,7 @@
                                 <label class="d-block" for="inputGroupFile02"
                                     aria-describedby="inputGroupFileAddon02">Scegli immagine</label>
                                 <input type="file" id="inputGroupFile02" name="image"
-                                    class="@error('image') is-invalid @enderror" onchange="previewUpload(event)" required>
+                                    class="@error('image') is-invalid @enderror" onchange="previewUpload(event)">
                                 @error('image')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror

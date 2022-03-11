@@ -10,4 +10,11 @@ class Order extends Model
     {
         return $this->belongsTo("App\User");
     }
+
+    public function foods()
+    {
+        return $this->belongsToMany("App\Food")->withPivot('quantity');
+    }
+
+
 }
