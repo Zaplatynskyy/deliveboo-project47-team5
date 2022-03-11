@@ -42,6 +42,9 @@
 
                             @if (Auth::user()->email == 'admin@admin.com')
                                 <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('home') }}">Users</a>
+                                </li>
+                                <li class="nav-item">
                                     <a class="nav-link" href="{{ route('categories.index') }}">Categories</a>
                                 </li>
                                 <li class="nav-item">
@@ -89,7 +92,7 @@
                                         Edit profile
                                     </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                             document.getElementById('logout-form').submit();">
+                                                                 document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 

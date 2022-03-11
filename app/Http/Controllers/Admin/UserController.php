@@ -6,6 +6,7 @@ use App\Category;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -19,7 +20,12 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        if (Auth::user()->email == 'admin@admin.com') {
+            $users = User::where('email', '!=', 'admin@admin.com')->get();
+            return view('auth.index', compact('users'));
+        } else {
+            return redirect()->route('home');
+        }
     }
 
     /**
@@ -28,9 +34,13 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $user)
     {
-        //
+        if (Auth::user()->email == 'admin@admin.com') {
+            return view('auth.show', compact('user'));
+        } else {
+            return redirect()->route('home');
+        }
     }
 
     /**
@@ -41,8 +51,12 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        $categories = Category::all();
-        return view('auth.edit', compact('user', 'categories'));
+        if (Auth::user()->email != 'admin@admin.com' && Auth::id() == $user->id) {
+            $categories = Category::all();
+            return view('auth.edit', compact('user', 'categories'));
+        } else {
+            return redirect()->route('home');
+        }
     }
 
     /**
@@ -67,14 +81,14 @@ class UserController extends Controller
             'image' => ['mimes:jpeg,jpg,bmp,png', 'max:2048']
         ]);
 
-        if($data['name'] != $user->name) {
+        if ($data['name'] != $user->name) {
             $user->name = $data['name'];
             $slug = Str::of($data['name'])->slug('-');
             $count = 1;
 
-            if($slug != $user->slug) {
-                while(User::where('slug', $slug)->first()) {
-                    $slug = Str::of($data['name'])->slug('-').'-'.$count;
+            if ($slug != $user->slug) {
+                while (User::where('slug', $slug)->first()) {
+                    $slug = Str::of($data['name'])->slug('-') . '-' . $count;
                     $count++;
                 }
             }
@@ -94,12 +108,11 @@ class UserController extends Controller
         $user->min_price = $data['min_price'];
         $user->save();
 
-        if(isset($data['categories'])) {
+        if (isset($data['categories'])) {
             $user->categories()->sync($data['categories']);
         }
 
         return redirect()->route('home');
-
     }
 
     /**
