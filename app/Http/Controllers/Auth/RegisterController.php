@@ -78,8 +78,8 @@ class RegisterController extends Controller
 
         $slug = Str::of($data['name'])->slug('-');
         $count = 1;
-        while(User::where('slug', $slug)->first()) {
-            $slug = Str::of($data['name'])->slug('-').'-'.$count;
+        while (User::where('slug', $slug)->first()) {
+            $slug = Str::of($data['name'])->slug('-') . '-' . $count;
             $count++;
         }
         $newUser->slug = $slug;
@@ -98,13 +98,10 @@ class RegisterController extends Controller
         $newUser->min_price = $data['min_price'];
         $newUser->save();
 
-        if(isset($data['categories'])) {
+        if (isset($data['categories'])) {
             $newUser->categories()->sync($data['categories']);
         }
 
         return $newUser;
-
     }
-
-    
 }
