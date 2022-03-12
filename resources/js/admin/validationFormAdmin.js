@@ -9,26 +9,15 @@ window.validationFormCategory = function(){
     // controllo nome categoria
 
     if( registrationFormCategory.name.value == '') {
-        const categoryInputName = document.getElementById('category_input_name');
-
-        registrationFormCategory.name.classList.add("input_error_js");
-        categoryInputName.classList.remove("d-none");
-        categoryInputName.innerHTML = 'Il nome non può essere vuoto';
+        displayError('category_input_name', 'name', 'Il nome non può essere vuoto');
 
         success = false;
     } else if( registrationFormCategory.name.value.length > 100 ) {
-        const categoryInputName = document.getElementById('category_input_name');
-
-        registrationFormCategory.name.classList.add("input_error_js");
-        categoryInputName.classList.remove("d-none");
-        categoryInputName.innerHTML = 'La categoria non può superare i 100 caratteri';
+        displayError('category_input_name', 'name', 'La categoria non può superare i 100 caratteri');
 
         success = false;
-    } else if(success) {
-        const categoryInputName = document.getElementById('category_input_name');
-
-        registrationFormCategory.name.classList.remove("input_error_js");
-        categoryInputName.classList.add("d-none");
+    } else {
+        removeError('category_input_name', 'name');
     }
 
     return success;
@@ -45,26 +34,15 @@ window.validationFormType = function(){
     // controllo nome tipo
 
     if( registrationFormType.name.value == '') {
-        const typeInputName = document.getElementById('type_input_name');
-
-        registrationFormType.name.classList.add("input_error_js");
-        typeInputName.classList.remove("d-none");
-        typeInputName.innerHTML = 'Il nome non può essere vuoto';
+        displayError('type_input_name', 'name', 'Il nome non può essere vuoto');
 
         success = false;
     } else if( registrationFormType.name.value.length > 30 ) {
-        const typeInputName = document.getElementById('type_input_name');
-
-        registrationFormType.name.classList.add("input_error_js");
-        typeInputName.classList.remove("d-none");
-        typeInputName.innerHTML = 'Il tipo non può superare i 30 caratteri';
+        displayError('type_input_name', 'name', 'Il tipo non può superare i 30 caratteri');
 
         success = false;
-    } else if(success) {
-        const typeInputName = document.getElementById('type_input_name');
-
-        registrationFormType.name.classList.remove("input_error_js");
-        typeInputName.classList.add("d-none");
+    } else {
+        removeError('type_input_name', 'name');
     }
 
     return success;
@@ -81,27 +59,33 @@ window.validationFormTag = function(){
     // controllo nome tag
 
     if( registrationFormTag.name.value == '') {
-        const tagInputName = document.getElementById('tag_input_name');
-
-        registrationFormTag.name.classList.add("input_error_js");
-        tagInputName.classList.remove("d-none");
-        tagInputName.innerHTML = 'Il nome non può essere vuoto';
+        displayError('tag_input_name', 'name', 'Il nome non può essere vuoto');
 
         success = false;
     } else if( registrationFormTag.name.value.length > 30 ) {
-        const tagInputName = document.getElementById('tag_input_name');
-
-        registrationFormTag.name.classList.add("input_error_js");
-        tagInputName.classList.remove("d-none");
-        tagInputName.innerHTML = 'Il tag non può superare i 30 caratteri';
+        displayError('tag_input_name', 'name', 'Il tag non può superare i 30 caratteri');
 
         success = false;
-    } else if(success) {
-        const tagInputName = document.getElementById('tag_input_name');
-
-        registrationFormTag.name.classList.remove("input_error_js");
-        tagInputName.classList.add("d-none");
+    } else {
+        removeError('tag_input_name', 'name');
     }
 
     return success;
+}
+
+function displayError(errorId, inputId, errorMessage) {
+    const inputError = document.getElementById(errorId);
+    const inputType = document.getElementById(inputId);
+
+    inputType.classList.add("input_error_js");
+    inputError.classList.remove("d-none");
+    inputError.innerHTML = errorMessage;
+}
+
+function removeError(errorId, inputId) {
+    const inputError = document.getElementById(errorId);
+    const inputType = document.getElementById(inputId);
+
+    inputType.classList.remove("input_error_js");
+    inputError.classList.add("d-none");
 }
