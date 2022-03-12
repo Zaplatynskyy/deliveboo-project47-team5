@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+                <div class="card-header">{{ __('Registrati') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}" id="registration_form" onsubmit="return validationForm()" enctype="multipart/form-data">
@@ -80,7 +80,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="shipping" class="col-md-4 col-form-label text-md-right">Costi consegna</label>
+                            <label for="shipping" class="col-md-4 col-form-label text-md-right">Costi di consegna</label>
 
                             <div class="col-md-6">
                                 <input id="shipping" type="number" class="form-control @error('shipping') is-invalid @enderror" name="shipping" value="{{ old('shipping') }}" step="0.10" min="0.90" max="99.90">
@@ -148,7 +148,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
+                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Conferma password') }}</label>
 
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
@@ -156,7 +156,7 @@
                         </div>
                         
                         <div class="form-group mb-3 text-center">
-                            <img src="" alt="" class="w-25 mb-3 my_image">
+                            <img src="" alt="" class="w-50 my-3 my_image d-inline">
                             <label class="d-block" for="inputGroupFile02"
                                 aria-describedby="inputGroupFileAddon02">Scegli immagine</label>
                             <input type="file" id="inputGroupFile02" name="image"
@@ -166,7 +166,7 @@
                             @enderror
                         </div>
 
-                        <div class="form-group row px-5">
+                        <div class="form-group row px-5 my-4 d-flex justify-content-center">
                             @foreach ($categories as $catogory)
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="checkbox" id="{{$catogory->slug}}"
@@ -184,7 +184,7 @@
                         </div>
 
                         <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
+                            <div class="offset-md-5 offset-5">
                                 <button type="submit" class="btn btn-primary" id="registration_submit">
                                     Registrati
                                 </button>
