@@ -16,13 +16,13 @@ use Illuminate\Support\Facades\Route;
 
 
 // Rotte Autenticazione
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 // Rotte area Admin
-Route::middleware('auth')->namespace('Admin')->prefix('admin')->group(function() {
+Route::middleware('auth')->namespace('Admin')->prefix('admin')->group(function () {
     Route::get('/home', 'HomeController@index')->name('home');
     Route::resource('users', 'UserController');
-    
+
     Route::middleware('checkUser')->group(function () {
         Route::resource('foods', 'FoodController');
         Route::get('/orders', 'OrderController@index')->name('orders.index');
