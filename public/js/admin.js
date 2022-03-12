@@ -37564,11 +37564,13 @@ window.validationFormCategory = function () {
   var success = true; // controllo nome categoria
 
   if (registrationFormCategory.name.value == '') {
-    console.log('la categoria non può essere vuota');
+    displayError('category_input_name', 'name', 'Il nome non può essere vuoto');
     success = false;
   } else if (registrationFormCategory.name.value.length > 100) {
-    console.log('la categoria non può superare i 100 caratteri');
+    displayError('category_input_name', 'name', 'La categoria non può superare i 100 caratteri');
     success = false;
+  } else {
+    removeError('category_input_name', 'name');
   }
 
   return success;
@@ -37581,11 +37583,13 @@ window.validationFormType = function () {
   var success = true; // controllo nome tipo
 
   if (registrationFormType.name.value == '') {
-    console.log('Il tipo non può essere vuoto');
+    displayError('type_input_name', 'name', 'Il nome non può essere vuoto');
     success = false;
   } else if (registrationFormType.name.value.length > 30) {
-    console.log('Il tipo non può superare i 30 caratteri');
+    displayError('type_input_name', 'name', 'Il tipo non può superare i 30 caratteri');
     success = false;
+  } else {
+    removeError('type_input_name', 'name');
   }
 
   return success;
@@ -37598,15 +37602,32 @@ window.validationFormTag = function () {
   var success = true; // controllo nome tag
 
   if (registrationFormTag.name.value == '') {
-    console.log('Il tag non può essere vuoto');
+    displayError('tag_input_name', 'name', 'Il nome non può essere vuoto');
     success = false;
   } else if (registrationFormTag.name.value.length > 30) {
-    console.log('Il tag non può superare i 30 caratteri');
+    displayError('tag_input_name', 'name', 'Il tag non può superare i 30 caratteri');
     success = false;
+  } else {
+    removeError('tag_input_name', 'name');
   }
 
   return success;
 };
+
+function displayError(errorId, inputId, errorMessage) {
+  var inputError = document.getElementById(errorId);
+  var inputType = document.getElementById(inputId);
+  inputType.classList.add("input_error_js");
+  inputError.classList.remove("d-none");
+  inputError.innerHTML = errorMessage;
+}
+
+function removeError(errorId, inputId) {
+  var inputError = document.getElementById(errorId);
+  var inputType = document.getElementById(inputId);
+  inputType.classList.remove("input_error_js");
+  inputError.classList.add("d-none");
+}
 
 /***/ }),
 
@@ -37623,36 +37644,56 @@ window.validationFormFood = function () {
   var success = true; // controllo nome piatto
 
   if (registrationForm.name.value == '') {
-    console.log('in nome non può essere vuoto');
+    displayError('food_input_name', 'name', 'Il nome non può essere vuoto');
     success = false;
   } else if (registrationForm.name.value.length > 100) {
-    console.log('il nome non può superare i 100 caratteri');
+    displayError('food_input_name', 'name', 'Il nome non può superare i 100 caratteri');
     success = false;
+  } else {
+    removeError('food_input_name', 'name');
   } // controllo prezzo piatto
 
 
   if (registrationForm.price.value == '') {
-    console.log('Inserire il prezzo');
+    displayError('food_input_price', 'price', 'Inserisci il prezzo');
     success = false;
   } else if (isNaN(registrationForm.price.value)) {
-    console.log('il prezzo deve essere un numero');
+    displayError('food_input_price', 'price', 'Il prezzo deve essere un numero');
     success = false;
   } else if (registrationForm.price.value < 0 || registrationForm.price.value > 999.90) {
-    console.log('il prezzo deve essere compreso tra 0 e 999.90 €');
+    displayError('food_input_price', 'price', 'Il prezzo deve essere compreso tra 0 e 999.90 €');
     success = false;
+  } else {
+    removeError('food_input_price', 'price');
   } //controllo tipo selezionato
 
 
   var select = document.getElementById('types');
 
   if (!select.value) {
-    isSelected = 'non selezionato';
-    console.log('Selezionare almeno un tipo di piatto');
+    displayError('food_input_type', 'types', 'Selezionare almeno un tipo di piatto');
     success = false;
+  } else {
+    removeError('food_input_type', 'types');
   }
 
   return success;
 };
+
+function displayError(errorId, inputId, errorMessage) {
+  var inputError = document.getElementById(errorId);
+  var inputType = document.getElementById(inputId);
+  inputType.classList.add("input_error_js");
+  inputError.classList.remove("d-none");
+  inputError.innerHTML = errorMessage;
+}
+
+function removeError(errorId, inputId) {
+  var inputError = document.getElementById(errorId);
+  var inputType = document.getElementById(inputId);
+  inputType.classList.remove("input_error_js");
+  inputError.classList.add("d-none");
+}
 
 /***/ }),
 
@@ -37669,86 +37710,136 @@ window.validationForm = function () {
   var success = true; // controllo nome attività
 
   if (registrationForm.name.value == '') {
-    console.log('in nome non può essere vuoto');
+    displayError('user_input_name', 'name', 'Il nome non può essere vuoto');
     success = false;
   } else if (registrationForm.name.value.length > 100) {
-    console.log('il nome non può superare i 100 caratteri');
+    displayError('user_input_name', 'name', 'Il nome non può superare i 100 caratteri');
     success = false;
+  } else {
+    removeError('user_input_name', 'name');
+  } // controllo indirizzo
+
+
+  if (registrationForm.address.value == '') {
+    displayError('user_input_address', 'address', 'L\'indirizzo non può essere vuoto');
+    success = false;
+  } else if (registrationForm.address.value.length > 255) {
+    displayError('user_input_address', 'address', 'L\'indirizzo non può superare i 255 caratteri');
+    success = false;
+  } else {
+    removeError('user_input_address', 'address');
   } // controllo email
 
 
-  if (registrationForm.email.value == '') {
-    console.log('la mail non può essere vuoto');
-    success = false;
-  } else if (registrationForm.email.value.length > 255) {
-    console.log('la mail non può superare i 255 caratteri');
-    success = false;
+  if (registrationForm.email) {
+    if (registrationForm.email.value == '') {
+      displayError('user_input_email', 'email', 'La mail non può essere vuota');
+      success = false;
+    } else if (registrationForm.email.value.length > 255) {
+      displayError('user_input_email', 'email', 'La mail non può superare i 255 caratteri');
+      success = false;
+    } else {
+      removeError('user_input_email', 'email');
+    }
   } // controllo password
 
 
-  if (registrationForm.password.value == '') {
-    console.log('la password non può essere vuota');
-    success = false;
-  } else if (registrationForm.password.value.length < 8) {
-    console.log('la password deve contenere almeno 8 caratteri');
-    success = false;
+  if (registrationForm.password) {
+    if (registrationForm.password.value == '') {
+      displayError('user_input_password', 'password', 'La password non può essere vuota');
+      success = false;
+    } else if (registrationForm.password.value.length < 8) {
+      displayError('user_input_password', 'password', 'La password deve contenere almeno 8 caratteri');
+      success = false;
+    } else {
+      removeError('user_input_password', 'password');
+    }
   } // controllo p_iva
 
 
   if (registrationForm.p_iva.value == '') {
-    console.log('la p_iva non può essere vuoto');
+    displayError('user_input_piva', 'p_iva', 'La p_iva non può essere vuota');
     success = false;
   } else if (isNaN(registrationForm.p_iva.value)) {
-    console.log('la p_iva deve essere un numero');
+    displayError('user_input_piva', 'p_iva', 'La p_iva deve essere un numero');
     success = false;
   } else if (registrationForm.p_iva.value.length != 11) {
-    console.log('la p_iva deve essere di 11 caratteri');
+    displayError('user_input_piva', 'p_iva', 'La p_iva deve essere di 11 caratteri');
     success = false;
+  } else {
+    removeError('user_input_piva', 'p_iva');
   } // controllo telefono
 
 
   if (registrationForm.telephone.value == '') {
-    console.log('la telephone non può essere vuoto');
+    displayError('user_input_telephone', 'telephone', 'Inserire il numero di telefono');
     success = false;
   } else if (isNaN(registrationForm.telephone.value)) {
-    console.log('la telephone deve essere un numero');
+    displayError('user_input_telephone', 'telephone', 'Il telefono deve essere composto da numeri');
     success = false;
   } else if (registrationForm.telephone.value.length < 8 || registrationForm.telephone.value.length > 11) {
-    console.log('la telephone deve essere compreso tra gli 8 e gli 11 caratteri');
+    displayError('user_input_telephone', 'telephone', 'Il telefono deve essere compreso tra gli 8 e gli 11 caratteri');
     success = false;
+  } else {
+    removeError('user_input_telephone', 'telephone');
   } // controllo costo consegna
 
 
   if (isNaN(registrationForm.shipping.value)) {
-    console.log('la shipping deve essere un numero');
+    displayError('user_input_shipping', 'shipping', 'Il costo consegna deve essere un numero');
     success = false;
   } else if (registrationForm.shipping.value != '') {
     if (registrationForm.shipping.value < 0.90 || registrationForm.shipping.value > 99.90) {
-      console.log('la shipping deve essere compreso tra gli 8 e gli 11 caratteri');
+      displayError('user_input_shipping', 'shipping', 'Il costo consegna deve essere compreso tra i 0.90€ e i 99.90€');
       success = false;
     }
+  } else {
+    removeError('user_input_shipping', 'shipping');
   } // controllo ordine minimo
 
 
   if (isNaN(registrationForm.min_price.value)) {
-    console.log('la min_price deve essere un numero');
+    displayError('user_input_min_price', 'min_price', 'Il minimo ordine deve essere un numero');
     success = false;
   } else if (registrationForm.min_price.value != '') {
     if (registrationForm.min_price.value < 0.90 || registrationForm.min_price.value > 99.90) {
-      console.log('la min_price deve essere compreso tra gli 8 e gli 11 caratteri');
+      displayError('user_input_min_price', 'min_price', 'Il minimo ordine deve essere compresotra i 0.90€ e i 99.90€');
       success = false;
     }
+  } else {
+    removeError('user_input_min_price', 'min_price');
   } // controllo categorie
 
 
   var inputChecks = document.querySelectorAll('.form-check-input:checked');
 
   if (inputChecks.length == 0) {
-    console.log('selezionare almeno una categoria');
+    var userInputCategories = document.getElementById('user_input_categories');
+    userInputCategories.classList.remove("d-none");
+    userInputCategories.innerHTML = 'Selezionare almeno una categoria';
+  } else {
+    var _userInputCategories = document.getElementById('user_input_categories');
+
+    _userInputCategories.classList.add("d-none");
   }
 
   return success;
 };
+
+function displayError(errorId, inputId, errorMessage) {
+  var inputError = document.getElementById(errorId);
+  var inputType = document.getElementById(inputId);
+  inputType.classList.add("input_error_js");
+  inputError.classList.remove("d-none");
+  inputError.innerHTML = errorMessage;
+}
+
+function removeError(errorId, inputId) {
+  var inputError = document.getElementById(errorId);
+  var inputType = document.getElementById(inputId);
+  inputType.classList.remove("input_error_js");
+  inputError.classList.add("d-none");
+}
 
 /***/ }),
 
@@ -37781,9 +37872,9 @@ window.validationForm = function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/simonespirito/Downloads/Boolean/deliveboo-project47-team5-1/resources/js/admin/admin.js */"./resources/js/admin/admin.js");
-__webpack_require__(/*! /Users/simonespirito/Downloads/Boolean/deliveboo-project47-team5-1/resources/sass/admin/admin.scss */"./resources/sass/admin/admin.scss");
-module.exports = __webpack_require__(/*! /Users/simonespirito/Downloads/Boolean/deliveboo-project47-team5-1/resources/sass/front/front.scss */"./resources/sass/front/front.scss");
+__webpack_require__(/*! C:\Users\User\Desktop\boolean-full\esercizi\php\deliveboo-project47-team5\resources\js\admin\admin.js */"./resources/js/admin/admin.js");
+__webpack_require__(/*! C:\Users\User\Desktop\boolean-full\esercizi\php\deliveboo-project47-team5\resources\sass\admin\admin.scss */"./resources/sass/admin/admin.scss");
+module.exports = __webpack_require__(/*! C:\Users\User\Desktop\boolean-full\esercizi\php\deliveboo-project47-team5\resources\sass\front\front.scss */"./resources/sass/front/front.scss");
 
 
 /***/ })

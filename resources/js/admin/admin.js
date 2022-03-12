@@ -9,5 +9,3 @@ require('./validationFormAdmin');
 require('./modalToggle');
 
 require('./editSubmitForm');
-
-
