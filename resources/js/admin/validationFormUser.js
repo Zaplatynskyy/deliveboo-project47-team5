@@ -42,6 +42,10 @@ window.validationForm = function(){
             displayError('user_input_email', 'email', 'La mail non può superare i 255 caratteri');
 
             success = false;
+        } else if (!registrationForm.email.value.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)) {
+            displayError('user_input_email', 'email', 'Formato della mail non valido');
+
+            success = false;
         } else {
             removeError('user_input_email', 'email');
         }
