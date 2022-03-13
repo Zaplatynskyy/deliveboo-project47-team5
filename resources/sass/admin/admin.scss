@@ -11,15 +11,42 @@ body {
     font-family: 'Lato', sans-serif;
 }
 
-
-
 .my_bold {
     font-weight: 600;
 }
 
+.my_input_text {
+    width: 190px;
+}
+
+.my_grey_pill {
+    background-color: lightgray;
+    font-size: 16px;
+    color: black;
+    font-weight: 300;
+}
+
+.my_grey_border {
+    border-color: #dee2e6;
+    
+}
+
+.my_food_list {
+    min-width: 110px;
+    display: inline-block;
+}
+
+.clear-query {
+    width: 18px;
+    aspect-ratio: 1;
+    background-color: #e7e7e7;
+    border-radius: 50%;
+
+}
+
 .error_js {
     color: #761b18;
-    background-color: #f9d6d5;
+    background-color: #c6c6c6;
     border-radius: 5px;
     padding: 10px 20px;
 }
