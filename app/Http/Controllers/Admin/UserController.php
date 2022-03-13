@@ -18,9 +18,15 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         if (Auth::user()->email == 'admin@admin.com') {
+            $data = $request->all();
+            if (isset($data['query'])) {
+                $query = $data['query'];
+                $users = User::where('email', '!=', 'admin@admin.com')->where('name', 'like', '%'.$query.'%')->get();
+                return view('auth.index', compact('users', 'query'));
+            }
             $users = User::where('email', '!=', 'admin@admin.com')->get();
             return view('auth.index', compact('users'));
         } else {

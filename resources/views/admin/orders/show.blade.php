@@ -29,8 +29,13 @@
                             <h5 class="mt-4">Dettagli ordine:</h5>
                             <ul class="my-4">
                                 @foreach ($order->foods as $food)
-                                    <li>{{ $food->name }}<span
-                                            class="ml-5">x{{ $food->pivot->quantity }}</span>
+                                    <li>
+                                        <span class="my_food_list">
+                                            {{ $food->name }}
+                                        </span>
+                                        <span>
+                                            x{{ $food->pivot->quantity }}
+                                        </span>
                                     </li>
                                 @endforeach
                             </ul>

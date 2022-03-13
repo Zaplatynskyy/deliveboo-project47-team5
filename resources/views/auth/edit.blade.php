@@ -140,7 +140,7 @@
                                 @enderror
                             </div>
 
-                            <div class="form-group row px-5">
+                            <div class="form-group row justify-content-center px-5">
                                 @foreach ($categories as $category)
                                     <div class="form-check form-check-inline">
                                         @if (old('categories'))
