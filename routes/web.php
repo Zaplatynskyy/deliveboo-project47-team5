@@ -40,6 +40,6 @@ Route::middleware('verified')->namespace('Admin')->prefix('admin')->group(functi
 
 
 // Rotte pubbliche
-Route::get('/', function () {
-    return view('front');
-});
+Route::get("{any?}", function () {
+    return view("front");
+})->where("any", ".*");
