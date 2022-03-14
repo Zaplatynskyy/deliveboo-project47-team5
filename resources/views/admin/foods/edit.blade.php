@@ -36,7 +36,7 @@
 
                                 <input id="price" type="number" class="form-control @error('price') is-invalid @enderror"
                                     name="price" value="{{ old('price') ?? $food->price }}" step="0.1" min="0.90"
-                                    max="999.90" placeholder="Inserisci il prezzo" required>
+                                    max="999.90" placeholder="Inserisci il prezzo" required oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" />
                                 {{-- error js --}}
                                 <div id="food_input_price" class="error_js d-none"></div>
                                 {{-- error laravel --}}

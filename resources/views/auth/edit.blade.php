@@ -54,9 +54,9 @@
                                 <label for="p_iva" class="col-md-4 col-form-label text-md-right">Partita iva</label>
 
                                 <div class="col-md-6">
-                                    <input id="p_iva" type="number"
+                                    <input id="p_iva" type="text"
                                         class="form-control @error('p_iva') is-invalid @enderror" name="p_iva"
-                                        value="{{ old('p_iva') ?? $user->p_iva }}" required>
+                                        value="{{ old('p_iva') ?? $user->p_iva }}" required oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" />
 
                                     {{-- error js --}}
                                     <div id="user_input_piva" class="error_js d-none"></div>
@@ -73,9 +73,9 @@
                                 <label for="telephone" class="col-md-4 col-form-label text-md-right">Telefono</label>
 
                                 <div class="col-md-6">
-                                    <input id="telephone" type="number"
+                                    <input id="telephone" type="text"
                                         class="form-control @error('telephone') is-invalid @enderror" name="telephone"
-                                        value="{{ old('telephone') ?? $user->telephone }}" required>
+                                        value="{{ old('telephone') ?? $user->telephone }}" required oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" />
 
                                     {{-- error js --}}
                                     <div id="user_input_telephone" class="error_js d-none"></div>
@@ -95,7 +95,7 @@
                                     <input id="shipping" type="number"
                                         class="form-control @error('shipping') is-invalid @enderror" name="shipping"
                                         value="{{ old('shipping') ?? $user->shipping }}" step="0.10" min="0.90"
-                                        max="99.90">
+                                        max="99.90" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" />
 
                                     {{-- error js --}}
                                     <div id="user_input_shipping" class="error_js d-none"></div>
@@ -115,7 +115,7 @@
                                     <input id="min_price" type="number"
                                         class="form-control @error('min_price') is-invalid @enderror" name="min_price"
                                         value="{{ old('min_price') ?? $user->min_price }}" step="0.1" min="0.90"
-                                        max="99.90">
+                                        max="99.90" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" />
 
                                     {{-- error js --}}
                                     <div id="user_input_min_price" class="error_js d-none"></div>
