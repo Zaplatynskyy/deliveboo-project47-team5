@@ -25,40 +25,53 @@ class UserController extends Controller
     {
 
         $filters = $request->all();
-        if(isset($query)) {
+        if (isset($query)) {
             $query = $filters['params']['query'];
         } else {
             $query = '';
         }
         $categories = $filters['params']['categories'];
         $tags = $filters['params']['tags'];
-        $users = User::where('email', '!=', 'admin@admin.com')->where('name', 'like', '%' . $query . '%');
+        $users = User::where('email', '!=', 'admin@admin.com')->where('name', 'like', '%' . $query . '%')->get();
 
-        $filteredUsers = [];
-        foreach ($users as $user) {
-            foreach ($user->categories as $category) {
-                if(in_array($category->id, $categories)) {
-                    $filteredUsers[] = $user;
+
+        // filtro per categorie
+        if (count($categories) > 0) {
+            $filteredByCategoriesUsers = [];
+            foreach ($users as $user) {
+                $categoriesId = [];
+                foreach ($user->categories as $category) {
+                    $categoriesId[] = $category->id;
+                }
+                if (array_values(array_intersect($categories, $categoriesId)) == $categories) {
+                    $filteredByCategoriesUsers[] = $user;
                 }
             }
+            $users = $filteredByCategoriesUsers;
         }
 
-        dd($filteredUsers);
+        // filtro per tags
+        if (count($tags) > 0) {
+            $filteredByTagsUsers = [];
+            foreach ($users as $user) {
+                $tagsId = [];
+                foreach ($user->foods as $food) {
+                    foreach ($food->tags as $tag) {
+                        if (!in_array($tag->id, $tagsId)) $tagsId[] = $tag->id;
+                    }
+                }
+                if (array_values(array_intersect($tags, $tagsId)) == $tags && !in_array($user, $filteredByTagsUsers) && count($tagsId) > 0) {
+                    $filteredByTagsUsers[] = $user;
+                }
+            }
+            $users = $filteredByTagsUsers;
+        }
 
-        // 'foods' => function ($q) use ($tags) {
-            //     $q->with(['tags' => function($secondQuery) use ($tags){
-            //         $secondQuery->whereIn('slug', $tags);
-            //     }]);
-            // }
-
+        // risposta al client
         $data = [
             'success' => true,
             'users' => $users,
         ];
-
-        
-
-
 
         return response()->json($data, 200);
     }
