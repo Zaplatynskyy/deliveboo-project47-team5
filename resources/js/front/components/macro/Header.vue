@@ -1,6 +1,6 @@
 <template>
   <header>
-    <h1>Header</h1>
+    <h1><a href="/admin/home">Backend</a></h1>
   </header>
 </template>
 
