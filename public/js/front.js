@@ -2005,6 +2005,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -2025,25 +2027,136 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "AdvancedSearch",
   data: function data() {
     return {
-      restaurants: []
+      restaurants: [],
+      categories: [],
+      tags: [],
+      query: ""
     };
   },
+  methods: {
+    searchRestaurants: function searchRestaurants() {
+      var _this = this;
+
+      var categories = this.checkCheckbox("checkboxCategories");
+      var tags = this.checkCheckbox("checkboxTags");
+      console.log(this.query);
+      axios.post("/api/restaurants/advanced", {
+        params: {
+          categories: categories,
+          tags: tags,
+          query: this.query
+        }
+      }).then(function (response) {
+        _this.restaurants = _toConsumableArray(response.data.users);
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    getCategoriesAndTags: function getCategoriesAndTags() {
+      var _this2 = this;
+
+      axios.get("/api/categories").then(function (response) {
+        self = _this2;
+        self.categories = _toConsumableArray(response.data.categories);
+        axios.get("/api/tags").then(function (response) {
+          self.tags = _toConsumableArray(response.data.tags);
+        })["catch"](function (error) {
+          console.log(error);
+        });
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    checkCheckbox: function checkCheckbox(type) {
+      var checked = [];
+      var input = document.getElementsByClassName(type);
+      console.log(input);
+      console.log(type);
+
+      var _iterator = _createForOfIteratorHelper(input),
+          _step;
+
+      try {
+        for (_iterator.s(); !(_step = _iterator.n()).done;) {
+          var element = _step.value;
+          if (element.checked) checked.push(element.value);
+        }
+      } catch (err) {
+        _iterator.e(err);
+      } finally {
+        _iterator.f();
+      }
+
+      return checked;
+    }
+  },
   created: function created() {
-    var _this = this;
+    var _this3 = this;
 
     if (this.$route.params.from == "category") {
       axios.get("/api/categories/".concat(this.$route.params.query)).then(function (response) {
-        _this.restaurants = _toConsumableArray(response.data.categories.users);
+        _this3.restaurants = _toConsumableArray(response.data.categories.users);
+
+        _this3.getCategoriesAndTags();
       })["catch"](function (error) {
         console.log(error);
       });
     } else {
       axios.get("/api/restaurants/".concat(this.$route.params.query)).then(function (response) {
-        _this.restaurants = _toConsumableArray(response.data.restaurants);
+        _this3.restaurants = _toConsumableArray(response.data.restaurants);
+
+        _this3.getCategoriesAndTags();
       })["catch"](function (error) {
         console.log(error);
       });
@@ -2074,6 +2187,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToAr
 
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
+//
 //
 //
 //
@@ -37837,11 +37951,123 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("section", { staticClass: "advanced-search" }, [
+    _c("div", { staticClass: "search" }, [
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.query,
+            expression: "query",
+          },
+        ],
+        attrs: { type: "text", placeholder: "Cerca ristorante" },
+        domProps: { value: _vm.query },
+        on: {
+          keypress: function ($event) {
+            if (
+              !$event.type.indexOf("key") &&
+              _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+            ) {
+              return null
+            }
+            return _vm.searchRestaurants()
+          },
+          input: function ($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.query = $event.target.value
+          },
+        },
+      }),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          attrs: { type: "button" },
+          on: {
+            click: function ($event) {
+              return _vm.searchRestaurants()
+            },
+          },
+        },
+        [_vm._v("Cerca")]
+      ),
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "filters" }, [
+      _c(
+        "div",
+        { staticClass: "categories" },
+        _vm._l(_vm.categories, function (category) {
+          return _c(
+            "div",
+            { key: category.id, staticClass: "form-check form-check-inline" },
+            [
+              _c("input", {
+                staticClass: "form-check-input checkboxCategories",
+                attrs: { type: "checkbox", id: category.slug },
+                domProps: { value: category.id },
+              }),
+              _vm._v(" "),
+              _c(
+                "label",
+                {
+                  staticClass: "form-check-label",
+                  attrs: { for: category.slug },
+                },
+                [
+                  _vm._v(
+                    "\n                    " +
+                      _vm._s(category.name) +
+                      "\n                "
+                  ),
+                ]
+              ),
+            ]
+          )
+        }),
+        0
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "tags" },
+        _vm._l(_vm.tags, function (tag) {
+          return _c(
+            "div",
+            { key: tag.id, staticClass: "form-check form-check-inline" },
+            [
+              _c("input", {
+                staticClass: "form-check-input checkboxTags",
+                attrs: { type: "checkbox", id: tag.slug },
+                domProps: { value: tag.id },
+              }),
+              _vm._v(" "),
+              _c(
+                "label",
+                { staticClass: "form-check-label", attrs: { for: tag.slug } },
+                [
+                  _vm._v(
+                    "\n                    " +
+                      _vm._s(tag.name) +
+                      "\n                "
+                  ),
+                ]
+              ),
+            ]
+          )
+        }),
+        0
+      ),
+    ]),
+    _vm._v(" "),
     _c(
       "ul",
       _vm._l(_vm.restaurants, function (restaurant) {
         return _c("li", { key: restaurant.id }, [
-          _vm._v(_vm._s(restaurant.name)),
+          _vm._v("\n            " + _vm._s(restaurant.name) + "\n        "),
         ])
       }),
       0
