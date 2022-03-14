@@ -22,6 +22,7 @@ Route::get('/foods/{id}', 'Api\FoodController@index');
 
 //ristoranti
 Route::get('/restaurants/{query}', 'Api\UserController@search');
+Route::post('/restaurants/advanced', 'Api\UserController@advancedSearch');
 
 //tags
 Route::get('/tags', 'Api\TagController@index');
