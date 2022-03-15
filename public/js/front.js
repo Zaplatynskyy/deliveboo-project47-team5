@@ -2372,19 +2372,19 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     getTypes: function getTypes() {
+      var typeNames = [];
       var types = [];
-      var typesNames = [];
       var self = this;
       self.restaurant.foods.forEach(function (element) {
-        if (!typesNames.includes(element.type.name)) {
-          types.push(element.type);
-          typesNames.push({
+        if (!typeNames.includes(element.type.name)) {
+          typeNames.push(element.type.name);
+          types.push({
             name: element.type.name,
             id: element.type.id
           });
         }
       });
-      return this.sortAndMap(typesNames);
+      return this.sortAndMap(types);
     }
   }
 });

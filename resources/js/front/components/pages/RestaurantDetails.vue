@@ -111,19 +111,19 @@ export default {
     },
     computed: {
         getTypes() {
+            let typeNames = [];
             let types = [];
-            let typesNames = [];
             const self = this;
             self.restaurant.foods.forEach((element) => {
-                if (!typesNames.includes(element.type.name)) {
-                    types.push(element.type);
-                    typesNames.push({
+                if (!typeNames.includes(element.type.name)) {
+                    typeNames.push(element.type.name);
+                    types.push({
                         name: element.type.name,
                         id: element.type.id,
                     });
                 }
             });
-            return this.sortAndMap(typesNames);
+            return this.sortAndMap(types);
         },
     },
 };
