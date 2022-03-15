@@ -142,7 +142,6 @@ class FoodController extends Controller
             $food->tags()->sync($data["tags"]);
         } else {
             $food->tags()->detach();
-
         }
 
         return redirect()->route('foods.show', $food->id);

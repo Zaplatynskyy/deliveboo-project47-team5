@@ -47,7 +47,10 @@
         </div>
         <ul>
             <li v-for="restaurant in restaurants" :key="restaurant.id">
-                {{ restaurant.name }}
+                <router-link
+                    :to="{ name: 'restaurant-details', params: { slug: restaurant.slug } }"
+                    >{{ restaurant.name }}
+                </router-link>
             </li>
         </ul>
     </section>
@@ -66,16 +69,16 @@ export default {
     },
     methods: {
         searchRestaurants() {
-            let categories = this.checkCheckbox("checkboxCategories")
-            let tags = this.checkCheckbox("checkboxTags")
-            console.log(this.query)
+            let categories = this.checkCheckbox("checkboxCategories");
+            let tags = this.checkCheckbox("checkboxTags");
+            console.log(this.query);
             axios
-                .post(`/api/restaurants/advanced`,{
+                .post(`/api/restaurants/advanced`, {
                     params: {
                         categories: categories,
                         tags: tags,
-                        query: this.query
-                    }
+                        query: this.query,
+                    },
                 })
                 .then((response) => {
                     this.restaurants = [...response.data.users];
@@ -129,7 +132,7 @@ export default {
             axios
                 .get(`/api/restaurants/${this.$route.params.query}`)
                 .then((response) => {
-                    this.restaurants = [...response.data.restaurants];
+                    this.restaurants = [...response.data.users];
                     this.getCategoriesAndTags();
                 })
                 .catch(function (error) {
