@@ -25,7 +25,7 @@ class UserController extends Controller
     {
 
         $filters = $request->all();
-        if (isset($query)) {
+        if (isset($filters['params']['query'])) {
             $query = $filters['params']['query'];
         } else {
             $query = '';
@@ -33,7 +33,6 @@ class UserController extends Controller
         $categories = $filters['params']['categories'];
         $tags = $filters['params']['tags'];
         $users = User::where('email', '!=', 'admin@admin.com')->where('name', 'like', '%' . $query . '%')->get();
-
 
         // filtro per categorie
         if (count($categories) > 0) {
@@ -43,7 +42,7 @@ class UserController extends Controller
                 foreach ($user->categories as $category) {
                     $categoriesId[] = $category->id;
                 }
-                if (array_values(array_intersect($categories, $categoriesId)) == $categories) {
+                if (count(array_intersect($categories, $categoriesId)) && !in_array($user, $filteredByCategoriesUsers)) {
                     $filteredByCategoriesUsers[] = $user;
                 }
             }
@@ -60,7 +59,7 @@ class UserController extends Controller
                         if (!in_array($tag->id, $tagsId)) $tagsId[] = $tag->id;
                     }
                 }
-                if (array_values(array_intersect($tags, $tagsId)) == $tags && !in_array($user, $filteredByTagsUsers) && count($tagsId) > 0) {
+                if (!array_diff($tags, $tagsId) == $tags && !in_array($user, $filteredByTagsUsers) && count($tagsId) > 0) {
                     $filteredByTagsUsers[] = $user;
                 }
             }

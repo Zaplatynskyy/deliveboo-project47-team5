@@ -36,7 +36,7 @@
                                                         href="{{ route('foods.show', $food->id) }}">Visualizza</a></button>
                                                 <button type="button" class="btn btn-warning mt-1"><a class="text-white"
                                                         href="{{ route('foods.edit', $food->id) }}">Modifica</a></button>
-                                                <button type="button" class="btn btn-danger mt-1 btnToggle btnP"
+                                                <button type="button" class="my_btn btn btn-danger mt-1 btnToggle btnP"
                                                     data-toggle="modal" data-target="#exampleModal"
                                                     data-slug="{{ $food->id }}">Elimina</button>
                                             </td>
