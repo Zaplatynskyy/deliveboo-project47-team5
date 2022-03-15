@@ -18,7 +18,7 @@
                                         <th scope="col">#</th>
                                         <th scope="col">Nome</th>
                                         <th scope="col">Prezzo</th>
-                                        <th scope="col">Pubblicato</th>
+                                        <th scope="col">Visibile nel menù</th>
                                         <th scope="col">Ingredienti</th>
                                         <th scope="col">Azioni</th>
                                     </tr>
@@ -29,7 +29,13 @@
                                             <th scope="row">{{ $key + 1 }}</th>
                                             <td>{{ $food->name }}</td>
                                             <td>{{ $food->price }}€</td>
-                                            <td>{{ $food->visible == 0 ? 'No' : 'Si' }}</td>
+                                            <td>
+                                                @if ($food->visible)
+                                                    <span class="badge badge-success">Visibile</span>
+                                                @else
+                                                    <span class="badge badge-danger">Non visibile</span>
+                                                @endif
+                                            </td>
                                             <td>{{ $food->ingredients }}</td>
                                             <td>
                                                 <button type="button" class="btn btn-info mt-1"><a class="text-white"
@@ -62,8 +68,7 @@
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-primary btnP"
                                                 data-dismiss="modal">Chiudi</button>
-                                            <form action="" method="POST"
-                                                class="my_form">
+                                            <form action="" method="POST" class="my_form">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="button" class="btn btn-danger toastClicker my_button btnP"
