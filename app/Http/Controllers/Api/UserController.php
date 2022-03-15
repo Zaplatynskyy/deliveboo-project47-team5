@@ -76,7 +76,7 @@ class UserController extends Controller
     public function show($slug) {
         
         $user = User::where('slug', $slug)->with(['categories', 'foods' => function($query) {
-            $query->with(['type', 'tags']);
+            $query->where('visible', 1)->with(['type', 'tags']);
         }])->first();
 
         // risposta al client
