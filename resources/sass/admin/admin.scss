@@ -54,3 +54,15 @@ body {
 .input_error_js {
     border-color: #e3342f;
 }
+
+.btn {
+    padding: 0;
+    a {
+        display: inline-block;
+        padding: 5px 10px;
+    }
+}
+
+.my_btn {
+    padding: 5px 10px;
+}
