@@ -18,9 +18,10 @@ Route::get('/categories', 'Api\CategoryController@index');
 Route::get('/categories/{slug}', 'Api\CategoryController@show');
 
 //piatti
-Route::get('/foods/{id}', 'Api\FoodController@index');
+Route::get('/foods/{slug}', 'Api\FoodController@index');
 
 //ristoranti
+Route::get('/restaurants/details/{slug}', 'Api\UserController@show');
 Route::get('/restaurants/{query}', 'Api\UserController@search');
 Route::post('/restaurants/advanced', 'Api\UserController@advancedSearch');
 

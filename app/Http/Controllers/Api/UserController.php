@@ -17,8 +17,6 @@ class UserController extends Controller
             'users' => $users,
         ];
 
-
-
         return response()->json($data, 200);
     }
     public function advancedSearch(Request $request)
@@ -70,6 +68,21 @@ class UserController extends Controller
         $data = [
             'success' => true,
             'users' => $users,
+        ];
+
+        return response()->json($data, 200);
+    }
+
+    public function show($slug) {
+        
+        $user = User::where('slug', $slug)->with(['categories', 'foods' => function($query) {
+            $query->with(['type', 'tags']);
+        }])->first();
+
+        // risposta al client
+        $data = [
+            'success' => true,
+            'user' => $user,
         ];
 
         return response()->json($data, 200);
