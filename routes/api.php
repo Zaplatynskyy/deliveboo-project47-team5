@@ -29,3 +29,10 @@ Route::get('/tags/{slug}', 'Api\TagController@show');
 //types
 Route::get('/types', 'Api\TypeController@index');
 Route::get('/types/{slug}', 'Api\TypeController@show');
+
+//braintree
+Route::get('orders/generate', 'Api\OrderController@generate');
+Route::post('orders/make/payment', 'Api\OrderController@makePayment');
+
+
+Route::post('/orders/sending', 'Api\OrderController@store');
