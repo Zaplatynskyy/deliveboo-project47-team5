@@ -9,6 +9,7 @@
           id="name"
           name="name"
           v-model="form.client.name"
+          required
         />
       </div>
 
@@ -20,8 +21,22 @@
           id="cognome"
           name="cognome"
           v-model="form.client.cognome"
+          required
         />
       </div>
+
+      <div class="form-group">
+        <label for="email">Inserisci la mail</label>
+        <input
+          type="email"
+          class="form-control"
+          id="email"
+          name="email"
+          v-model="form.client.email"
+          required
+        />
+      </div>
+
       <div class="form-group">
         <label for="address">Indirizzo</label>
         <input
@@ -30,6 +45,7 @@
           id="address"
           name="address"
           v-model="form.client.address"
+          required
         />
       </div>
       <div class="form-group">
@@ -40,17 +56,25 @@
           id="telephone"
           name="telephone"
           v-model="form.client.telephone"
+          required
         />
       </div>
 
-      <button type="submit" class="btn btn-primary">Submit</button>
+      <v-braintree
+        v-if="loaded"
+        locale="it_IT"
+        :authorization="tokenGenerated"
+        @success="onSuccess"
+        @error="onError"
+      >
+        <template #button="slotProps">
+          <div ref="paymentBtnRef" @click="slotProps.submit"/>
+        </template>
+      </v-braintree>
+
+      <button type="button" class="btn btn-primary" @click="beforeBuy()">Submit</button>
     </form>
-    <v-braintree
-      v-if="loaded"
-      :authorization="tokenGenerated"
-      @success="onSuccess"
-      @error="onError"
-    ></v-braintree>
+    
   </div>
 </template>
 
@@ -68,6 +92,7 @@ export default {
         client: {
           name: "",
           cognome: "",
+          email:"",
           address: "",
           telephone: "",
         },
@@ -75,22 +100,40 @@ export default {
     };
   },
   methods: {
+    redirect(){
+      this.$router.push({
+          name: "success"
+      });
+    },
+
+    beforeBuy() {
+      this.$refs.paymentBtnRef.click();
+    },
+
     onSuccess(payload) {
       let nonce = payload.nonce;
       this.form.tokenClient = nonce;
       // Do something great with the nonce...+axios
+      const self = this;
       axios
         .post("/api/orders/make/payment", this.form)
         .then((response) => {
           console.log(response);
+          self.clearCart();
+          self.redirect();
         })
         .catch(function (error) {
-          console.log(error);
+          console.log(error); // <------------- errori validazione
         });
     },
     onError(error) {
       let message = error.message;
       // Whoops, an error has occured while trying to get the nonce
+    },
+
+    clearCart() {
+      this.foods = [];
+      localStorage.removeItem("foods");
     },
   },
 

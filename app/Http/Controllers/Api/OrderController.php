@@ -2,11 +2,16 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
-use Braintree\Gateway;
-use Illuminate\Http\Request;
 use App\Food;
 use App\Order;
+use Braintree\Gateway;
+use App\Mail\ClienMail;
+use App\Mail\OrderMail;
+use App\Rules\ValidOrder;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Validator;
 
 class OrderController extends Controller
 {
@@ -25,15 +30,45 @@ class OrderController extends Controller
 
     public function makePayment(Request $request, Gateway $gateway)
     {
+        $validator = Validator::make($request->all(), [
+            'tokenClient' => ['required'],
+            'foods' => ['required', new ValidOrder],
+            'client.name' => ['required', 'string', 'max:100'],
+            'client.cognome' => ['required', 'string', 'max:100'],
+            'client.email' => ['required', 'string', 'email', 'max:255'],
+            'client.address' => ['required', 'string', 'max:255'],
+            'client.telephone' => ['required', 'numeric', 'digits_between:8,11']
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                "success" => false,
+                "errors" => $validator->errors()
+            ], 400);
+        }
 
         $data = $request->all();
-        $total = 0;
+        
+        
         $foods = $data['foods'];
         $food = Food::find($foods[0]['id']);
         $user = $food->user;
 
+        $total = 0;
+
+        if($user->shipping) {
+            $total += $user->shipping;
+        }
+
         foreach ($foods as $food) {
             $total += Food::find($food['id'])->price * $food['quantity'];
+        }
+
+        if ($total < $user->min_price && $user->min_price) {
+            return response()->json([
+                "success" => false,
+                "errors" => 'Per procedere devi acquistare un minimo di '. $user->min_price
+            ], 400);
         }
 
         $result = $gateway->transaction()->sale([
@@ -51,6 +86,7 @@ class OrderController extends Controller
             $newOrder->name = $data['client']['name'];
             $newOrder->cognome  = $data['client']['cognome'];
             $newOrder->address = $data['client']['address'];
+            $newOrder->email = $data['client']['email'];
             $newOrder->telephone = $data['client']['telephone'];
             $newOrder->total = $total;
             $newOrder->user_id = $user->id;
@@ -59,6 +95,9 @@ class OrderController extends Controller
             foreach ($foods as $food) {
                 $newOrder->foods()->attach($food["id"], ['quantity' => $food["quantity"]]);
             }
+
+            Mail::to($user->email)->send(new OrderMail($newOrder));
+            Mail::to($newOrder->email)->send(new ClienMail($newOrder));
 
             $data = [
                 'success' => true,

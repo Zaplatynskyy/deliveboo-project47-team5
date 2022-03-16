@@ -18,42 +18,49 @@ class OrderTableSeeder extends Seeder
             [
                 'name' => 'Leonardo',
                 'cognome' => 'Rosso',
+                'email' => 'rossoleo@gmail.com',
                 'user_id' => 2,
                 'address' => 'Via X Settembre, 4',
             ],
             [
                 'name' => 'Onesto',
                 'cognome' => 'Focaccia',
+                'email' => 'focaccioso@gmail.com',
                 'user_id' => 2,
                 'address' => 'Via Luca, 10',
             ],
             [
                 'name' => 'Sifrido',
                 'cognome' => 'Oliveto',
+                'email' => 'sifredi@hotmail.com',
                 'user_id' => 2,
                 'address' => 'Via Centrale, 5',
             ],
             [
                 'name' => 'Osmildo',
                 'cognome' => 'Ponzetto',
+                'email' => 'ponzettino@gmail.it',
                 'user_id' => 2,
                 'address' => 'Via Roma, 25',
             ],
             [
                 'name' => 'Tersina',
                 'cognome' => 'Ziano',
+                'email' => 'tiziazia@gmail.com',
                 'user_id' => 2,
                 'address' => 'Via Giovani D\'ercole, 30',
             ],
             [
                 'name' => 'Primo',
                 'cognome' => 'Nardecchi',
+                'email' => 'secondo@gmail.com',
                 'user_id' => 2,
                 'address' => 'Via Garibaldi, 28',
             ],
             [
                 'name' => 'Ruperto',
                 'cognome' => 'Aggravi',
+                'email' => 'rupertoruperto@gmail.com',
                 'user_id' => 2,
                 'address' => 'Via Ponzi, 12',
             ],
@@ -63,6 +70,7 @@ class OrderTableSeeder extends Seeder
             $newOrder = new Order();
             $newOrder->name = $order['name'];
             $newOrder->cognome = $order['cognome'];
+            $newOrder->email = $order['email'];
             $newOrder->user_id = $order['user_id'];
             $newOrder->address = $order['address'];
             $newOrder->telephone = '3' . rand(111111111, 999999999);

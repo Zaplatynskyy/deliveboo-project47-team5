@@ -18,8 +18,9 @@ class CreateOrdersTable extends Migration
             $table->foreignId("user_id")->constrained()->onDelete("cascade");
             $table->string("name", 100);
             $table->string("cognome", 100);
+            $table->string('email', 255);
             $table->string("address", 255);
-            $table->bigInteger("telephone")->unique();
+            $table->bigInteger("telephone");
             $table->float("total", 6, 2);
             $table->boolean("accepted")->nullable();
             $table->timestamps();
