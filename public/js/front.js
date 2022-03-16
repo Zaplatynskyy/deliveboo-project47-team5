@@ -2524,12 +2524,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "RestaurantDetails",
   data: function data() {
     return {
       restaurant: {},
-      foods: []
+      foods: [],
+      prevRoute: null
     };
   },
   methods: {
@@ -2586,6 +2592,11 @@ __webpack_require__.r(__webpack_exports__);
       localStorage.removeItem("foods");
     }
   },
+  beforeRouteEnter: function beforeRouteEnter(to, from, next) {
+    next(function (app) {
+      app.prevRoute = from;
+    });
+  },
   created: function created() {
     var _this = this;
 
@@ -2601,6 +2612,9 @@ __webpack_require__.r(__webpack_exports__);
     })["catch"](function (error) {
       console.log(error);
     });
+  },
+  mounted: function mounted() {
+    if (this.prevRoute.path != '/' && this.prevRoute.path != '/restaurant/checkout') this.clearCart();
   },
   computed: {
     getTypes: function getTypes() {
@@ -62930,26 +62944,26 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "restaurant" }, [
     _c("div", { staticClass: "name" }, [
-      _vm._v("\n    " + _vm._s(_vm.restaurant.name) + "\n  "),
+      _vm._v("\n        " + _vm._s(_vm.restaurant.name) + "\n    "),
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "address" }, [
-      _vm._v("\n    " + _vm._s(_vm.restaurant.address) + "\n  "),
+      _vm._v("\n        " + _vm._s(_vm.restaurant.address) + "\n    "),
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "telephone" }, [
-      _vm._v("\n    " + _vm._s(_vm.restaurant.telephone) + "\n  "),
+      _vm._v("\n        " + _vm._s(_vm.restaurant.telephone) + "\n    "),
     ]),
     _vm._v(" "),
     _vm.restaurant.shipping
       ? _c("div", { staticClass: "shipping" }, [
-          _vm._v("\n    " + _vm._s(_vm.restaurant.shipping) + "€\n  "),
+          _vm._v("\n        " + _vm._s(_vm.restaurant.shipping) + "€\n    "),
         ])
       : _vm._e(),
     _vm._v(" "),
     _vm.restaurant.min_price
       ? _c("div", { staticClass: "min_price" }, [
-          _vm._v("\n    " + _vm._s(_vm.restaurant.min_price) + "€\n  "),
+          _vm._v("\n        " + _vm._s(_vm.restaurant.min_price) + "€\n    "),
         ])
       : _vm._e(),
     _vm._v(" "),
@@ -63002,9 +63016,9 @@ var render = function () {
                             _vm._v(" "),
                             _c("p", { staticClass: "card-text" }, [
                               _vm._v(
-                                "\n                " +
+                                "\n                                " +
                                   _vm._s(food.ingredients) +
-                                  "\n              "
+                                  "\n                            "
                               ),
                             ]),
                             _vm._v(" "),
@@ -63022,7 +63036,10 @@ var render = function () {
                             _vm._v(" "),
                             _c("p", { staticClass: "card-text" }, [
                               _c("small", { staticClass: "text-muted" }, [
-                                _vm._v(_vm._s(food.price) + "€ "),
+                                _vm._v(
+                                  _vm._s(food.price) +
+                                    "€\n                                "
+                                ),
                               ]),
                             ]),
                             _vm._v(" "),
@@ -63039,7 +63056,7 @@ var render = function () {
                               },
                               [
                                 _vm._v(
-                                  "\n                Aggiungi al carrello\n              "
+                                  "\n                                Aggiungi al carrello\n                            "
                                 ),
                               ]
                             ),
@@ -63057,7 +63074,7 @@ var render = function () {
                               },
                               [
                                 _vm._v(
-                                  "\n                Rimuovi dal carrello\n              "
+                                  "\n                                Rimuovi dal carrello\n                            "
                                 ),
                               ]
                             ),
@@ -63131,7 +63148,7 @@ var render = function () {
             },
           },
         },
-        [_vm._v("\n      Svuota carrello\n    ")]
+        [_vm._v("\n            Svuota carrello\n        ")]
       ),
       _vm._v(" "),
       _c(
@@ -63147,7 +63164,7 @@ var render = function () {
                 },
               },
             },
-            [_vm._v("Procedi al pagamento\n      ")]
+            [_vm._v("Procedi al pagamento\n            ")]
           ),
         ],
         1
@@ -79342,7 +79359,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_pages_AdvancedSearch__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/pages/AdvancedSearch */ "./resources/js/front/components/pages/AdvancedSearch.vue");
 /* harmony import */ var _components_pages_RestaurantDetails__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/pages/RestaurantDetails */ "./resources/js/front/components/pages/RestaurantDetails.vue");
 /* harmony import */ var _components_pages_Checkout__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/pages/Checkout */ "./resources/js/front/components/pages/Checkout.vue");
-/* harmony import */ var _components_pages_Success__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/pages/Success */ "./resources/js/front/components/pages/Success.vue");
+/* harmony import */ var _components_pages_Success__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/pages/Success */ "./resources/js/front/components/pages/Success.vue");
 
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]);
@@ -79368,7 +79385,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   }, {
     path: "/restaurant/checkout/success",
     name: "success",
-    component: _components_pages_Success__WEBPACK_IMPORTED_MODULE_7__["default"]
+    component: _components_pages_Success__WEBPACK_IMPORTED_MODULE_6__["default"]
   }, {
     path: "/restaurant/:slug",
     name: "restaurant-details",
@@ -79386,7 +79403,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\User\Desktop\boolean-full\esercizi\php\deliveboo-project47-team5\resources\js\front\front.js */"./resources/js/front/front.js");
+module.exports = __webpack_require__(/*! /Users/simonespirito/Downloads/Boolean/deliveboo-project47-team5-1/resources/js/front/front.js */"./resources/js/front/front.js");
 
 
 /***/ })
