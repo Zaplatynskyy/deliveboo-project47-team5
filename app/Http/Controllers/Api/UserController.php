@@ -18,8 +18,6 @@ class UserController extends Controller
             'users' => $users,
         ];
 
-        dd($users);
-
         return response()->json($data, 200);
     }
     public function advancedSearch(Request $request)
