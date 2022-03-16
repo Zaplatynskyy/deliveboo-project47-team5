@@ -2216,6 +2216,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Home",
   components: {},
@@ -2227,13 +2229,15 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   },
   methods: {
     submitSearch: function submitSearch() {
-      this.$router.push({
-        name: 'advanced-search',
-        params: {
-          query: this.query,
-          from: 'restaurant'
-        }
-      });
+      if (this.query != "") {
+        this.$router.push({
+          name: "advanced-search",
+          params: {
+            query: this.query,
+            from: "restaurant"
+          }
+        });
+      }
     }
   },
   created: function created() {
@@ -39015,7 +39019,7 @@ var render = function () {
             },
           },
         },
-        [_vm._v("\n            Cerca\n        ")]
+        [_vm._v("Cerca")]
       ),
     ]),
     _vm._v(" "),

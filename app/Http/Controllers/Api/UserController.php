@@ -10,12 +10,15 @@ class UserController extends Controller
 {
     public function search($query)
     {
+
         $users = User::where('email', '!=', 'admin@admin.com')->where('name', 'like', '%' . $query . '%')->get();
 
         $data = [
             'success' => true,
             'users' => $users,
         ];
+
+        dd($users);
 
         return response()->json($data, 200);
     }
@@ -73,9 +76,10 @@ class UserController extends Controller
         return response()->json($data, 200);
     }
 
-    public function show($slug) {
-        
-        $user = User::where('slug', $slug)->with(['categories', 'foods' => function($query) {
+    public function show($slug)
+    {
+
+        $user = User::where('slug', $slug)->with(['categories', 'foods' => function ($query) {
             $query->where('visible', 1)->with(['type', 'tags']);
         }])->first();
 
