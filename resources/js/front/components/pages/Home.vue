@@ -3,10 +3,13 @@
         <h1>Home Page</h1>
 
         <div class="search">
-            <input @keypress.enter="submitSearch()" type="text" placeholder="Cerca ristorante" v-model="query" />
-            <button @click="submitSearch()" type="button">
-                Cerca
-            </button>
+            <input
+                @keypress.enter="submitSearch()"
+                type="text"
+                placeholder="Cerca ristorante"
+                v-model="query"
+            />
+            <button @click="submitSearch()" type="button">Cerca</button>
         </div>
 
         <ul>
@@ -23,7 +26,6 @@
     </div>
 </template>
 
-
 <script>
 export default {
     name: "Home",
@@ -36,11 +38,14 @@ export default {
     },
     methods: {
         submitSearch() {
-            this.$router.push({
-                        name: 'advanced-search',
-                        params: { query: this.query, from: 'restaurant' }
-                    })}
+            if (this.query != "") {
+                this.$router.push({
+                    name: "advanced-search",
+                    params: { query: this.query, from: "restaurant" },
+                });
+            }
         },
+    },
     created() {
         axios
             .get("/api/categories")
@@ -51,7 +56,6 @@ export default {
                 console.log(error);
             });
     },
-
 };
 </script>
 
