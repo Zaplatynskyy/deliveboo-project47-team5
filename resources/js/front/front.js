@@ -4,6 +4,7 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
  require('../bootstrap');
+ require('./plugins/braintree');
  window.axios = require('axios');
 
  window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
