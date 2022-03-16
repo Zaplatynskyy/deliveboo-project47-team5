@@ -7,6 +7,7 @@ import Home from "./components/pages/Home";
 import AdvancedSearch from "./components/pages/AdvancedSearch";
 import RestaurantDetails from "./components/pages/RestaurantDetails";
 import Checkout from "./components/pages/Checkout";
+import Success from "./components/pages/Success";
 
 
 const router = new VueRouter({
@@ -26,6 +27,11 @@ const router = new VueRouter({
             path: "/restaurant/checkout",
             name: "checkout",
             component: Checkout
+        },
+        {
+            path: "/restaurant/checkout/success",
+            name: "success",
+            component: Success
         },
         {
             path: "/restaurant/:slug",

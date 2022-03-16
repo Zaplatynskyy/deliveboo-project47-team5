@@ -188,6 +188,11 @@ export default {
     },
     getTotal() {
       let total = 0;
+
+      if(this.restaurant.shipping) {
+        total += this.restaurant.shipping;
+      }
+
       this.foods.forEach((food) => {
         total += food.price * food.quantity;
       });
