@@ -6,6 +6,8 @@ Vue.use(VueRouter);
 import Home from "./components/pages/Home";
 import AdvancedSearch from "./components/pages/AdvancedSearch";
 import RestaurantDetails from "./components/pages/RestaurantDetails";
+import Checkout from "./components/pages/Checkout";
+
 
 const router = new VueRouter({
     mode: "history",
@@ -21,10 +23,16 @@ const router = new VueRouter({
             component: AdvancedSearch
         },
         {
+            path: "/restaurant/checkout",
+            name: "checkout",
+            component: Checkout
+        },
+        {
             path: "/restaurant/:slug",
             name: "restaurant-details",
             component: RestaurantDetails
         },
+        
         
     ]
 });
