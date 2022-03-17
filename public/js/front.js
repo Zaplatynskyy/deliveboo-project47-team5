@@ -62632,7 +62632,7 @@ var render = function () {
       "form",
       [
         _c("div", { staticClass: "form-group" }, [
-          _c("label", { attrs: { for: "name" } }, [_vm._v("Inserisci Nome")]),
+          _c("label", { attrs: { for: "name" } }, [_vm._v("Inserisci Nome *")]),
           _vm._v(" "),
           _c("input", {
             directives: [
@@ -62659,7 +62659,7 @@ var render = function () {
         _vm._v(" "),
         _c("div", { staticClass: "form-group" }, [
           _c("label", { attrs: { for: "cognome" } }, [
-            _vm._v("Inserisci il cognome"),
+            _vm._v("Inserisci il cognome *"),
           ]),
           _vm._v(" "),
           _c("input", {
@@ -62692,7 +62692,7 @@ var render = function () {
         _vm._v(" "),
         _c("div", { staticClass: "form-group" }, [
           _c("label", { attrs: { for: "email" } }, [
-            _vm._v("Inserisci la mail"),
+            _vm._v("Inserisci la mail *"),
           ]),
           _vm._v(" "),
           _c("input", {
@@ -62719,7 +62719,7 @@ var render = function () {
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "form-group" }, [
-          _c("label", { attrs: { for: "address" } }, [_vm._v("Indirizzo")]),
+          _c("label", { attrs: { for: "address" } }, [_vm._v("Indirizzo *")]),
           _vm._v(" "),
           _c("input", {
             directives: [
@@ -62750,7 +62750,7 @@ var render = function () {
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "form-group" }, [
-          _c("label", { attrs: { for: "telephone" } }, [_vm._v("Telefono")]),
+          _c("label", { attrs: { for: "telephone" } }, [_vm._v("Telefono *")]),
           _vm._v(" "),
           _c("input", {
             directives: [
@@ -79403,7 +79403,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/simonespirito/Downloads/Boolean/deliveboo-project47-team5-1/resources/js/front/front.js */"./resources/js/front/front.js");
+module.exports = __webpack_require__(/*! C:\Users\User\Desktop\boolean-full\esercizi\php\deliveboo-project47-team5\resources\js\front\front.js */"./resources/js/front/front.js");
 
 
 /***/ })

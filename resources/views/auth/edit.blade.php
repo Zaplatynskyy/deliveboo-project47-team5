@@ -13,7 +13,7 @@
                             @csrf
                             @method('PUT')
                             <div class="form-group row">
-                                <label for="name" class="col-md-4 col-form-label text-md-right">Nome ristorante</label>
+                                <label for="name" class="col-md-4 col-form-label text-md-right">Nome ristorante *</label>
 
                                 <div class="col-md-6">
                                     <input id="name" type="text" class="form-control @error('name') is-invalid @enderror"
@@ -32,7 +32,7 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="address" class="col-md-4 col-form-label text-md-right">Indirizzo</label>
+                                <label for="address" class="col-md-4 col-form-label text-md-right">Indirizzo *</label>
 
                                 <div class="col-md-6">
                                     <input id="address" type="text"
@@ -51,7 +51,7 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="p_iva" class="col-md-4 col-form-label text-md-right">Partita iva</label>
+                                <label for="p_iva" class="col-md-4 col-form-label text-md-right">Partita iva *</label>
 
                                 <div class="col-md-6">
                                     <input id="p_iva" type="text"
@@ -70,7 +70,7 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="telephone" class="col-md-4 col-form-label text-md-right">Telefono</label>
+                                <label for="telephone" class="col-md-4 col-form-label text-md-right">Telefono *</label>
 
                                 <div class="col-md-6">
                                     <input id="telephone" type="text"
@@ -132,7 +132,7 @@
                                 <img src="{{ asset("storage/{$user->image}") }}" alt="{{ $user->name }}"
                                     class="w-25 mb-3 my_image">
                                 <label class="d-block" for="inputGroupFile02"
-                                    aria-describedby="inputGroupFileAddon02">Scegli immagine</label>
+                                    aria-describedby="inputGroupFileAddon02">Scegli immagine *</label>
                                 <input type="file" id="inputGroupFile02" name="image"
                                     class="@error('image') is-invalid @enderror" onchange="previewUpload(event)">
                                 @error('image')
@@ -141,22 +141,25 @@
                             </div>
 
                             <div class="form-group row justify-content-center px-5">
-                                @foreach ($categories as $category)
-                                    <div class="form-check form-check-inline">
-                                        @if (old('categories'))
-                                            <input class="form-check-input" type="checkbox" id="{{ $category->slug }}"
-                                                value="{{ $category->id }}" name="categories[]"
-                                                @if (in_array($category->id, old('categories', []))) checked @endif>
-                                        @else
-                                            <input class="form-check-input" type="checkbox" id="{{ $category->slug }}"
-                                                value="{{ $category->id }}" name="categories[]"
-                                                @if ($user->categories->contains($category)) checked @endif>
-                                        @endif
-                                        <label class="form-check-label"
-                                            for="{{ $category->slug }}">{{ $category->name }}</label>
-                                    </div>
-                                @endforeach
-
+                                <span>Scegli categoria *</span>
+                                <div class="categories text-center">
+                                    @foreach ($categories as $category)
+                                        <div class="form-check form-check-inline">
+                                            @if (old('categories'))
+                                                <input class="form-check-input" type="checkbox" id="{{ $category->slug }}"
+                                                    value="{{ $category->id }}" name="categories[]"
+                                                    @if (in_array($category->id, old('categories', []))) checked @endif>
+                                            @else
+                                                <input class="form-check-input" type="checkbox" id="{{ $category->slug }}"
+                                                    value="{{ $category->id }}" name="categories[]"
+                                                    @if ($user->categories->contains($category)) checked @endif>
+                                            @endif
+                                            <label class="form-check-label"
+                                                for="{{ $category->slug }}">{{ $category->name }}</label>
+                                        </div>
+                                    @endforeach
+                                </div>
+                                
                                 {{-- error js --}}
                                 <div id="user_input_categories" class="error_js d-none"></div>
                                 {{-- error laravel --}}

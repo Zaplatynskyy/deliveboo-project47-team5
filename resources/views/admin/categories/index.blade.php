@@ -9,7 +9,7 @@
                     <div class="card-body">
                         <div class="new-post">
                             <form class="d-flex mb-3" action="{{ route('categories.store') }}" method="POST" id="add_category_form" onsubmit="return validationFormCategory()">
-                                <button type="submit" class="btn btn-success mr-2 btnP">Crea nuova</button>
+                                <button type="submit" class="btn btn-success mr-2 btnP">Crea nuova *</button>
                                 <div>
                                     @csrf
                                     <input value="@if (old('formType') == 'create') {{ old('name') }} @endif" type="text"

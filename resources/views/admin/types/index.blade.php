@@ -9,7 +9,7 @@
                     <div class="card-body">
                         <div class="new-post">
                             <form class="d-flex mb-3" action="{{ route('types.store') }}" method="POST" id="add_type_form" onsubmit="return validationFormType()">
-                                <button type="submit" class="btn btn-success mr-2 btnP">Crea nuova</button>
+                                <button type="submit" class="btn btn-success mr-2 btnP">Crea nuova *</button>
                                 <div>
                                     @csrf
                                     <input value="@if (old('formType') == 'create') {{ old('name') }} @endif" type="text"

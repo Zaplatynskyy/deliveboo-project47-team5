@@ -2,7 +2,7 @@
   <div class="container">
     <form>
       <div class="form-group">
-        <label for="name">Inserisci Nome</label>
+        <label for="name">Inserisci Nome *</label>
         <input
           type="text"
           class="form-control"
@@ -14,7 +14,7 @@
       </div>
 
       <div class="form-group">
-        <label for="cognome">Inserisci il cognome</label>
+        <label for="cognome">Inserisci il cognome *</label>
         <input
           type="text"
           class="form-control"
@@ -26,7 +26,7 @@
       </div>
 
       <div class="form-group">
-        <label for="email">Inserisci la mail</label>
+        <label for="email">Inserisci la mail *</label>
         <input
           type="email"
           class="form-control"
@@ -38,7 +38,7 @@
       </div>
 
       <div class="form-group">
-        <label for="address">Indirizzo</label>
+        <label for="address">Indirizzo *</label>
         <input
           type="text"
           class="form-control"
@@ -49,7 +49,7 @@
         />
       </div>
       <div class="form-group">
-        <label for="telephone">Telefono</label>
+        <label for="telephone">Telefono *</label>
         <input
           type="text"
           class="form-control"

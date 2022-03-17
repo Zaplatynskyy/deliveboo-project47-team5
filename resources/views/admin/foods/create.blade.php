@@ -9,7 +9,7 @@
                         <form action="{{ route('foods.store') }}" id="add_food_form" method="POST" onsubmit="return validationFormFood()" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
-                                <label for="name">Nome</label>
+                                <label for="name">Nome *</label>
                                 <input value="{{ old('name') }}" type="text"
                                     class="form-control @error('name') is-invalid @enderror" id="name"
                                     placeholder="Inserisci il nome" name="name" required>
@@ -31,7 +31,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="price">Prezzo</label>
+                                <label for="price">Prezzo *</label>
 
                                 <input id="price" type="number" class="form-control @error('price') is-invalid @enderror"
                                     name="price" value="{{ old('price') }}" step="0.1" min="0.90" max="999.90" placeholder="Inserisci il prezzo" required oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" />
@@ -47,7 +47,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="types">Tipologie</label>
+                                <label for="types">Tipologie *</label>
                                 <select id="types" class="custom-select @error('type_id') is-invalid @enderror"
                                     name="type_id" required>
                                     <option value="">Seleziona le Tipologie</option>
@@ -67,7 +67,7 @@
                             <div class="form-group mb-3">
                                 <img src="" alt="" class="w-25 mb-3 my_image">
                                 <label class="d-block" for="inputGroupFile02"
-                                    aria-describedby="inputGroupFileAddon02">Scegli immagine</label>
+                                    aria-describedby="inputGroupFileAddon02">Scegli immagine *</label>
                                 <input type="file" id="inputGroupFile02" name="image"
                                     class="@error('image') is-invalid @enderror" onchange="previewUpload(event)" required>
                                 @error('image')

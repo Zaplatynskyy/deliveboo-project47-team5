@@ -12,7 +12,7 @@
                         @csrf
 
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">Nome ristorante</label>
+                            <label for="name" class="col-md-4 col-form-label text-md-right">Nome ristorante *</label>
 
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
@@ -29,7 +29,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="address" class="col-md-4 col-form-label text-md-right">Indirizzo</label>
+                            <label for="address" class="col-md-4 col-form-label text-md-right">Indirizzo *</label>
 
                             <div class="col-md-6">
                                 <input id="address" type="text" class="form-control @error('address') is-invalid @enderror" name="address" value="{{ old('address') }}" required>
@@ -46,7 +46,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="p_iva" class="col-md-4 col-form-label text-md-right">Partita iva</label>
+                            <label for="p_iva" class="col-md-4 col-form-label text-md-right">Partita iva *</label>
 
                             <div class="col-md-6">
                                 <input id="p_iva" type="text" class="form-control @error('p_iva') is-invalid @enderror" name="p_iva" value="{{ old('p_iva') }}" required oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" />
@@ -63,7 +63,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="telephone" class="col-md-4 col-form-label text-md-right">Telefono</label>
+                            <label for="telephone" class="col-md-4 col-form-label text-md-right">Telefono *</label>
 
                             <div class="col-md-6">
                                 <input id="telephone" type="text" class="form-control @error('telephone') is-invalid @enderror" name="telephone" value="{{ old('telephone') }}" required oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" />
@@ -114,7 +114,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">Email</label>
+                            <label for="email" class="col-md-4 col-form-label text-md-right">Email *</label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
@@ -131,7 +131,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }} *</label>
 
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
@@ -148,7 +148,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Conferma password') }}</label>
+                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Conferma password') }} *</label>
 
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
@@ -158,7 +158,7 @@
                         <div class="form-group mb-3 text-center">
                             <img src="" alt="" class="w-50 my-3 my_image d-inline">
                             <label class="d-block" for="inputGroupFile02"
-                                aria-describedby="inputGroupFileAddon02">Scegli immagine</label>
+                                aria-describedby="inputGroupFileAddon02">Scegli immagine * </label>
                             <input type="file" id="inputGroupFile02" name="image"
                                 class="@error('image') is-invalid @enderror" onchange="previewUpload(event)">
                             @error('image')
@@ -167,13 +167,16 @@
                         </div>
 
                         <div class="form-group row px-5 my-4 d-flex justify-content-center">
-                            @foreach ($categories as $catogory)
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" id="{{$catogory->slug}}"
-                                        value="{{$catogory->id}}" name="categories[]" @if (in_array($catogory->id, old('categories', []))) checked @endif>
-                                    <label class="form-check-label" for="{{$catogory->slug}}">{{$catogory->name}}</label>
-                                </div>
-                            @endforeach
+                            <span>Scegli categoria *</span>
+                            <div class="categories text-center">
+                                @foreach ($categories as $catogory)
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" id="{{$catogory->slug}}"
+                                            value="{{$catogory->id}}" name="categories[]" @if (in_array($catogory->id, old('categories', []))) checked @endif>
+                                        <label class="form-check-label" for="{{$catogory->slug}}">{{$catogory->name}}</label>
+                                    </div>
+                                @endforeach
+                            </div>
 
                             {{-- error js --}}
                             <div id="user_input_categories" class="error_js d-none"></div>
@@ -183,12 +186,10 @@
                             @enderror
                         </div>
 
-                        <div class="form-group row mb-0">
-                            <div class="offset-md-5 offset-5">
-                                <button type="submit" class="btn btn-primary" id="registration_submit">
-                                    Registrati
-                                </button>
-                            </div>
+                        <div class="form-group row mb-0 justify-content-center">
+                            <button type="submit" class="btn btn-primary" id="registration_submit">
+                                Registrati
+                            </button>
                         </div>
 
                     </form>

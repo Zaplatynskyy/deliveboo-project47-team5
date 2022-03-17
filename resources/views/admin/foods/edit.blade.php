@@ -10,7 +10,7 @@
                             @csrf
                             @method('PUT')
                             <div class="form-group">
-                                <label for="name">Nome</label>
+                                <label for="name">Nome *</label>
                                 <input value="{{ old('name') ?? $food->name }}" type="text"
                                     class="form-control @error('name') is-invalid @enderror" id="name"
                                     placeholder="Insert the name" name="name" required>
@@ -32,7 +32,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="price">Prezzo</label>
+                                <label for="price">Prezzo *</label>
 
                                 <input id="price" type="number" class="form-control @error('price') is-invalid @enderror"
                                     name="price" value="{{ old('price') ?? $food->price }}" step="0.1" min="0.90"
@@ -48,7 +48,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="types">Tipologie</label>
+                                <label for="types">Tipologie *</label>
                                 <select id="types" class="custom-select @error('type_id') is-invalid @enderror"
                                     name="type_id" required>
                                     <option value="">Seleziona le Tipologie</option>
@@ -73,7 +73,7 @@
                                     <img id="uploadPreview" width="100" src="https://via.placeholder.com/300x200">
                                 @endif
                                 <label class="d-block" for="inputGroupFile02"
-                                    aria-describedby="inputGroupFileAddon02">Scegli immagine</label>
+                                    aria-describedby="inputGroupFileAddon02">Scegli immagine *</label>
                                 <input type="file" id="inputGroupFile02" name="image"
                                     class="@error('image') is-invalid @enderror" onchange="previewUpload(event)">
                                 @error('image')

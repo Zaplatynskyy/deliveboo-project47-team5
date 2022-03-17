@@ -9,7 +9,7 @@
                     <div class="card-body">
                         <div class="new-post">
                             <form class="d-flex mb-3" action="{{ route('tags.store') }}" method="POST" id="add_tag_form" onsubmit="return validationFormTag()">
-                                <button type="submit" class="btn btn-success mr-2 btnP">Crea nuovo</button>
+                                <button type="submit" class="btn btn-success mr-2 btnP">Crea nuovo *</button>
                                 <div>
                                     @csrf
                                     <input value="@if (old('formType') == 'create') {{ old('name') }} @endif" type="text"
