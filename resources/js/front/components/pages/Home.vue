@@ -13,9 +13,12 @@
                 <button @click="nameSearch(query)" type="button">Cerca</button>
             </div>
 
-            <ul>
-                <li class="categories" v-for="category in categories" :key="category.id" @click="categorySearch(category.slug)">
-                    {{ category.name }}
+            <ul class="d-flex flex-wrap justify-content-center">
+                <li class="categories m-3" v-for="category in categories" :key="category.id" @click="categorySearch(category.slug)">
+                    <div class="name">{{ category.name }}</div>
+                    <div class="image">
+                        <img class="w-100" :src="`/storage/${category.image}`" :alt="category.name">
+                    </div>
                 </li>
             </ul>
         </div>
@@ -98,6 +101,7 @@ export default {
 <style lang="scss" scoped>
 
 .categories {
+    width: 200px;
     text-decoration: underline;
     cursor: pointer;
 

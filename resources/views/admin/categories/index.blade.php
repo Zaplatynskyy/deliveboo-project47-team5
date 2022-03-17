@@ -9,12 +9,12 @@
                     <div class="card-body">
                         <div class="new-post">
                             <form class="d-flex mb-3" action="{{ route('categories.store') }}" method="POST" id="add_category_form" onsubmit="return validationFormCategory()">
-                                <button type="submit" class="btn btn-success mr-2 btnP">Crea nuova *</button>
+                                <button type="submit" class="btn btn-success mr-2 btnP">Crea nuova</button>
                                 <div>
                                     @csrf
                                     <input value="@if (old('formType') == 'create') {{ old('name') }} @endif" type="text"
                                         class="form-control @if (old('formType') == 'create') is-invalid @endif" id="name"
-                                        placeholder="Inserisci la categoria" name="name" required>
+                                        placeholder="Inserisci la categoria*" name="name" required>
                                     <input type="hidden" name="formType" value="create">
                                 </div>
                                 {{-- error js --}}
@@ -37,6 +37,7 @@
                                         <th scope="col">#</th>
                                         <th scope="col">Nome</th>
                                         <th scope="col">Slug</th>
+                                        <th scope="col">Immagine</th>
                                         <th scope="col">Azioni</th>
                                     </tr>
                                 </thead>
@@ -76,6 +77,9 @@
                                                 </div>
                                             </td>
                                             <td>{{ $category->slug }}</td>
+                                            <td>
+                                                <img class="w-25" src="{{ asset("storage/{$category->image}") }}" alt="{{$category->name}}">
+                                            </td>
                                             <td>
                                                 <div class="edit-buttons d-inline-block">
                                                     <button type="button"
