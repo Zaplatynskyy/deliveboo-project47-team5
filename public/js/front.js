@@ -2392,6 +2392,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Home",
   components: {},
@@ -30221,7 +30224,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, ".categories[data-v-7722a40f] {\n  text-decoration: underline;\n  cursor: pointer;\n}\n.categories[data-v-7722a40f]:hover {\n  text-decoration: none;\n  color: #3490dc;\n}", ""]);
+exports.push([module.i, ".categories[data-v-7722a40f] {\n  width: 200px;\n  text-decoration: underline;\n  cursor: pointer;\n}\n.categories[data-v-7722a40f]:hover {\n  text-decoration: none;\n  color: #3490dc;\n}", ""]);
 
 // exports
 
@@ -63007,12 +63010,13 @@ var render = function () {
       _vm._v(" "),
       _c(
         "ul",
+        { staticClass: "d-flex flex-wrap justify-content-center" },
         _vm._l(_vm.categories, function (category) {
           return _c(
             "li",
             {
               key: category.id,
-              staticClass: "categories",
+              staticClass: "categories m-3",
               on: {
                 click: function ($event) {
                   return _vm.categorySearch(category.slug)
@@ -63020,9 +63024,19 @@ var render = function () {
               },
             },
             [
-              _vm._v(
-                "\n                " + _vm._s(category.name) + "\n            "
-              ),
+              _c("div", { staticClass: "name" }, [
+                _vm._v(_vm._s(category.name)),
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "image" }, [
+                _c("img", {
+                  staticClass: "w-100",
+                  attrs: {
+                    src: "/storage/" + category.image,
+                    alt: category.name,
+                  },
+                }),
+              ]),
             ]
           )
         }),
