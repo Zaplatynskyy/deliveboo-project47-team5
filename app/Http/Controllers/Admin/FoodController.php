@@ -30,7 +30,7 @@ class FoodController extends Controller
     ];
     public function index()
     {
-        $foods = Food::where('user_id', Auth::id())->get();
+        $foods = Food::where('user_id', Auth::id())->orderBy('name', 'asc')->get();
         return view('admin.foods.index', compact('foods'));
     }
 

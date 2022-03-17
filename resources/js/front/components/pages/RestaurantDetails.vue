@@ -79,26 +79,25 @@
             </div>
         </div>
         <div class="cart">
-            <ul>
-                <li v-for="food in foods" :key="food.id">
-                    <span>- {{ food.name }}</span>
-                    <span>- {{ food.price }}€</span>
-                    <span class="ms-3">x{{ food.quantity }}</span>
-                    <strong class="mx-3" @click="addToCart(food)">+</strong>
-                    <strong @click="removeToCart(food)">-</strong>
-                </li>
-                <li>Totale: {{ getTotal }}€</li>
-            </ul>
+            <div v-if="foods.length">
+                <ul>
+                    <li v-for="food in foods" :key="food.id">
+                        <!-- <p v-if="food.user_id != restaurant.id">{{restaurant.name}}</p> -->
+                        <span>- {{ food.name }}</span>
+                        <span>- {{ food.price }}€</span>
+                        <span class="ms-3">x{{ food.quantity }}</span>
+                        <strong class="mx-3" @click="addToCart(food)">+</strong>
+                        <strong @click="removeToCart(food)">-</strong>
+                    </li>
+                    <li>Totale: {{ getTotal }}€</li>
+                </ul>
+            </div>
+            <div v-else class="mb-3">Carrello vuoto</div>
             <button @click="clearCart()" class="btn btn-light">
                 Svuota carrello
             </button>
-            <button class="btn btn-light">
-                <router-link
-                    :to="{
-                        name: 'checkout',
-                    }"
-                    >Procedi al pagamento
-                </router-link>
+            <button class="btn btn-light" @click="checkout()" :disabled="!validatePrice">
+                Procedi al pagamento
             </button>
         </div>
     </div>
@@ -112,6 +111,7 @@ export default {
             restaurant: {},
             foods: [],
             prevRoute: null,
+            validatePrice: null
         };
     },
     methods: {
@@ -133,6 +133,9 @@ export default {
             return res;
         },
         addToCart(food) {
+            if (this.foods.length) {
+                if (food.user_id != this.foods[0].user_id) this.clearCart();
+            }
             let index = this.foods.findIndex((element) => {
                 return element.id == food.id;
             });
@@ -159,6 +162,15 @@ export default {
             this.foods = [];
             localStorage.removeItem("foods");
         },
+        checkout() {
+            if(this.validatePrice) {
+                this.$router.push(
+                    { 
+                        name: 'checkout'
+                    })
+
+            }
+        }
     },
     beforeRouteEnter(to, from, next) {
         next((app) => {
@@ -180,9 +192,6 @@ export default {
             .catch(function (error) {
                 console.log(error);
             });
-    },
-    mounted() {
-      if(this.prevRoute.path != '/' && this.prevRoute.path != '/restaurant/checkout') this.clearCart();
     },
     computed: {
         getTypes() {
@@ -210,6 +219,7 @@ export default {
             this.foods.forEach((food) => {
                 total += food.price * food.quantity;
             });
+            (total >= this.restaurant.min_price) ? this.validatePrice = true : this.validatePrice = false;
             return total;
         },
     },

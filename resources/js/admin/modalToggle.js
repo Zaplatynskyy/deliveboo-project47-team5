@@ -10,7 +10,6 @@ window.previewUpload = function (event) {
         var src = URL.createObjectURL(event.target.files[0]);
         var preview = document.querySelector(".my_image");
         preview.src = src;
-        preview.style.display = "block";
     }
 };
 

@@ -37300,23 +37300,27 @@ var submitForm = document.getElementsByClassName("submitForm");
 var categoryName = document.getElementsByClassName("name");
 var categoryNameEdit = document.getElementsByClassName("name-input");
 var editForm = document.getElementsByClassName("edit-form");
+var images = document.getElementsByClassName("category-img");
+var inputImages = document.getElementsByClassName("edit-img");
 
 if (editToggle != null && submitForm != null) {
   var _loop = function _loop(i) {
     editToggle[i].addEventListener("click", function () {
-      var invalidInput = document.querySelector('.my_validation');
+      var invalidInput = document.querySelector(".my_validation");
+      console.log(invalidInput);
 
       if (invalidInput != undefined) {
-        var alertDanger = document.querySelector('.alert-danger');
-        var invalidSubmit = document.querySelector('.failed-validation.submitForm');
-        var invalidName = document.querySelector('div.name-input');
-        var oldName = invalidInput.getAttribute('data-old-name');
-        invalidInput.setAttribute('value', oldName);
-        invalidInput.classList.remove('is-invalid');
-        invalidName.classList.add('d-none');
-        alertDanger.classList.remove('d-flex');
-        alertDanger.classList.add('d-none');
-        invalidSubmit.classList.add('d-none');
+        console.log('ciao');
+        var alertDanger = document.querySelector(".alert-danger");
+        var invalidSubmit = document.querySelector(".failed-validation.submitForm");
+        var invalidName = document.querySelector("div.name-input");
+        var oldName = invalidInput.getAttribute("data-old-name");
+        invalidInput.setAttribute("value", oldName);
+        invalidInput.classList.remove("is-invalid");
+        invalidName.classList.add("d-none");
+        alertDanger.classList.remove("d-flex");
+        alertDanger.classList.add("d-none");
+        invalidSubmit.classList.add("d-none");
       }
 
       var _iterator = _createForOfIteratorHelper(editToggle),
@@ -37333,7 +37337,7 @@ if (editToggle != null && submitForm != null) {
         _iterator.f();
       }
 
-      var _iterator2 = _createForOfIteratorHelper(submitForm),
+      var _iterator2 = _createForOfIteratorHelper(inputImages),
           _step2;
 
       try {
@@ -37348,17 +37352,14 @@ if (editToggle != null && submitForm != null) {
         _iterator2.f();
       }
 
-      this.classList.add("d-none");
-      submitForm[i].classList.remove("d-none");
-
-      var _iterator3 = _createForOfIteratorHelper(categoryName),
+      var _iterator3 = _createForOfIteratorHelper(submitForm),
           _step3;
 
       try {
         for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
           var _key2 = _step3.value;
 
-          _key2.classList.remove("d-none");
+          _key2.classList.add("d-none");
         }
       } catch (err) {
         _iterator3.e(err);
@@ -37366,14 +37367,17 @@ if (editToggle != null && submitForm != null) {
         _iterator3.f();
       }
 
-      var _iterator4 = _createForOfIteratorHelper(categoryNameEdit),
+      this.classList.add("d-none");
+      submitForm[i].classList.remove("d-none");
+
+      var _iterator4 = _createForOfIteratorHelper(categoryName),
           _step4;
 
       try {
         for (_iterator4.s(); !(_step4 = _iterator4.n()).done;) {
           var _key3 = _step4.value;
 
-          _key3.classList.add("d-none");
+          _key3.classList.remove("d-none");
         }
       } catch (err) {
         _iterator4.e(err);
@@ -37381,8 +37385,24 @@ if (editToggle != null && submitForm != null) {
         _iterator4.f();
       }
 
+      var _iterator5 = _createForOfIteratorHelper(categoryNameEdit),
+          _step5;
+
+      try {
+        for (_iterator5.s(); !(_step5 = _iterator5.n()).done;) {
+          var _key4 = _step5.value;
+
+          _key4.classList.add("d-none");
+        }
+      } catch (err) {
+        _iterator5.e(err);
+      } finally {
+        _iterator5.f();
+      }
+
       categoryName[i].classList.add("d-none");
       categoryNameEdit[i].classList.remove("d-none");
+      inputImages[i].classList.remove("d-none");
     });
   };
 
@@ -37421,7 +37441,6 @@ window.previewUpload = function (event) {
     var src = URL.createObjectURL(event.target.files[0]);
     var preview = document.querySelector(".my_image");
     preview.src = src;
-    preview.style.display = "block";
   }
 };
 
@@ -37875,9 +37894,9 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\User\Desktop\boolean-full\esercizi\php\deliveboo-project47-team5\resources\js\admin\admin.js */"./resources/js/admin/admin.js");
-__webpack_require__(/*! C:\Users\User\Desktop\boolean-full\esercizi\php\deliveboo-project47-team5\resources\sass\admin\admin.scss */"./resources/sass/admin/admin.scss");
-module.exports = __webpack_require__(/*! C:\Users\User\Desktop\boolean-full\esercizi\php\deliveboo-project47-team5\resources\sass\front\front.scss */"./resources/sass/front/front.scss");
+__webpack_require__(/*! /Users/simonespirito/Downloads/Boolean/deliveboo-project47-team5-1/resources/js/admin/admin.js */"./resources/js/admin/admin.js");
+__webpack_require__(/*! /Users/simonespirito/Downloads/Boolean/deliveboo-project47-team5-1/resources/sass/admin/admin.scss */"./resources/sass/admin/admin.scss");
+module.exports = __webpack_require__(/*! /Users/simonespirito/Downloads/Boolean/deliveboo-project47-team5-1/resources/sass/front/front.scss */"./resources/sass/front/front.scss");
 
 
 /***/ })
