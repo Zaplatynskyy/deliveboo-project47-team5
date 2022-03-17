@@ -2111,6 +2111,11 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
       var categories = this.checkCheckbox("checkboxCategories");
       var tags = this.checkCheckbox("checkboxTags");
+
+      if (this.query == '' && !categories.length && !tags.length) {
+        return '';
+      }
+
       axios.post("/api/restaurants/advanced", {
         params: {
           categories: categories,
@@ -2160,7 +2165,14 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     }
   },
   created: function created() {
+    var _this3 = this;
+
     this.getCategoriesAndTags();
+    axios.get("/api/restaurants").then(function (response) {
+      _this3.restaurants = _toConsumableArray(response.data);
+    })["catch"](function (error) {
+      console.log(error);
+    });
   }
 });
 
@@ -79633,7 +79645,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/simonespirito/Downloads/Boolean/deliveboo-project47-team5-1/resources/js/front/front.js */"./resources/js/front/front.js");
+module.exports = __webpack_require__(/*! C:\Users\User\Desktop\boolean-full\esercizi\php\deliveboo-project47-team5\resources\js\front\front.js */"./resources/js/front/front.js");
 
 
 /***/ })

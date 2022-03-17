@@ -18,6 +18,7 @@ Route::get('/categories', 'Api\CategoryController@index');
 Route::get('/categories/{slug}', 'Api\CategoryController@show');
 
 //ristoranti
+Route::get('/restaurants', 'Api\UserController@index');
 Route::get('/restaurants/details/{slug}', 'Api\UserController@show');
 Route::get('/restaurants/{query}', 'Api\UserController@search');
 Route::post('/restaurants/advanced', 'Api\UserController@advancedSearch');
