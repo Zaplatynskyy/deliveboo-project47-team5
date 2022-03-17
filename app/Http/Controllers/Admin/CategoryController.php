@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Category;
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\URL;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 class CategoryController extends Controller
 {
@@ -32,7 +33,8 @@ class CategoryController extends Controller
         $data = $request->all();
 
         $request->validate([
-            'name' => 'required|unique:categories|max:100'
+            'name' => 'required|unique:categories|max:100',
+            'image' => "required|mimes:jpeg,jpg,bmp,png|max:2048"
         ]);
 
         $newCategory = new Category();
@@ -55,11 +57,18 @@ class CategoryController extends Controller
         $data = $request->all();
 
         $request->validate([
-            'name' => "required|unique:categories,name,{$category->id}|max:100"
+            'name' => "required|unique:categories,name,{$category->id}|max:100",
+            'image' => "nullable|mimes:jpeg,jpg,bmp,png|max:2048"
         ]);
 
         $category->name = $data['name'];
         $category->slug = Str::of($category->name)->slug('-');
+
+        if (isset($data['image'])) {
+            $path = Storage::put('uploads', $data['image']);
+            $category->image = $path;
+        }
+
         $category->save();
 
         return redirect()->route('categories.index');

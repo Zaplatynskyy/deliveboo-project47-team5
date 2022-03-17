@@ -8,7 +8,8 @@
                     <div class="card-header">Lista delle categorie</div>
                     <div class="card-body">
                         <div class="new-post">
-                            <form class="d-flex mb-3" action="{{ route('categories.store') }}" method="POST" id="add_category_form" onsubmit="return validationFormCategory()">
+                            <form class="d-flex mb-3" action="{{ route('categories.store') }}" method="POST"
+                                id="add_category_form" onsubmit="return validationFormCategory()">
                                 <button type="submit" class="btn btn-success mr-2 btnP">Crea nuova</button>
                                 <div>
                                     @csrf
@@ -20,9 +21,9 @@
                                 {{-- error js --}}
                                 <div id="category_input_name" class="error_js d-none"></div>
                                 {{-- error laravel --}}
-                                
+
                                 @if (old('formType') == 'create')
-                                @error('name')
+                                    @error('name')
                                         <div class="alert alert-danger ml-2 mb-0 py-0 px-4 d-flex align-items-center">
                                             {{ $message }}
                                         </div>
@@ -43,19 +44,19 @@
                                 </thead>
                                 <tbody>
                                     @foreach ($categories as $key => $category)
-                                        <tr class="my_item">
-                                            <th scope="row">{{ $key + 1 }}</th>
-                                            <td>
-                                                <div
-                                                    class="name {{ old('formType') == 'edit' && old('oldName') == $category->name ? 'd-none' : '' }}">
-                                                    {{ $category->name }}</div>
-                                                <div
-                                                    class="name-input {{ old('formType') == 'edit' && old('oldName') == $category->name ? '' : 'd-none' }}">
-                                                    <form class="d-inline-block edit-form"
-                                                        action="{{ route('categories.update', $category) }}"
-                                                        method="POST">
-                                                        @csrf
-                                                        @method('PUT')
+                                        <form class="d-inline-block edit-form"
+                                            action="{{ route('categories.update', $category) }}" method="POST">
+                                            @csrf
+                                            @method('PUT')
+                                            <tr class="my_item">
+                                                <th scope="row">{{ $key + 1 }}</th>
+                                                <td>
+                                                    <div
+                                                        class="name {{ old('formType') == 'edit' && old('oldName') == $category->name ? 'd-none' : '' }}">
+                                                        {{ $category->name }}</div>
+                                                    <div
+                                                        class="name-input {{ old('formType') == 'edit' && old('oldName') == $category->name ? '' : 'd-none' }}">
+
                                                         <input
                                                             value="{{ old('oldName') == $category->name ? old('name') : $category->name }}"
                                                             type="text"
@@ -73,25 +74,41 @@
                                                                 </div>
                                                             @enderror
                                                         @endif
-                                                    </form>
-                                                </div>
-                                            </td>
-                                            <td>{{ $category->slug }}</td>
-                                            <td>
-                                                <img class="w-25" src="{{ asset("storage/{$category->image}") }}" alt="{{$category->name}}">
-                                            </td>
-                                            <td>
-                                                <div class="edit-buttons d-inline-block">
-                                                    <button type="button"
-                                                        class="btn btn-warning btnP text-white toggleForm {{ old('oldName') == $category->name ? 'd-none' : '' }}">Modifica</button>
-                                                    <button type="button"
-                                                        class="btn btn-warning btnP text-white submitForm {{ old('oldName') == $category->name ? 'failed-validation' : 'd-none' }} ">Conferma</button>
-                                                </div>
-                                                <button type="submit" class="btn btn-danger btnToggle btnP"
-                                                    data-toggle="modal" data-target="#exampleModal"
-                                                    data-slug="{{ $category->id }}">Elimina</button>
-                                            </td>
-                                        </tr>
+                                                    </div>
+                                                </td>
+                                                <td>{{ $category->slug }}</td>
+                                                <td>
+                                                    <img class="w-25 my_image"
+                                                        src="{{ asset("storage/{$category->image}") }}"
+                                                        alt="{{ $category->name }}">
+                                                    <div class="edit-img d-none">
+                                                        <input type="file" id="inputGroupFile02" name="image"
+                                                            class="@if (old('formType') == 'edit' && old('oldName') == $category->name) is-invalid my_validation @endif"
+                                                            onchange="previewUpload(event)">
+                                                    </div>
+                                                    @if (old('formType') == 'edit' && old('oldName') == $category->name)
+                                                            @error('image')
+                                                                <div
+                                                                    class="alert alert-danger mb-0 py-0 px-4 d-flex align-items-center">
+                                                                    {{ $message }}
+                                                                </div>
+                                                            @enderror
+                                                        @endif
+
+                                                </td>
+                                                <td>
+                                                    <div class="edit-buttons d-inline-block">
+                                                        <button type="button"
+                                                            class="btn btn-warning btnP text-white toggleForm {{ old('oldName') == $category->name ? 'd-none' : '' }}">Modifica</button>
+                                                        <button type="button"
+                                                            class="btn btn-warning btnP text-white submitForm {{ old('oldName') == $category->name ? 'failed-validation' : 'd-none' }} ">Conferma</button>
+                                                    </div>
+                                                    <button type="button" class="btn btn-danger btnToggle btnP"
+                                                        data-toggle="modal" data-target="#exampleModal"
+                                                        data-slug="{{ $category->id }}">Elimina</button>
+                                                </td>
+                                            </tr>
+                                        </form>
                                     @endforeach
                                 </tbody>
                             </table>
