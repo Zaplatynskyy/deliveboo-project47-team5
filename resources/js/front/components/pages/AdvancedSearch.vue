@@ -71,7 +71,7 @@ export default {
         searchRestaurants() {
             let categories = this.checkCheckbox("checkboxCategories");
             let tags = this.checkCheckbox("checkboxTags");
-            console.log(this.query);
+
             axios
                 .post(`/api/restaurants/advanced`, {
                     params: {
@@ -109,8 +109,7 @@ export default {
         checkCheckbox(type) {
             let checked = [];
             const input = document.getElementsByClassName(type);
-            console.log(input);
-            console.log(type);
+
             for (let element of input) {
                 if (element.checked) checked.push(element.value);
             }
@@ -118,27 +117,7 @@ export default {
         },
     },
     created() {
-        if (this.$route.params.from == "category") {
-            axios
-                .get(`/api/categories/${this.$route.params.query}`)
-                .then((response) => {
-                    this.restaurants = [...response.data.categories.users];
-                    this.getCategoriesAndTags();
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });
-        } else {
-            axios
-                .get(`/api/restaurants/${this.$route.params.query}`)
-                .then((response) => {
-                    this.restaurants = [...response.data.users];
-                    this.getCategoriesAndTags();
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });
-        }
+        this.getCategoriesAndTags();
     },
 };
 </script>

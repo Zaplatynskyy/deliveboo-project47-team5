@@ -11,7 +11,7 @@ class UserController extends Controller
     public function search($query)
     {
 
-        $users = User::where('email', '!=', 'admin@admin.com')->where('name', 'like', '%' . $query . '%')->get();
+        $users = User::where('email', '!=', 'admin@admin.com')->where('name', 'like', '%' . $query . '%')->with('categories')->get();
 
         $data = [
             'success' => true,
@@ -41,7 +41,7 @@ class UserController extends Controller
                 foreach ($user->categories as $category) {
                     $categoriesId[] = $category->id;
                 }
-                if (count(array_intersect($categories, $categoriesId)) && !in_array($user, $filteredByCategoriesUsers)) {
+                if (!array_diff($categories, $categoriesId) == $categories && !in_array($user, $filteredByCategoriesUsers) && count($categoriesId) > 0) {
                     $filteredByCategoriesUsers[] = $user;
                 }
             }

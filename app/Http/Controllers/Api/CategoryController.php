@@ -27,7 +27,7 @@ class CategoryController extends Controller
     public function show($slug)
     {
         $categories = Category::where('slug', $slug)->with(['users' => function($query){
-            $query->where('email', '!=', 'admin@admin.com');
+            $query->where('email', '!=', 'admin@admin.com')->with('categories');
         }])->first();
 
 
