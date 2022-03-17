@@ -8,6 +8,13 @@ use App\User;
 
 class UserController extends Controller
 {
+
+    public function index() {
+        $users = User::where('email', '!=', 'admin@admin.com')->get()->random(2);
+
+        return response()->json($users, 200);
+    } 
+
     public function search($query)
     {
 

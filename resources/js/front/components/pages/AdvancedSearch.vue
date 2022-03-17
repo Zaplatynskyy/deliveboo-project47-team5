@@ -69,8 +69,13 @@ export default {
     },
     methods: {
         searchRestaurants() {
+            
             let categories = this.checkCheckbox("checkboxCategories");
             let tags = this.checkCheckbox("checkboxTags");
+
+            if(this.query == '' && !categories.length && !tags.length) {
+                return ''
+            }
 
             axios
                 .post(`/api/restaurants/advanced`, {
@@ -118,6 +123,15 @@ export default {
     },
     created() {
         this.getCategoriesAndTags();
+
+        axios
+            .get("/api/restaurants")
+            .then((response) => {
+                this.restaurants = [...response.data];
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
     },
 };
 </script>
