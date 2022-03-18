@@ -1,25 +1,24 @@
 <template>
-    <div class="d-flex flex-wrap justify-content-center">
+    <div class="row row-cols-3 my-2">
         <CategoryCard
-            class="categories m-3"
             v-for="category in categories"
             :key="category.id"
-            @click="categorySearch(category.slug)"
+            :category="category"
         />
     </div>
 </template>
 
 <script>
-import CategoryCard from '../commons/CategoryCard.vue'
+import CategoryCard from "../commons/CategoryCard.vue";
 
 export default {
     name: "Categories",
     components: {
-        CategoryCard
-    }, 
+        CategoryCard,
+    },
     props: {
-        categories: Array
-    }
+        categories: Array,
+    },
 };
 </script>
 
