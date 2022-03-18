@@ -10,7 +10,7 @@
                                 name: 'advanced-search'
                             }"
                         >
-                            <button type="button">Cerca</button>
+                            <button type="button">Filtri</button>
                         </router-link>
                     
                 </div>

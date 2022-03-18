@@ -1,14 +1,17 @@
 <template>
-  <main>
-    <router-view></router-view>
-  </main>
+    <main>
+        <router-view></router-view>
+    </main>
 </template>
 
 <script>
 export default {
-  name: "Main",
+    name: "Main",
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
+main {
+    background: var(--light-grey);
+}
 </style>

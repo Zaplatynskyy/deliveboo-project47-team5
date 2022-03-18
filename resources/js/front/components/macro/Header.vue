@@ -24,7 +24,6 @@ export default {
 <style lang='scss' scoped>
 
 header {
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
 
   height: 80px;
   background-color: var(--light-grey);
