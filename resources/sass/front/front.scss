@@ -35,6 +35,17 @@ h3 {
     font-size: 1.75rem;
 }
 
+.btn {
+    border: none;
+    border-radius: 10px;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+}
+
 // variables
 :root {
     --main-color: #3ECCBC;

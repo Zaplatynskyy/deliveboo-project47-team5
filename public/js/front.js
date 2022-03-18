@@ -2034,17 +2034,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Header"
 });
@@ -30389,7 +30378,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap);", ""]);
 
 // module
-exports.push([module.i, "header[data-v-ebc13896] {\n  height: 80px;\n  background-color: var(--light-grey);\n  padding: 15px;\n}\nheader .logo[data-v-ebc13896] {\n  display: flex;\n  align-items: center;\n}\nheader .logo img[data-v-ebc13896] {\n  height: 100%;\n}\nheader .logo .header_title[data-v-ebc13896] {\n  font-size: 1.8rem;\n  font-weight: bold;\n  font-family: \"futura-md-bt-4\", sans-serif;\n  color: var(--main-color);\n  margin-left: 10px;\n}", ""]);
+exports.push([module.i, "header[data-v-ebc13896] {\n  height: 80px;\n  background-color: var(--light-grey);\n  padding: 15px;\n}\nheader .logo[data-v-ebc13896] {\n  height: 30px;\n  cursor: pointer;\n}\nheader .logo img[data-v-ebc13896] {\n  height: 100%;\n}\nheader .logo .header_title[data-v-ebc13896] {\n  font-size: 1.15rem;\n  font-weight: bold;\n  font-family: \"Poppins\", sans-serif;\n  color: var(--main-color);\n  margin-left: 5px;\n}\nheader .btn-main[data-v-ebc13896] {\n  color: var(--white);\n  font-size: 1rem;\n  font-weight: bold;\n  background-color: var(--main-color);\n}\nheader .btn-main[data-v-ebc13896]:hover {\n  background-color: #43b6a8;\n}\n@media screen and (min-width: 1400px) {\nheader[data-v-ebc13896] {\n    padding: 15px 50px;\n}\n}", ""]);
 
 // exports
 
@@ -62776,23 +62765,36 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c(
+    "header",
+    { staticClass: "d-flex justify-content-between align-items-center" },
+    [
+      _c("router-link", { attrs: { to: { name: "home" } } }, [
+        _c("div", { staticClass: "logo d-flex align-items-center" }, [
+          _c("img", {
+            attrs: {
+              src: "/storage/uploads/logo-deliveroo.png",
+              alt: "logo deliveroo",
+            },
+          }),
+          _vm._v(" "),
+          _c("span", { staticClass: "header_title" }, [_vm._v("deliveboo")]),
+        ]),
+      ]),
+      _vm._v(" "),
+      _vm._m(0),
+    ],
+    1
+  )
 }
 var staticRenderFns = [
   function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("header", { staticClass: "d-flex justify-content-between" }, [
-      _c("div", { staticClass: "logo" }, [
-        _c("img", {
-          attrs: {
-            src: "/storage/uploads/logo-deliveroo.png",
-            alt: "logo deliveroo",
-          },
-        }),
-        _vm._v(" "),
-        _c("span", { staticClass: "header_title" }, [_vm._v("deliveboo")]),
+    return _c("a", { attrs: { href: "/admin/home" } }, [
+      _c("button", { staticClass: "btn btn-main" }, [
+        _vm._v("\n      Area riservata\n    "),
       ]),
     ])
   },
