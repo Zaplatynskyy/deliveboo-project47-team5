@@ -1,5 +1,5 @@
 <template>
-    <div class="my_container">
+    <div>
         <div class="home_navbar">
             <Hero />
             <Categories :categories="categories" />
