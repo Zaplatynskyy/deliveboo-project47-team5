@@ -8,7 +8,7 @@
                     <div class="card-header">Lista delle categorie</div>
                     <div class="card-body">
                         <div class="new-post">
-                            <form class="d-flex mb-3" action="{{ route('categories.store') }}" method="POST"
+                            <form class="d-flex mb-3" action="{{ route('categories.store') }}" method="POST" enctype="multipart/form-data"
                                 id="add_category_form" onsubmit="return validationFormCategory()">
                                 <button type="submit" class="btn btn-success mr-2 btnP">Crea nuova</button>
                                 <div>
@@ -44,7 +44,7 @@
                                 </thead>
                                 <tbody>
                                     @foreach ($categories as $key => $category)
-                                        <form class="d-inline-block edit-form"
+                                        <form class="d-inline-block edit-form" enctype="multipart/form-data"
                                             action="{{ route('categories.update', $category) }}" method="POST">
                                             @csrf
                                             @method('PUT')
