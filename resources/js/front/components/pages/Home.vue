@@ -1,25 +1,14 @@
 <template>
-    <div class="container">
+    <div class="my_container">
         <div class="home_navbar">
-            <h1>Home Page</h1>
-
-            <div class="search">
-                <input
-                    @keyup.enter="nameSearch()"
-                    type="text"
-                    placeholder="Cerca ristorante"
-                    v-model="query"
-                />
-                <button @click="nameSearch(query)" type="button">Cerca</button>
-            </div>
-
+            <Hero />
             <Categories :categories="categories" />
         </div>
 
-        <div v-show="searchOn" class="home_results">
+        <div v-show="dataShared.searchOn" class="home_results">
             <h2>Lista ristorante</h2>
             <ul>
-                <li v-for="restaurant in restaurants" :key="restaurant.id">
+                <li v-for="restaurant in dataShared.restaurants" :key="restaurant.id">
                     <h4>
                         <router-link
                             :to="{
@@ -39,7 +28,7 @@
                 </li>
             </ul>
         </div>
-        <div v-if="noResultsFound" class="no-results">
+        <div v-if="dataShared.noResultsFound" class="no-results">
             {{ noResultsFound }}
         </div>
     </div>
@@ -47,39 +36,23 @@
 
 <script>
 import Categories from "../sections/Categories.vue";
+import Hero from "../sections/Hero.vue";
+import dataShared from '../../dataShared'
 
 export default {
     name: "Home",
     components: {
-        Categories,
+        Hero,
+        Categories
     },
     data() {
         return {
-            restaurants: [],
+            dataShared,
+            // restaurants: [],
+            // searchOn: false,
             categories: [],
-            query: "",
-            searchOn: false,
-            noResultsFound: null,
+            // noResultsFound: null,
         };
-    },
-    methods: {
-        nameSearch(query) {
-            if (this.query != "") {
-                console.log(this.query);
-                axios
-                    .get(`/api/restaurants/${this.query}`)
-                    .then((response) => {
-                        this.restaurants = [...response.data.users];
-                        this.searchOn = true;
-                        this.noResultsFound = null;
-                    })
-                    .catch((error) => {
-                        this.noResultsFound = error.response.data.message;
-                        this.searchOn = false;
-                        this.restaurants = [];
-                    });
-            }
-        },
     },
     created() {
         axios
