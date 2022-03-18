@@ -13,23 +13,7 @@
                 <button @click="nameSearch(query)" type="button">Cerca</button>
             </div>
 
-            <ul class="d-flex flex-wrap justify-content-center">
-                <li
-                    class="categories m-3"
-                    v-for="category in categories"
-                    :key="category.id"
-                    @click="categorySearch(category.slug)"
-                >
-                    <div class="name">{{ category.name }}</div>
-                    <div class="image">
-                        <img
-                            class="w-100"
-                            :src="`/storage/${category.image}`"
-                            :alt="category.name"
-                        />
-                    </div>
-                </li>
-            </ul>
+            <Categories :categories="categories" />
         </div>
 
         <div v-show="searchOn" class="home_results">
@@ -56,15 +40,19 @@
             </ul>
         </div>
         <div v-if="noResultsFound" class="no-results">
-            {{noResultsFound}}
+            {{ noResultsFound }}
         </div>
     </div>
 </template>
 
 <script>
+import Categories from "../sections/Categories.vue";
+
 export default {
     name: "Home",
-    components: {},
+    components: {
+        Categories,
+    },
     data() {
         return {
             restaurants: [],

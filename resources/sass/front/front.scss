@@ -5,4 +5,42 @@
 @import '../variables';
 
 // Bootstrap
-@import '~bootstrap/scss/bootstrap';
+@import '~bootstrap/scss/bootstrap-grid';
+
+// reset
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+//  typhography
+h1 {
+    font-size: 6rem;
+}
+
+h2 {
+    font-size: 3.875rem;
+}
+
+h3 {
+    font-size: 2.8125rem;
+}
+
+.category-text {
+    font-size: 2.25rem;
+}
+
+.card-text {
+    font-size: 1.75rem;
+}
+
+// variables
+:root {
+    --main-color: #3ECCBC;
+    --light-grey: #F9F9F9;
+    --dark-grey: #9F9F9F;
+    --black: #000;
+    --white: #fff;
+}
+
