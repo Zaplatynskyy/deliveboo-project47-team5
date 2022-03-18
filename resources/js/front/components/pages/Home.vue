@@ -5,7 +5,7 @@
 
             <div class="search">
                 <input
-                    @keypress.enter="nameSearch()"
+                    @keyup.enter="nameSearch()"
                     type="text"
                     placeholder="Cerca ristorante"
                     v-model="query"
@@ -14,10 +14,19 @@
             </div>
 
             <ul class="d-flex flex-wrap justify-content-center">
-                <li class="categories m-3" v-for="category in categories" :key="category.id" @click="categorySearch(category.slug)">
+                <li
+                    class="categories m-3"
+                    v-for="category in categories"
+                    :key="category.id"
+                    @click="categorySearch(category.slug)"
+                >
                     <div class="name">{{ category.name }}</div>
                     <div class="image">
-                        <img class="w-100" :src="`/storage/${category.image}`" :alt="category.name">
+                        <img
+                            class="w-100"
+                            :src="`/storage/${category.image}`"
+                            :alt="category.name"
+                        />
                     </div>
                 </li>
             </ul>
@@ -33,14 +42,21 @@
                                 name: 'restaurant-details',
                                 params: { slug: restaurant.slug },
                             }"
-                            >
-                            Nome : {{restaurant.name}}
+                        >
+                            Nome : {{ restaurant.name }}
                         </router-link>
                     </h4>
-                    <div v-for="category in restaurant.categories" :key="category.slug">{{category.name}}</div>
+                    <div
+                        v-for="category in restaurant.categories"
+                        :key="category.slug"
+                    >
+                        {{ category.name }}
+                    </div>
                 </li>
-                
             </ul>
+        </div>
+        <div v-if="noResultsFound" class="no-results">
+            {{noResultsFound}}
         </div>
     </div>
 </template>
@@ -54,21 +70,25 @@ export default {
             restaurants: [],
             categories: [],
             query: "",
-            searchOn : false
+            searchOn: false,
+            noResultsFound: null,
         };
     },
     methods: {
         nameSearch(query) {
             if (this.query != "") {
+                console.log(this.query);
                 axios
-                    .get(`/api/restaurants/${query}`)
+                    .get(`/api/restaurants/${this.query}`)
                     .then((response) => {
                         this.restaurants = [...response.data.users];
-                        this.searchOn = true
-                        // this.getCategoriesAndTags();
+                        this.searchOn = true;
+                        this.noResultsFound = null;
                     })
-                    .catch(function (error) {
-                        console.log(error);
+                    .catch((error) => {
+                        this.noResultsFound = error.response.data.message;
+                        this.searchOn = false;
+                        this.restaurants = [];
                     });
             }
         },
@@ -78,12 +98,12 @@ export default {
                 .get(`/api/categories/${slug}`)
                 .then((response) => {
                     this.restaurants = [...response.data.categories.users];
-                    this.searchOn = true
+                    this.searchOn = true;
                 })
                 .catch(function (error) {
                     console.log(error);
                 });
-        }
+        },
     },
     created() {
         axios
@@ -99,7 +119,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 .categories {
     width: 200px;
     text-decoration: underline;
@@ -110,5 +129,4 @@ export default {
         color: #3490dc;
     }
 }
-
 </style>

@@ -125,6 +125,7 @@ class FoodController extends Controller
 
         $request->validate($this->validation);
 
+        $food->name = $data['name'];
         $food->price = $data['price'];
         $food->ingredients = $data['ingredients'];
         $food->visible = isset($data['visible']);

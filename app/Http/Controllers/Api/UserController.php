@@ -13,6 +13,10 @@ class UserController extends Controller
 
         $users = User::where('email', '!=', 'admin@admin.com')->where('name', 'like', '%' . $query . '%')->with('categories')->get();
 
+        if(!count($users)) {
+            return response()->json(["message" => "Nessun risultato trovato"], 404);
+        }
+
         $data = [
             'success' => true,
             'users' => $users,
@@ -63,6 +67,10 @@ class UserController extends Controller
                 }
             }
             $users = $filteredByTagsUsers;
+        }
+
+        if(!count($users)) {
+            return response()->json(["message" => "Nessun risultato trovato"], 404);
         }
 
         // risposta al client

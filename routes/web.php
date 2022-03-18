@@ -22,6 +22,7 @@ Auth::routes(['verify' => true]);
 Route::middleware('verified')->namespace('Admin')->prefix('admin')->group(function () {
     Route::get('/home', 'HomeController@index')->name('home');
     Route::resource('users', 'UserController');
+    Route::get('user/edit', 'UserController@editUser')->name('user.edit');
 
     Route::middleware('checkUser')->group(function () {
         Route::resource('foods', 'FoodController');
