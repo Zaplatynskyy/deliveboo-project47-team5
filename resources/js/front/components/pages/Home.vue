@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="container">
         <div class="home_navbar">
             <h1>Home Page</h1>
 
@@ -79,18 +79,6 @@ export default {
                         this.restaurants = [];
                     });
             }
-        },
-
-        categorySearch(slug) {
-            axios
-                .get(`/api/categories/${slug}`)
-                .then((response) => {
-                    this.restaurants = [...response.data.categories.users];
-                    this.searchOn = true;
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });
         },
     },
     created() {
