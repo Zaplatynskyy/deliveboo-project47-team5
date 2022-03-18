@@ -8,6 +8,7 @@ import AdvancedSearch from "./components/pages/AdvancedSearch";
 import RestaurantDetails from "./components/pages/RestaurantDetails";
 import Checkout from "./components/pages/Checkout";
 import Success from "./components/pages/Success";
+import PageNotFound from "./components/pages/PageNotFound";
 
 
 const router = new VueRouter({
@@ -37,6 +38,13 @@ const router = new VueRouter({
             path: "/restaurant/:slug",
             name: "restaurant-details",
             component: RestaurantDetails
+        },
+        // error 404
+        {
+            path: '/404',
+            alias: '*',
+            name: "not-found",
+            component: PageNotFound,
         },
         
         
