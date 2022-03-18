@@ -1,5 +1,12 @@
 const registrationForm = document.getElementById('add_food_form');
 
+window.validateNumbers = function (input) {
+    const pattern = /^[0-9]*\.?[0-9]*$/;
+    input.value = input.value.replace('.', '')
+    console.log(!input.value.match(pattern));
+    if(!input.value.match(pattern)) input.value = input.value.replace(input.value[input.value.length - 1], '');
+};
+
 window.validationFormFood = function(){
 
     let success = true;

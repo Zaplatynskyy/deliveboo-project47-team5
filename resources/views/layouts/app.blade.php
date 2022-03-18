@@ -45,7 +45,8 @@
                                     <a class="nav-link" href="{{ route('home') }}">Utenti</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('categories.index') }}">Categorie ristoranti</a>
+                                    <a class="nav-link" href="{{ route('categories.index') }}">Categorie
+                                        ristoranti</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('types.index') }}">Tipologie piatti</a>
@@ -77,7 +78,8 @@
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Registrati') }}</a>
+                                    <a class="nav-link"
+                                        href="{{ route('register') }}">{{ __('Registrati') }}</a>
                                 </li>
                             @endif
                         @else
@@ -89,12 +91,13 @@
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     @if (Auth::user()->email != 'admin@admin.com')
-                                        <a class="dropdown-item" href="{{ route('users.edit', Auth::id()) }}">
+                                        <a class="dropdown-item" href="{{ route('user.edit') }}">
                                             Modifica profilo
                                         </a>
                                     @endif
                                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                                     document.getElementById('logout-form').submit();">
+                                                                             document.getElementById('logout-form').submit();
+                                                                             ">
                                         Esci
                                     </a>
 

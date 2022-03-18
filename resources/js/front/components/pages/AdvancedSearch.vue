@@ -2,7 +2,7 @@
     <section class="advanced-search">
         <div class="search">
             <input
-                @keypress.enter="searchRestaurants()"
+                @keyup.enter="searchRestaurants()"
                 type="text"
                 placeholder="Cerca ristorante"
                 v-model="query"
@@ -45,14 +45,20 @@
                 </div>
             </div>
         </div>
-        <ul>
+        <ul v-if="!noResultsFound">
             <li v-for="restaurant in restaurants" :key="restaurant.id">
                 <router-link
-                    :to="{ name: 'restaurant-details', params: { slug: restaurant.slug } }"
+                    :to="{
+                        name: 'restaurant-details',
+                        params: { slug: restaurant.slug },
+                    }"
                     >{{ restaurant.name }}
                 </router-link>
             </li>
         </ul>
+        <div v-if="noResultsFound" class="no-results">
+            {{ noResultsFound }}
+        </div>
     </section>
 </template>
 
@@ -65,6 +71,7 @@ export default {
             categories: [],
             tags: [],
             query: "",
+            noResultsFound: null,
         };
     },
     methods: {
@@ -87,9 +94,12 @@ export default {
                 })
                 .then((response) => {
                     this.restaurants = [...response.data.users];
+                    this.noResultsFound = null;
                 })
-                .catch(function (error) {
+                .catch((error) => {
                     console.log(error);
+                    this.noResultsFound = error.response.data.message;
+                    this.restaurants = [];
                 });
         },
         getCategoriesAndTags() {
