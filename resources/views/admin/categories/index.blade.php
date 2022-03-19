@@ -10,7 +10,7 @@
                         <div class="new-post">
                             <form class="d-flex mb-3" action="{{ route('categories.store') }}" method="POST" enctype="multipart/form-data"
                                 id="add_category_form" onsubmit="return validationFormCategory()">
-                                <button type="submit" class="btn btn-success mr-2 btnP">Crea nuova</button>
+                                <button type="submit" class="my_btn btn btn-success mr-2 btnP">Crea nuova</button>
                                 <div>
                                     @csrf
                                     <input value="@if (old('formType') == 'create') {{ old('name') }} @endif" type="text"
@@ -99,11 +99,11 @@
                                                 <td>
                                                     <div class="edit-buttons d-inline-block">
                                                         <button type="button"
-                                                            class="btn btn-warning btnP text-white toggleForm {{ old('oldName') == $category->name ? 'd-none' : '' }}">Modifica</button>
+                                                            class="my_btn btn btn-warning btnP text-black toggleForm {{ old('oldName') == $category->name ? 'd-none' : '' }}">Modifica</button>
                                                         <button type="button"
-                                                            class="btn btn-warning btnP text-white submitForm {{ old('oldName') == $category->name ? 'failed-validation' : 'd-none' }} ">Conferma</button>
+                                                            class="my_btn btn btn-warning btnP text-white submitForm {{ old('oldName') == $category->name ? 'failed-validation' : 'd-none' }} ">Conferma</button>
                                                     </div>
-                                                    <button type="button" class="btn btn-danger btnToggle btnP"
+                                                    <button type="button" class="my_btn btn btn-danger btnToggle btnP mt-2"
                                                         data-toggle="modal" data-target="#exampleModal"
                                                         data-slug="{{ $category->id }}">Elimina</button>
                                                 </td>

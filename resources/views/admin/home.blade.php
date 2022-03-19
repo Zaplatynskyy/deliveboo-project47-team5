@@ -36,13 +36,13 @@
                                                     @csrf
                                                     @method('PATCH')
                                                     <button type="submit"
-                                                        class="btn btn-success mt-1 text-white">Approva</button>
+                                                        class="my_btn btn btn-success mt-1 text-white">Approva</button>
                                                 </form>
                                                 <form action="{{ route('orders.disapproves', $order->id) }}"
                                                     method="POST">
                                                     @csrf
                                                     @method('PATCH')
-                                                    <button type="submit" class="btn btn-danger mt-1">Annulla</button>
+                                                    <button type="submit" class="my_btn btn btn-danger mt-1">Annulla</button>
                                                 </form>
 
                                             </td>

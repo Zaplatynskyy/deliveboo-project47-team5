@@ -31,7 +31,7 @@
                         <div class="buttons mt-4">
                             <button type="button" class="btn btn-warning"><a class="text-white"
                                     href="{{ route('foods.edit', $food->id) }}">Modifica</a></button>
-                            <button type="button" class="btn btn-danger btnP" data-toggle="modal"
+                            <button type="button" class="my_btn btn btn-danger btnP" data-toggle="modal"
                                 data-target="#exampleModal">Elimina</button>
                             <button type="button" class="btn btn-primary"><a class="text-white"
                                     href="{{ route('foods.index') }}">Torna alla lista</a></button>

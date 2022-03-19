@@ -98,7 +98,7 @@
                                 @enderror
                             </div>
 
-                            <button type="submit" class="btn btn-primary btnP">Crea</button>
+                            <button type="submit" class="my_btn btn btn-primary btnP">Crea</button>
                             <button type="button" class="btn btn-danger ml-1"><a class="text-white"
                                     href="{{ route('foods.index') }}">Torna alla lista</a></button>
                         </form>

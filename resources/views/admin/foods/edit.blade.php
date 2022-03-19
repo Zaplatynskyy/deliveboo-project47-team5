@@ -115,7 +115,7 @@
                                 @enderror
                             </div>
 
-                            <button type="submit" class="btn btn-primary btnP">Modifica</button>
+                            <button type="submit" class="my_btn btn btn-primary btnP">Modifica</button>
                             <button type="button" class="btn btn-danger ml-1"><a class="text-white"
                                     href="{{ route('foods.index') }}">Torna al Menù</a></button>
                         </form>

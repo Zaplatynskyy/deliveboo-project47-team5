@@ -9,7 +9,7 @@
                     <div class="card-body">
                         <div class="new-post">
                             <form class="d-flex mb-3" action="{{ route('types.store') }}" method="POST" id="add_type_form" onsubmit="return validationFormType()">
-                                <button type="submit" class="btn btn-success mr-2 btnP">Crea nuova *</button>
+                                <button type="submit" class="my_btn btn btn-success mr-2 btnP">Crea nuova *</button>
                                 <div>
                                     @csrf
                                     <input value="@if (old('formType') == 'create') {{ old('name') }} @endif" type="text"
@@ -78,11 +78,11 @@
                                             <td>
                                                 <div class="edit-buttons d-inline-block">
                                                     <button type="button"
-                                                        class="btn btn-warning btnP text-white toggleForm {{ old('oldName') == $type->name ? 'd-none' : '' }}">Modifica</button>
+                                                        class="my_btn btn btn-warning btnP text-white toggleForm {{ old('oldName') == $type->name ? 'd-none' : '' }}">Modifica</button>
                                                     <button type="button"
-                                                        class="btn btn-warning btnP text-white submitForm {{ old('oldName') == $type->name ? 'failed-validation' : 'd-none' }} ">Conferma</button>
+                                                        class="my_btn btn btn-warning btnP text-white submitForm {{ old('oldName') == $type->name ? 'failed-validation' : 'd-none' }} ">Conferma</button>
                                                 </div>
-                                                <button type="submit" class="btn btn-danger btnToggle btnP"
+                                                <button type="submit" class="my_btn btn btn-danger btnToggle btnP"
                                                     data-toggle="modal" data-target="#exampleModal"
                                                     data-slug="{{ $type->id }}">Elimina</button>
                                             </td>
