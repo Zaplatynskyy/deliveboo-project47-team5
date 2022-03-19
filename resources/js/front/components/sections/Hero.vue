@@ -1,17 +1,22 @@
 <template>
     <div id="hero">
         <div class="row justify-content-center">
-            <div class="col-12 col-md-7 col-xl-5 d-flex justify-content-center align-items-center">
+            <div class="col-12 col-md-7 col-xl-6 d-flex justify-content-center align-items-center">
                 <div class="hero_nav">
                     <h1>Il miglior cibo, direttamente a casa tua</h1>
-                    <input type="text" placeholder="Cerca ristorante" @keyup.enter="nameSearch()" v-model="query"/>
-                    <router-link
-                            :to="{
-                                name: 'advanced-search'
-                            }"
-                        >
-                            <button type="button">Filtri</button>
-                        </router-link>
+
+                    <div class="nav_bar_hero">
+                        <i class="fa-solid fa-magnifying-glass" @click="nameSearch()"></i>
+                        <input type="text" placeholder="Cerca ristorante" @keyup.enter="nameSearch()" v-model="query"/>
+                        <router-link
+                                :to="{
+                                    name: 'advanced-search'
+                                }"
+                            >
+                                <button class="advanced_search" type="button">Filtri</button>
+                            </router-link>
+                    </div>
+
                     
                 </div>
             </div>
@@ -73,36 +78,66 @@ export default {
             color: var(--main-color);
         }
 
-        input[type="text"]{
-            font-size: .9rem;
-            width: calc(100% - 85px);
-            border: 1px solid var(--dark-grey);
-            border-top-left-radius: 5px;
-            border-bottom-left-radius: 5px;
-            padding: 8px;
-            margin: 20px 0;
-           
-            &:focus {
-                outline: none;
-            }
-        }
-        
-        button{
-            font-size: .9rem;
-            width: 80px;
-            text-transform: uppercase;
-            color: var(--dark-grey);
-            background-color: var(--white);
-            border: 1px solid var(--dark-grey);
-            border-top-right-radius: 5px;
-            border-bottom-right-radius: 5px;
-            padding: 8px;
-            position: relative;
-            right: 5px;
-            cursor: pointer;
+        .nav_bar_hero {
 
-            &:hover {
-                background-color: var(--light-grey);
+            position: relative;
+
+            i {
+                color: var(--dark-grey);
+                position: absolute;
+                left: calc(100% - 115px);
+                top: 30px;
+                cursor: pointer;
+                transition: 0.15s;
+
+                &:hover {
+                    color: #5E5D5D;
+                }
+
+                &:active {
+                    color: var(--dark-grey);
+                }
+            }
+
+            input[type="text"]{
+                font-size: .9rem;
+                width: calc(100% - 85px);
+                border: 1px solid var(--dark-grey);
+                border-top-left-radius: 5px;
+                border-bottom-left-radius: 5px;
+                padding: 8px;
+                margin: 20px 0;
+            
+                &:focus {
+                    outline: none;
+                }
+            }
+            
+            button{
+                font-size: .9rem;
+                width: 80px;
+                text-transform: uppercase;
+                color: var(--dark-grey);
+                background-color: var(--white);
+                border: 1px solid var(--dark-grey);
+                border-top-right-radius: 5px;
+                border-bottom-right-radius: 5px;
+                padding: 8px;
+                position: relative;
+                right: 5px;
+                cursor: pointer;
+                transition: 0.15s;
+
+                &:hover {
+                    color: var(--white);
+                    background-color: #3eccbc;
+                    border: 1px solid #3eccbc;
+
+                }
+
+                &:active {
+                    background-color: #43b6a8;
+                }
             }
         }
     }
@@ -132,8 +167,18 @@ export default {
         padding: 30px 45px;
 
         .hero_nav {
-            input[type="text"] {
-                max-width: 400px;
+
+            .nav_bar_hero {
+
+                position: relative;
+
+                i {
+                    left: calc(400px - 30px);
+                }
+
+                input[type="text"] {
+                    width: 400px;
+                }
             }
         }
 

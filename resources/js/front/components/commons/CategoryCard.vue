@@ -46,7 +46,18 @@ export default {
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     padding: 0;
     margin-bottom: 1.775rem;
+    transition: 0.15s;
     cursor: pointer;
+
+    &:hover {
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 10px 10px;
+        transform: scale(1.01);
+    }
+
+    &:active {
+        transform: scale(1);
+    }
+
     .image {
         height: 160px;
         img {

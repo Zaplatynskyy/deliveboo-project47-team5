@@ -2877,6 +2877,11 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Hero',
@@ -30424,7 +30429,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, ".category-card[data-v-1fae6dfa] {\n  border-radius: 10px;\n  border: 1px solid #686868;\n  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;\n  padding: 0;\n  margin-bottom: 1.775rem;\n  cursor: pointer;\n}\n.category-card .image[data-v-1fae6dfa] {\n  height: 160px;\n}\n.category-card .image img[data-v-1fae6dfa] {\n  width: 100%;\n  height: 100%;\n  border-top-left-radius: 10px;\n  border-top-right-radius: 10px;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n.category-card .name[data-v-1fae6dfa] {\n  color: var(--dark-grey);\n  padding: 10px 7px;\n}", ""]);
+exports.push([module.i, ".category-card[data-v-1fae6dfa] {\n  border-radius: 10px;\n  border: 1px solid #686868;\n  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;\n  padding: 0;\n  margin-bottom: 1.775rem;\n  transition: 0.15s;\n  cursor: pointer;\n}\n.category-card[data-v-1fae6dfa]:hover {\n  box-shadow: rgba(0, 0, 0, 0.24) 0px 10px 10px;\n  transform: scale(1.01);\n}\n.category-card[data-v-1fae6dfa]:active {\n  transform: scale(1);\n}\n.category-card .image[data-v-1fae6dfa] {\n  height: 160px;\n}\n.category-card .image img[data-v-1fae6dfa] {\n  width: 100%;\n  height: 100%;\n  border-top-left-radius: 10px;\n  border-top-right-radius: 10px;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n.category-card .name[data-v-1fae6dfa] {\n  color: var(--dark-grey);\n  padding: 10px 7px;\n}", ""]);
 
 // exports
 
@@ -30443,7 +30448,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "header[data-v-ebc13896] {\n  height: 80px;\n  background-color: var(--light-grey);\n  padding: 15px;\n}\nheader .logo[data-v-ebc13896] {\n  height: 30px;\n  cursor: pointer;\n}\nheader .logo img[data-v-ebc13896] {\n  height: 100%;\n}\nheader .logo .header_title[data-v-ebc13896] {\n  font-size: 1.15rem;\n  font-weight: bold;\n  font-family: \"Poppins\", sans-serif;\n  color: var(--main-color);\n  margin-left: 5px;\n}\nheader .btn-main[data-v-ebc13896] {\n  color: var(--white);\n  font-size: 1rem;\n  font-weight: bold;\n  background-color: var(--main-color);\n}\nheader .btn-main[data-v-ebc13896]:hover {\n  background-color: #43b6a8;\n}\n@media screen and (min-width: 1400px) {\nheader[data-v-ebc13896] {\n    padding: 15px 50px;\n}\n}", ""]);
+exports.push([module.i, "header[data-v-ebc13896] {\n  height: 80px;\n  background-color: var(--light-grey);\n  padding: 15px;\n}\nheader .logo[data-v-ebc13896] {\n  height: 30px;\n  cursor: pointer;\n}\nheader .logo img[data-v-ebc13896] {\n  height: 100%;\n}\nheader .logo .header_title[data-v-ebc13896] {\n  font-size: 1.15rem;\n  font-weight: bold;\n  font-family: \"Poppins\", sans-serif;\n  color: var(--main-color);\n  margin-left: 5px;\n}\nheader .btn-main[data-v-ebc13896] {\n  color: var(--white);\n  font-size: 0.9rem;\n  font-weight: bold;\n  background-color: var(--main-color);\n  padding: 5px 10px;\n  transition: 0.15s;\n}\nheader .btn-main[data-v-ebc13896]:hover {\n  background-color: #43b6a8;\n}\nheader .btn-main[data-v-ebc13896]:active {\n  transform: scale(0.97);\n}\n@media screen and (min-width: 576px) {\nheader .btn-main[data-v-ebc13896] {\n    font-size: 1rem;\n    padding: 10px 15px;\n}\n}\n@media screen and (min-width: 1400px) {\nheader[data-v-ebc13896] {\n    padding: 15px 50px;\n}\n}", ""]);
 
 // exports
 
@@ -30538,7 +30543,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "#hero[data-v-648de746] {\n  background-image: url(\"/storage/uploads/background.svg\");\n  background-size: contain;\n  padding: 30px 20px;\n}\n#hero .hero_nav h1[data-v-648de746] {\n  font-size: 2rem;\n  color: var(--main-color);\n}\n#hero .hero_nav input[type=text][data-v-648de746] {\n  font-size: 0.9rem;\n  width: calc(100% - 85px);\n  border: 1px solid var(--dark-grey);\n  border-top-left-radius: 5px;\n  border-bottom-left-radius: 5px;\n  padding: 8px;\n  margin: 20px 0;\n}\n#hero .hero_nav input[type=text][data-v-648de746]:focus {\n  outline: none;\n}\n#hero .hero_nav button[data-v-648de746] {\n  font-size: 0.9rem;\n  width: 80px;\n  text-transform: uppercase;\n  color: var(--dark-grey);\n  background-color: var(--white);\n  border: 1px solid var(--dark-grey);\n  border-top-right-radius: 5px;\n  border-bottom-right-radius: 5px;\n  padding: 8px;\n  position: relative;\n  right: 5px;\n  cursor: pointer;\n}\n#hero .hero_nav button[data-v-648de746]:hover {\n  background-color: var(--light-grey);\n}\n#hero .hero_img[data-v-648de746] {\n  width: 250px;\n  margin: auto;\n}\n#hero .hero_img img[data-v-648de746] {\n  width: 100%;\n}\n@media screen and (min-width: 576px) {\n#hero .hero_nav h1[data-v-648de746] {\n    font-size: 2.8rem;\n}\n}\n@media screen and (min-width: 992px) {\n#hero[data-v-648de746] {\n    padding: 30px 45px;\n}\n#hero .hero_nav input[type=text][data-v-648de746] {\n    max-width: 400px;\n}\n#hero .hero_img[data-v-648de746] {\n    width: 350px;\n}\n}\n@media screen and (min-width: 1200px) {\n#hero[data-v-648de746] {\n    padding: 30px 20px;\n}\n#hero .hero_nav input[type=text][data-v-648de746] {\n    font-size: 1rem;\n    padding: 12px;\n}\n#hero .hero_nav button[data-v-648de746] {\n    font-size: 1rem;\n    padding: 12px;\n}\n#hero .hero_nav h1[data-v-648de746] {\n    font-size: 3.5rem;\n}\n}", ""]);
+exports.push([module.i, "#hero[data-v-648de746] {\n  background-image: url(\"/storage/uploads/background.svg\");\n  background-size: contain;\n  padding: 30px 20px;\n}\n#hero .hero_nav h1[data-v-648de746] {\n  font-size: 2rem;\n  color: var(--main-color);\n}\n#hero .hero_nav .nav_bar_hero[data-v-648de746] {\n  position: relative;\n}\n#hero .hero_nav .nav_bar_hero i[data-v-648de746] {\n  color: var(--dark-grey);\n  position: absolute;\n  left: calc(100% - 115px);\n  top: 30px;\n  cursor: pointer;\n  transition: 0.15s;\n}\n#hero .hero_nav .nav_bar_hero i[data-v-648de746]:hover {\n  color: #5E5D5D;\n}\n#hero .hero_nav .nav_bar_hero i[data-v-648de746]:active {\n  color: var(--dark-grey);\n}\n#hero .hero_nav .nav_bar_hero input[type=text][data-v-648de746] {\n  font-size: 0.9rem;\n  width: calc(100% - 85px);\n  border: 1px solid var(--dark-grey);\n  border-top-left-radius: 5px;\n  border-bottom-left-radius: 5px;\n  padding: 8px;\n  margin: 20px 0;\n}\n#hero .hero_nav .nav_bar_hero input[type=text][data-v-648de746]:focus {\n  outline: none;\n}\n#hero .hero_nav .nav_bar_hero button[data-v-648de746] {\n  font-size: 0.9rem;\n  width: 80px;\n  text-transform: uppercase;\n  color: var(--dark-grey);\n  background-color: var(--white);\n  border: 1px solid var(--dark-grey);\n  border-top-right-radius: 5px;\n  border-bottom-right-radius: 5px;\n  padding: 8px;\n  position: relative;\n  right: 5px;\n  cursor: pointer;\n  transition: 0.15s;\n}\n#hero .hero_nav .nav_bar_hero button[data-v-648de746]:hover {\n  color: var(--white);\n  background-color: #3eccbc;\n  border: 1px solid #3eccbc;\n}\n#hero .hero_nav .nav_bar_hero button[data-v-648de746]:active {\n  background-color: #43b6a8;\n}\n#hero .hero_img[data-v-648de746] {\n  width: 250px;\n  margin: auto;\n}\n#hero .hero_img img[data-v-648de746] {\n  width: 100%;\n}\n@media screen and (min-width: 576px) {\n#hero .hero_nav h1[data-v-648de746] {\n    font-size: 2.8rem;\n}\n}\n@media screen and (min-width: 992px) {\n#hero[data-v-648de746] {\n    padding: 30px 45px;\n}\n#hero .hero_nav .nav_bar_hero[data-v-648de746] {\n    position: relative;\n}\n#hero .hero_nav .nav_bar_hero i[data-v-648de746] {\n    left: 370px;\n}\n#hero .hero_nav .nav_bar_hero input[type=text][data-v-648de746] {\n    width: 400px;\n}\n#hero .hero_img[data-v-648de746] {\n    width: 350px;\n}\n}\n@media screen and (min-width: 1200px) {\n#hero[data-v-648de746] {\n    padding: 30px 20px;\n}\n#hero .hero_nav input[type=text][data-v-648de746] {\n    font-size: 1rem;\n    padding: 12px;\n}\n#hero .hero_nav button[data-v-648de746] {\n    font-size: 1rem;\n    padding: 12px;\n}\n#hero .hero_nav h1[data-v-648de746] {\n    font-size: 3.5rem;\n}\n}", ""]);
 
 // exports
 
@@ -63936,63 +63941,79 @@ var render = function () {
         "div",
         {
           staticClass:
-            "col-12 col-md-7 col-xl-5 d-flex justify-content-center align-items-center",
+            "col-12 col-md-7 col-xl-6 d-flex justify-content-center align-items-center",
         },
         [
-          _c(
-            "div",
-            { staticClass: "hero_nav" },
-            [
-              _c("h1", [_vm._v("Il miglior cibo, direttamente a casa tua")]),
-              _vm._v(" "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.query,
-                    expression: "query",
-                  },
-                ],
-                attrs: { type: "text", placeholder: "Cerca ristorante" },
-                domProps: { value: _vm.query },
-                on: {
-                  keyup: function ($event) {
-                    if (
-                      !$event.type.indexOf("key") &&
-                      _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
-                    ) {
-                      return null
-                    }
-                    return _vm.nameSearch()
-                  },
-                  input: function ($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.query = $event.target.value
-                  },
-                },
-              }),
-              _vm._v(" "),
-              _c(
-                "router-link",
-                {
-                  attrs: {
-                    to: {
-                      name: "advanced-search",
+          _c("div", { staticClass: "hero_nav" }, [
+            _c("h1", [_vm._v("Il miglior cibo, direttamente a casa tua")]),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "nav_bar_hero" },
+              [
+                _c("i", {
+                  staticClass: "fa-solid fa-magnifying-glass",
+                  on: {
+                    click: function ($event) {
+                      return _vm.nameSearch()
                     },
                   },
-                },
-                [
-                  _c("button", { attrs: { type: "button" } }, [
-                    _vm._v("Filtri"),
-                  ]),
-                ]
-              ),
-            ],
-            1
-          ),
+                }),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.query,
+                      expression: "query",
+                    },
+                  ],
+                  attrs: { type: "text", placeholder: "Cerca ristorante" },
+                  domProps: { value: _vm.query },
+                  on: {
+                    keyup: function ($event) {
+                      if (
+                        !$event.type.indexOf("key") &&
+                        _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+                      ) {
+                        return null
+                      }
+                      return _vm.nameSearch()
+                    },
+                    input: function ($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.query = $event.target.value
+                    },
+                  },
+                }),
+                _vm._v(" "),
+                _c(
+                  "router-link",
+                  {
+                    attrs: {
+                      to: {
+                        name: "advanced-search",
+                      },
+                    },
+                  },
+                  [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "advanced_search",
+                        attrs: { type: "button" },
+                      },
+                      [_vm._v("Filtri")]
+                    ),
+                  ]
+                ),
+              ],
+              1
+            ),
+          ]),
         ]
       ),
       _vm._v(" "),
@@ -80614,7 +80635,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/simonespirito/Downloads/Boolean/deliveboo-project47-team5-1/resources/js/front/front.js */"./resources/js/front/front.js");
+module.exports = __webpack_require__(/*! C:\Users\User\Desktop\boolean-full\esercizi\php\deliveboo-project47-team5\resources\js\front\front.js */"./resources/js/front/front.js");
 
 
 /***/ })
