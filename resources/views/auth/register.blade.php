@@ -187,7 +187,7 @@
                         </div>
 
                         <div class="form-group row mb-0 justify-content-center">
-                            <button type="submit" class="btn btn-primary" id="registration_submit">
+                            <button type="submit" class="my_btn btn btn-primary" id="registration_submit">
                                 Registrati
                             </button>
                         </div>

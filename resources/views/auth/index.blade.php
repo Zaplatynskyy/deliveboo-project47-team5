@@ -9,7 +9,7 @@
 
                     <div class="search px-4">
                         <form class="d-flex mt-4" action="{{ route('users.index') }}" method="GET">
-                            <button type="submit" class="btn btn-success mr-2 btnP">Cerca</button>
+                            <button type="submit" class="my_btn btn btn-success mr-2 btnP">Cerca</button>
                             <div>
                                 @csrf
                                 <input type="text" class="form-control my_input_text" name="query"

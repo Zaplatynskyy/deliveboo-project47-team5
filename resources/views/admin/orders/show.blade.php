@@ -45,12 +45,12 @@
                                 <form action="{{ route('orders.approves', $order->id) }}" method="POST">
                                     @csrf
                                     @method('PATCH')
-                                    <button type="submit" class="btn btn-success ">Approva</button>
+                                    <button type="submit" class="my_btn btn btn-success ">Approva</button>
                                 </form>
                                 <form action="{{ route('orders.disapproves', $order->id) }}" method="POST">
                                     @csrf
                                     @method('PATCH')
-                                    <button type="submit" class="btn btn-danger mx-1">Annulla</button>
+                                    <button type="submit" class="my_btn btn btn-danger mx-1">Annulla</button>
                                 </form>
                             @endif
                             <button type="button" class="btn btn-info"><a class="text-white"
