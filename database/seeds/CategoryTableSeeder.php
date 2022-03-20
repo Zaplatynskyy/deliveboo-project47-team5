@@ -16,47 +16,47 @@ class CategoryTableSeeder extends Seeder
         $categories = [
             [
                 'name' => 'Italiano',
-                'image' => 'uploads/IyJPGGXGfieGOe4ANZJJQsvRTlfyzgmMR5JGJK42.jpg'
-            ], 
+                'image' => 'uploads/italiano.jpg'
+            ],
             [
                 'name' => 'Hamburgeria',
-                'image' => 'uploads/IyJPGGXGfieGOe4ANZJJQsvRTlfyzgmMR5JGJK42.jpg'
+                'image' => 'uploads/hamburger.jpg'
             ],
             [
                 'name' => 'Pizzeria',
-                'image' => 'uploads/IyJPGGXGfieGOe4ANZJJQsvRTlfyzgmMR5JGJK42.jpg'
+                'image' => 'uploads/pizza.jpg'
             ],
             [
                 'name' => 'Cinese',
-                'image' => 'uploads/IyJPGGXGfieGOe4ANZJJQsvRTlfyzgmMR5JGJK42.jpg'
+                'image' => 'uploads/cinese.jpg'
             ],
             [
                 'name' => 'Giapponese',
-                'image' => 'uploads/IyJPGGXGfieGOe4ANZJJQsvRTlfyzgmMR5JGJK42.jpg'
+                'image' => 'uploads/sushi.jpg'
             ],
             [
                 'name' => 'Indiano',
-                'image' => 'uploads/IyJPGGXGfieGOe4ANZJJQsvRTlfyzgmMR5JGJK42.jpg'
+                'image' => 'uploads/indiano.jpg'
             ],
             [
                 'name' => 'Messicano',
-                'image' => 'uploads/IyJPGGXGfieGOe4ANZJJQsvRTlfyzgmMR5JGJK42.jpg'
+                'image' => 'uploads/messicano.jpg'
             ],
             [
                 'name' => 'Kebab',
-                'image' => 'uploads/IyJPGGXGfieGOe4ANZJJQsvRTlfyzgmMR5JGJK42.jpg'
+                'image' => 'uploads/kebab.jpg'
             ],
             [
-                'name' => 'Fast food',
-                'image' => 'uploads/IyJPGGXGfieGOe4ANZJJQsvRTlfyzgmMR5JGJK42.jpg'
+                'name' => 'Fast Food',
+                'image' => 'uploads/mc.jpg'
             ],
             [
                 'name' => 'Piadineria',
-                'image' => 'uploads/IyJPGGXGfieGOe4ANZJJQsvRTlfyzgmMR5JGJK42.jpg'
+                'image' => 'uploads/piadina.jpg'
             ],
             [
                 'name' => 'Gelateria',
-                'image' => 'uploads/IyJPGGXGfieGOe4ANZJJQsvRTlfyzgmMR5JGJK42.jpg'
+                'image' => 'uploads/gelato.jpg'
             ]
         ];
 

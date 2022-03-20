@@ -14,7 +14,7 @@ class TypeTableSeeder extends Seeder
     public function run()
     {
         $types = [
-            "Primo", "Secondo", "Contorno", "Antipasto", "Dolce", "Bevande"
+            "Primo", "Secondo", "Contorno", "Antipasto", "Panino", "Sushi", "Dolce", "Bevande"
         ];
 
         foreach ($types as $type) {
