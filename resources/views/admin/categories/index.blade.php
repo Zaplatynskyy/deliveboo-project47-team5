@@ -84,7 +84,7 @@
                                                     <div class="edit-img d-none">
                                                         <input type="file" id="inputGroupFile02" name="image"
                                                             class="@if (old('formType') == 'edit' && old('oldName') == $category->name) is-invalid my_validation @endif"
-                                                            onchange="previewUpload(event)">
+                                                            onchange="previewUploadCategory(event, @json($key))">
                                                     </div>
                                                     @if (old('formType') == 'edit' && old('oldName') == $category->name)
                                                             @error('image')
