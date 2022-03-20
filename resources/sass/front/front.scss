@@ -64,6 +64,17 @@ img {
     display: block;
 }
 
+.error_js {
+    color: #761b18;
+    background-color: #c6c6c6;
+    border-radius: 5px;
+    padding: 10px 20px;
+}
+
+.input_error_js {
+    border-color: #e3342f;
+}
+
 // variables
 :root {
     --main-color: #3ECCBC;
