@@ -34,7 +34,7 @@
                     <div class="row no-gutters">
                         <div class="col-md-4">
                             <img
-                                class="w-100"
+                                class="food-image"
                                 :src="`/storage/${food.image}`"
                                 :alt="food.name"
                             />
@@ -227,6 +227,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+.menu {
+    .food-image {
+        width: 100%;
+    }
+}
+
 .cart {
     padding: 20px;
     background-color: lightgray;
