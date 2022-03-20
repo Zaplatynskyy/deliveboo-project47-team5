@@ -13,6 +13,14 @@ window.previewUpload = function (event) {
     }
 };
 
+window.previewUploadCategory = function (event, i) {
+    if (event.target.files.length > 0) {
+        var src = URL.createObjectURL(event.target.files[0]);
+        var preview = document.querySelectorAll(".my_image");
+        preview[i].src = src;
+    }
+};
+
 const buttonsToggle = document.getElementsByClassName("btnToggle");
 const buttonDelete = document.querySelector(".my_button");
 const buttonDeleteCategory = document.querySelector(".delete-category");
