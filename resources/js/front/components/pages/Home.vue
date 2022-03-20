@@ -2,67 +2,78 @@
     <div>
         <div class="home_navbar">
             <Hero />
-            <Categories :categories="categories" />
+            <Categories :categories="dataShared.categories" />
         </div>
 
-        <div v-show="dataShared.searchOn" class="home_results">
-            <h2>Lista ristorante</h2>
-            <ul>
-                <li v-for="restaurant in dataShared.restaurants" :key="restaurant.id">
-                    <h4>
-                        <router-link
-                            :to="{
-                                name: 'restaurant-details',
-                                params: { slug: restaurant.slug },
-                            }"
-                        >
-                            Nome : {{ restaurant.name }}
-                        </router-link>
-                    </h4>
-                    <div
-                        v-for="category in restaurant.categories"
-                        :key="category.slug"
-                    >
-                        {{ category.name }}
-                    </div>
-                </li>
-            </ul>
-        </div>
-        <div v-if="dataShared.noResultsFound" class="no-results">
-            {{ noResultsFound }}
-        </div>
+        <Results />
     </div>
 </template>
 
 <script>
 import Categories from "../sections/Categories.vue";
 import Hero from "../sections/Hero.vue";
-import dataShared from '../../dataShared'
+import Results from "../sections/Results.vue";
+import dataShared from "../../dataShared";
 
 export default {
     name: "Home",
     components: {
         Hero,
-        Categories
+        Categories,
+        Results,
     },
     data() {
         return {
             dataShared,
-            // restaurants: [],
-            // searchOn: false,
             categories: [],
-            // noResultsFound: null,
+            query: "",
         };
     },
+    methods: {
+        getCategoriesAndTags() {
+            axios
+                .get("/api/categories")
+                .then((response) => {
+                    dataShared.categories = [...response.data.categories];
+                    axios
+                        .get("/api/tags")
+                        .then((response) => {
+                            dataShared.tags = [...response.data.tags];
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                        });
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        },
+        saveQuery(value) {
+            this.query = value;
+        },
+    },
     created() {
-        axios
-            .get("/api/categories")
-            .then((response) => {
-                this.categories = [...response.data.categories];
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
+        this.getCategoriesAndTags();
+    },
+    watch: {
+        "dataShared.restaurants"(newValue) {
+            if (
+                dataShared.restaurants.length > 0 ||
+                dataShared.noResultsFound
+            ) {
+                setTimeout(() => {
+                    // const restaurant = document.querySelectorAll(".restaurant")
+                    // console.log(restaurant[restaurant.length - 1]);
+                    // restaurant[restaurant.length - 1].scrollIntoView({
+                    //     behavior: "smooth",
+                    // });
+                    window.scrollTo({
+                        top: document.body.scrollHeight,
+                        behavior: "smooth",
+                    });
+                }, 10);
+            }
+        },
     },
 };
 </script>

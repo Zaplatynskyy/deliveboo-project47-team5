@@ -18,7 +18,9 @@ class UserController extends Controller
     public function search($query)
     {
 
-        $users = User::where('email', '!=', 'admin@admin.com')->where('name', 'like', '%' . $query . '%')->with('categories')->get();
+        $users = User::where('email', '!=', 'admin@admin.com')->where('name', 'like', '%' . $query . '%')->with(['categories', 'foods' => function($query){
+            $query->with('tags');
+        }])->get();
 
         if(!count($users)) {
             return response()->json(["message" => "Nessun risultato trovato"], 404);

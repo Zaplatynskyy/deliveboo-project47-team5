@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import dataShared from '../../dataShared'
+import dataShared from "../../dataShared";
 
 export default {
     name: "CategoryCard",
@@ -19,21 +19,23 @@ export default {
     },
     data() {
         return {
-            dataShared
-        }
+            dataShared,
+        };
     },
     methods: {
         categorySearch(slug) {
-            console.log(slug);
             axios
                 .get(`/api/categories/${slug}`)
                 .then((response) => {
-                    dataShared.restaurants = [...response.data.categories.users];
-                    dataShared.searchOn = true;
+                    dataShared.restaurants = [
+                        ...response.data.categories.users,
+                    ];
+                    dataShared.noResultsFound = null;
                 })
                 .catch(function (error) {
                     console.log(error);
-                });
+                })
+            dataShared.lastQuery = "";
         },
     },
 };
@@ -59,7 +61,7 @@ export default {
     }
 
     .image {
-        height: 160px;
+        height: 6.875rem;
         img {
             width: 100%;
             height: 100%;

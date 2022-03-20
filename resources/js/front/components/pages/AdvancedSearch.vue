@@ -63,6 +63,8 @@
 </template>
 
 <script>
+import dataShared from "../../dataShared";
+
 export default {
     name: "AdvancedSearch",
     data() {
@@ -75,6 +77,25 @@ export default {
         };
     },
     methods: {
+        getCategoriesAndTags() {
+            axios
+                .get("/api/categories")
+                .then((response) => {
+                    self = this;
+                    self.categories = [...response.data.categories];
+                    axios
+                        .get("/api/tags")
+                        .then((response) => {
+                            self.tags = [...response.data.tags];
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                        });
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        },
         searchRestaurants() {
             
             let categories = this.checkCheckbox("checkboxCategories");
@@ -102,25 +123,6 @@ export default {
                     this.restaurants = [];
                 });
         },
-        getCategoriesAndTags() {
-            axios
-                .get("/api/categories")
-                .then((response) => {
-                    self = this;
-                    self.categories = [...response.data.categories];
-                    axios
-                        .get("/api/tags")
-                        .then((response) => {
-                            self.tags = [...response.data.tags];
-                        })
-                        .catch(function (error) {
-                            console.log(error);
-                        });
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });
-        },
         checkCheckbox(type) {
             let checked = [];
             const input = document.getElementsByClassName(type);
@@ -133,7 +135,6 @@ export default {
     },
     created() {
         this.getCategoriesAndTags();
-
         axios
             .get("/api/restaurants")
             .then((response) => {
