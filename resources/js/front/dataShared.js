@@ -2,6 +2,9 @@ import Vue from 'vue'
 
 export default Vue.observable = {
     restaurants: [],
-    searchOn: false,
+    categories: [],
+    tags: [],
+    query: '',
+    lastQuery: '',
     noResultsFound: null,
 }
