@@ -31,6 +31,7 @@ export default {
                         ...response.data.categories.users,
                     ];
                     dataShared.noResultsFound = null;
+                    dataShared.query = '';
                 })
                 .catch(function (error) {
                     console.log(error);

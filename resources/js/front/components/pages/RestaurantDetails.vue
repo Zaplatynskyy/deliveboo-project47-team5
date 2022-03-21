@@ -78,25 +78,29 @@
                 </div>
             </div>
         </div>
-        <div class="cart">
-            <div v-if="foods.length">
-                <ul>
-                    <li v-for="food in foods" :key="food.id">
-                        <!-- <p v-if="food.user_id != restaurant.id">{{restaurant.name}}</p> -->
-                        <span>- {{ food.name }}</span>
-                        <span>- {{ food.price }}€</span>
-                        <span class="ms-3">x{{ food.quantity }}</span>
-                        <strong class="mx-3" @click="addToCart(food)">+</strong>
-                        <strong @click="removeToCart(food)">-</strong>
-                    </li>
-                    <li>Totale: {{ getTotal }}€</li>
-                </ul>
+        <div v-if="restaurant.id" class="cart">
+            <div v-if="foods.length" class="cart-info">
+                <div v-if="foods[0].user_id != restaurant.id">
+                    {{ cartName }}
+                </div>
+                <div v-for="food in foods" :key="food.id">
+                    <span>- {{ food.name }}</span>
+                    <span>- {{ food.price }}€</span>
+                    <span class="ms-3">x{{ food.quantity }}</span>
+                    <strong class="mx-3" @click="addToCart(food)">+</strong>
+                    <strong @click="removeToCart(food)">-</strong>
+                </div>
+                <div>Totale: {{ getTotal }}€</div>
             </div>
             <div v-else class="mb-3">Carrello vuoto</div>
             <button @click="clearCart()" class="btn btn-light">
                 Svuota carrello
             </button>
-            <button class="btn btn-light" @click="checkout()" :disabled="!validatePrice">
+            <button
+                class="btn btn-light"
+                @click="checkout()"
+                :disabled="!validatePrice"
+            >
                 Procedi al pagamento
             </button>
         </div>
@@ -111,7 +115,8 @@ export default {
             restaurant: {},
             foods: [],
             prevRoute: null,
-            validatePrice: null
+            validatePrice: null,
+            cartName: null,
         };
     },
     methods: {
@@ -134,7 +139,12 @@ export default {
         },
         addToCart(food) {
             if (this.foods.length) {
-                if (food.user_id != this.foods[0].user_id) this.clearCart();
+                if (food.user_id != this.foods[0].user_id) {
+                    this.clearCart();
+                    localStorage.setItem("restaurant", this.restaurant.name);
+                }
+            } else {
+                localStorage.setItem("restaurant", this.restaurant.name);
             }
             let index = this.foods.findIndex((element) => {
                 return element.id == food.id;
@@ -161,16 +171,15 @@ export default {
         clearCart() {
             this.foods = [];
             localStorage.removeItem("foods");
+            localStorage.removeItem("restaurant");
         },
         checkout() {
-            if(this.validatePrice) {
-                this.$router.push(
-                    { 
-                        name: 'checkout'
-                    })
-
+            if (this.validatePrice) {
+                this.$router.push({
+                    name: "checkout",
+                });
             }
-        }
+        },
     },
     beforeRouteEnter(to, from, next) {
         next((app) => {
@@ -180,6 +189,7 @@ export default {
     created() {
         if (localStorage.getItem("foods")) {
             this.foods = JSON.parse(localStorage.getItem("foods"));
+            this.cartName = localStorage.getItem("restaurant");
         }
         axios
             .get(`/api/restaurants/details/${this.$route.params.slug}`)
@@ -219,7 +229,9 @@ export default {
             this.foods.forEach((food) => {
                 total += food.price * food.quantity;
             });
-            (total >= this.restaurant.min_price) ? this.validatePrice = true : this.validatePrice = false;
+            total >= this.restaurant.min_price
+                ? (this.validatePrice = true)
+                : (this.validatePrice = false);
             return total;
         },
     },
@@ -227,7 +239,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 .menu {
     .food-image {
         width: 100%;
@@ -240,8 +251,15 @@ export default {
     border: 1px solid black;
     border-radius: 8px;
     position: fixed;
-    top: 50px;
+    top: 70px;
     right: 50px;
+    user-select: none;
+
+    .cart-info {
+        > div {
+            margin-bottom: 10px;
+        }
+    }
 
     strong {
         display: inline-flex;
