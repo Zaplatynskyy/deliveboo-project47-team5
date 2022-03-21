@@ -8,10 +8,9 @@
                     <h1>Il miglior cibo, direttamente a casa tua</h1>
 
                     <div class="nav_bar_hero">
-                        <i
-                            class="fa-solid fa-magnifying-glass"
-                            @click="nameSearch()"
-                        ></i>
+                        <div @click="nameSearch()" class="search">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </div>
                         <input
                             type="text"
                             placeholder="Cerca ristorante"
