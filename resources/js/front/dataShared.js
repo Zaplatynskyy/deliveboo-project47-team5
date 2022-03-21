@@ -6,5 +6,5 @@ export default Vue.observable = {
     tags: [],
     query: '',
     lastQuery: '',
-    noResultsFound: null,
+    noResultsFound: null
 }

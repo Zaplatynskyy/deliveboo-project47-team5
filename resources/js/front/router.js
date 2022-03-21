@@ -4,7 +4,6 @@ import VueRouter from "vue-router";
 Vue.use(VueRouter);
 
 import Home from "./components/pages/Home";
-import AdvancedSearch from "./components/pages/AdvancedSearch";
 import RestaurantDetails from "./components/pages/RestaurantDetails";
 import Checkout from "./components/pages/Checkout";
 import Success from "./components/pages/Success";
@@ -18,11 +17,6 @@ const router = new VueRouter({
             path: "/",
             name: "home",
             component: Home
-        },
-        {
-            path: "/advanced-search",
-            name: "advanced-search",
-            component: AdvancedSearch
         },
         {
             path: "/restaurant/checkout",
