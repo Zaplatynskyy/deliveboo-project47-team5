@@ -1,115 +1,64 @@
 <template>
     <div class="restaurant">
-        <div class="name">
-            {{ restaurant.name }}
-        </div>
-        <div class="address">
-            {{ restaurant.address }}
-        </div>
-        <div class="telephone">
-            {{ restaurant.telephone }}
-        </div>
-        <div v-if="restaurant.shipping" class="shipping">
-            {{ restaurant.shipping }}€
-        </div>
-        <div v-if="restaurant.min_price" class="min_price">
-            {{ restaurant.min_price }}€
-        </div>
-        <div class="image my-4">
-            <img
-                class="w-25"
-                :src="`/storage/${restaurant.image}`"
-                :alt="restaurant.name"
-            />
-        </div>
-        <div v-if="restaurant.foods" class="menu">
-            <div v-for="type in getTypes" :key="type.id" class="type">
-                <h3>{{ type }}</h3>
-                <div
-                    v-for="food in filteredFoods(type)"
-                    :key="food.id"
-                    class="card mb-3"
-                    style="max-width: 540px"
-                >
-                    <div class="row no-gutters">
-                        <div class="col-md-4">
-                            <img
-                                class="food-image"
-                                :src="`/storage/${food.image}`"
-                                :alt="food.name"
-                            />
-                        </div>
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <h5 class="card-title">{{ food.name }}</h5>
-                                <p class="card-text">
-                                    {{ food.ingredients }}
-                                </p>
-                                <p>
-                                    <span
-                                        v-for="tag in food.tags"
-                                        :key="tag.id"
-                                        class="mr-1"
-                                        >{{ tag.name }}</span
-                                    >
-                                </p>
-                                <p class="card-text">
-                                    <small class="text-muted"
-                                        >{{ food.price }}€
-                                    </small>
-                                </p>
-                                <button
-                                    @click="addToCart(food)"
-                                    type="button"
-                                    class="btn btn-info"
-                                >
-                                    Aggiungi al carrello
-                                </button>
-                                <button
-                                    @click="removeToCart(food)"
-                                    type="button"
-                                    class="btn btn-danger"
-                                >
-                                    Rimuovi dal carrello
-                                </button>
-                            </div>
-                        </div>
+        <MainRestaurantCard :restaurant="restaurant" />
+        <div v-if="restaurant.foods" class="menu my_container_fluid">
+            <div class="types">
+                <div v-for="type in getTypes" :key="type.id" class="type">
+                    <h3>{{ type }}</h3>
+                    <div class="foods row row-cols-2 row-cols-md-3">
+                        <FoodCard
+                            v-for="food in filteredFoods(type)"
+                            :key="food.id"
+                            style="max-width: 540px"
+                            :food="food"
+                        />
                     </div>
                 </div>
             </div>
-        </div>
-        <div v-if="restaurant.id" class="cart">
-            <div v-if="foods.length" class="cart-info">
-                <div v-if="foods[0].user_id != restaurant.id">
-                    {{ cartName }}
+            <div class="cart-wrapper">
+                <div v-if="restaurant.id" class="cart">
+                    <div v-if="foods.length" class="cart-info">
+                        <div v-if="foods[0].user_id != restaurant.id">
+                            {{ cartName }}
+                        </div>
+                        <div v-for="food in foods" :key="food.id">
+                            <span>- {{ food.name }}</span>
+                            <span>- {{ food.price }}€</span>
+                            <span class="ms-3">x{{ food.quantity }}</span>
+                            <strong class="mx-3" @click="addToCart(food)"
+                                >+</strong
+                            >
+                            <strong @click="removeToCart(food)">-</strong>
+                        </div>
+                        <div>Totale: {{ getTotal }}€</div>
+                    </div>
+                    <div v-else class="mb-3">Carrello vuoto</div>
+                    <button @click="clearCart()" class="btn btn-light">
+                        Svuota carrello
+                    </button>
+                    <button
+                        class="btn btn-light"
+                        @click="checkout()"
+                        :disabled="!validatePrice"
+                    >
+                        Procedi al pagamento
+                    </button>
                 </div>
-                <div v-for="food in foods" :key="food.id">
-                    <span>- {{ food.name }}</span>
-                    <span>- {{ food.price }}€</span>
-                    <span class="ms-3">x{{ food.quantity }}</span>
-                    <strong class="mx-3" @click="addToCart(food)">+</strong>
-                    <strong @click="removeToCart(food)">-</strong>
-                </div>
-                <div>Totale: {{ getTotal }}€</div>
             </div>
-            <div v-else class="mb-3">Carrello vuoto</div>
-            <button @click="clearCart()" class="btn btn-light">
-                Svuota carrello
-            </button>
-            <button
-                class="btn btn-light"
-                @click="checkout()"
-                :disabled="!validatePrice"
-            >
-                Procedi al pagamento
-            </button>
         </div>
     </div>
 </template>
 
 <script>
+import MainRestaurantCard from "../commons/MainRestaurantCard.vue";
+import FoodCard from "../commons/FoodCard.vue";
+
 export default {
     name: "RestaurantDetails",
+    components: {
+        MainRestaurantCard,
+        FoodCard,
+    },
     data() {
         return {
             restaurant: {},
@@ -239,38 +188,56 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.menu {
-    .food-image {
-        width: 100%;
-    }
-}
-
-.cart {
-    padding: 20px;
-    background-color: lightgray;
-    border: 1px solid black;
-    border-radius: 8px;
-    position: fixed;
-    top: 70px;
-    right: 50px;
-    user-select: none;
-
-    .cart-info {
-        > div {
-            margin-bottom: 10px;
+.restaurant {
+    padding: 40px 0;
+    .menu {
+        display: flex;
+        align-items: flex-start;
+        .food-image {
+            width: 100%;
         }
-    }
 
-    strong {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: 20px;
-        height: 20px;
-        font-size: 1.1rem;
-        border-radius: 50%;
-        background-color: white;
-        cursor: pointer;
+        .types {
+            width: 70%;
+
+            .type {
+                margin-bottom: 20px;
+                h3 {
+                    margin-bottom: 15px;
+                }
+            }
+        }
+
+        .cart-wrapper {
+            width: 30%;
+            padding-left: 30px;
+            .cart {
+                
+                padding: 20px;
+                background-color: lightgray;
+                border: 1px solid black;
+                border-radius: 8px;
+                user-select: none;
+
+                .cart-info {
+                    > div {
+                        margin-bottom: 10px;
+                    }
+                }
+
+                strong {
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 20px;
+                    height: 20px;
+                    font-size: 1.1rem;
+                    border-radius: 50%;
+                    background-color: white;
+                    cursor: pointer;
+                }
+            }
+        }
     }
 }
 </style>

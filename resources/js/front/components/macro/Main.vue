@@ -13,5 +13,6 @@ export default {
 <style lang="scss" scoped>
 main {
     background: var(--light-grey);
+    margin-top: 80px;
 }
 </style>
