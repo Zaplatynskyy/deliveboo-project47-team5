@@ -4,7 +4,9 @@
             <div class="image">
                 <img :src="`/storage/${category.image}`" :alt="category.name" />
             </div>
-            <div class="name" :class = "{active : checked}">{{ category.name }}</div>
+            <div class="name" :class="{ active: checked }">
+                {{ category.name }}
+            </div>
         </div>
 
         <input
@@ -29,14 +31,55 @@ export default {
     data() {
         return {
             dataShared,
-            checked : false
+            checked: false,
         };
     },
     methods: {
+        
+        searchRestaurants() {
+            let categories = this.checkCheckbox("checkboxCategories");
+            let tags = this.checkCheckbox("checkboxTags");
+
+            if (dataShared.query == "" && !categories.length && !tags.length) {
+                return "";
+            }
+
+            axios
+                .post(`/api/restaurants/advanced`, {
+                    params: {
+                        categories: categories,
+                        tags: tags,
+                        query: dataShared.query,
+                        order: dataShared.order,
+                    },
+                })
+                .then((response) => {
+                    console.log(response.data);
+                    dataShared.restaurants = [...response.data.users];
+                    dataShared.noResultsFound = null;
+                })
+                .catch((error) => {
+                    console.log(error);
+                    dataShared.noResultsFound = error.response.data.message;
+                    dataShared.restaurants = [];
+                })
+                .then(function () {
+                    dataShared.lastQuery = dataShared.query;
+                });
+        },
+        checkCheckbox(type) {
+            let checked = [];
+            const input = document.getElementsByClassName(type);
+
+            for (let element of input) {
+                if (element.checked) checked.push(element.value);
+            }
+            return checked;
+        },
         categorySearch(slug) {
             this.$refs.inputCategory.click();
             this.checked = !this.checked;
-
+            this.searchRestaurants();
             dataShared.lastQuery = "";
         },
     },
@@ -63,7 +106,6 @@ export default {
         transform: scale(1);
     }
 
-
     .image {
         height: 6.875rem;
         img {
@@ -77,7 +119,7 @@ export default {
     .name {
         color: var(--dark-grey);
         padding: 10px 7px;
-        
+
         &.active {
             background-color: #3eccbc;
             color: white;
