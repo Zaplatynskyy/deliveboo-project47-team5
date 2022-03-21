@@ -17,8 +17,12 @@
                             @keyup.enter="searchRestaurants()"
                             v-model="dataShared.query"
                         />
-                        
-                        <button class="advanced_search" type="button" @click="searchRestaurants()">
+
+                        <button
+                            class="advanced_search"
+                            type="button"
+                            @click="searchRestaurants()"
+                        >
                             Cerca
                         </button>
 
@@ -68,15 +72,12 @@ export default {
     },
 
     methods: {
-        
-
         searchRestaurants() {
-            
             let categories = this.checkCheckbox("checkboxCategories");
             let tags = this.checkCheckbox("checkboxTags");
 
-            if(dataShared.query == '' && !categories.length && !tags.length) {
-                return ''
+            if (dataShared.query == "" && !categories.length && !tags.length) {
+                return "";
             }
 
             axios
@@ -85,17 +86,21 @@ export default {
                         categories: categories,
                         tags: tags,
                         query: dataShared.query,
+                        order: dataShared.order,
                     },
                 })
                 .then((response) => {
+                    console.log(response.data);
                     dataShared.restaurants = [...response.data.users];
                     dataShared.noResultsFound = null;
-                    dataShared.lastQuery = dataShared.query;
                 })
                 .catch((error) => {
                     console.log(error);
                     dataShared.noResultsFound = error.response.data.message;
                     dataShared.restaurants = [];
+                })
+                .then(function () {
+                    dataShared.lastQuery = dataShared.query;
                 });
         },
 
@@ -107,6 +112,11 @@ export default {
                 if (element.checked) checked.push(element.value);
             }
             return checked;
+        },
+    },
+    watch: {
+        "dataShared.order"(newValue) {
+            this.searchRestaurants();
         },
     },
 };

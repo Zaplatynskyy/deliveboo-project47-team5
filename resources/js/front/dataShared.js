@@ -6,5 +6,13 @@ export default Vue.observable = {
     tags: [],
     query: '',
     lastQuery: '',
+    orderOptions: [
+        'rilevanza',
+        'costo consegna (basso-alto)',
+        'costo consegna (alto-basso)',
+        'ordine minimo (basso-alto)',
+        'ordine minimo (alto-basso)',
+    ],
+    order: 'rilevanza',
     noResultsFound: null
 }
