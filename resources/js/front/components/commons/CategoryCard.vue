@@ -89,13 +89,12 @@ export default {
 <style lang="scss" scoped>
 .category-card {
     border-radius: 10px;
-    border: 1px solid #686868;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    padding: 0;
     margin-bottom: 1.775rem;
     transition: 0.15s;
     overflow: hidden;
     cursor: pointer;
+    background-color: var(--white);
 
     &:hover {
         box-shadow: rgba(0, 0, 0, 0.24) 0px 10px 10px;

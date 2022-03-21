@@ -86,12 +86,12 @@ export default {
 .restaurant {
     display: flex;
     border-radius: 10px;
-    border: 1px solid #686868;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     height: 110px;
     margin-bottom: 1.775rem;
     transition: 0.15s;
     cursor: pointer;
+    background-color: var(--white);
 
     &:hover {
         box-shadow: rgba(0, 0, 0, 0.24) 0px 10px 10px;
