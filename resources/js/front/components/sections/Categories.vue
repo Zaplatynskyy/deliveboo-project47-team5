@@ -1,6 +1,8 @@
 <template>
     <div class="my_container">
-        <h2>Ordina subito il tuo cibo preferito</h2>
+        <div class="title">
+            <h2>Ordina subito il tuo cibo preferito</h2>
+        </div>
         <div
             class="row row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-6 my-2"
         >
@@ -15,6 +17,7 @@
 
 <script>
 import CategoryCard from "../commons/CategoryCard.vue";
+import dataShared from "../../dataShared";
 
 export default {
     name: "Categories",
@@ -23,6 +26,11 @@ export default {
     },
     props: {
         categories: Array,
+    },
+    data() {
+        return {
+            dataShared,
+        };
     },
 };
 </script>

@@ -2,27 +2,29 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\User;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use League\CommonMark\Util\ArrayCollection;
 
 class UserController extends Controller
 {
 
-    public function index() {
+    public function index()
+    {
         $users = User::where('email', '!=', 'admin@admin.com')->get()->random(2);
 
         return response()->json($users, 200);
-    } 
+    }
 
     public function search($query)
     {
 
-        $users = User::where('email', '!=', 'admin@admin.com')->where('name', 'like', '%' . $query . '%')->with(['categories', 'foods' => function($query){
+        $users = User::where('email', '!=', 'admin@admin.com')->where('name', 'like', '%' . $query . '%')->with(['categories', 'foods' => function ($query) {
             $query->with('tags');
         }])->get();
 
-        if(!count($users)) {
+        if (!count($users)) {
             return response()->json(["message" => "Nessun risultato trovato"], 404);
         }
 
@@ -44,9 +46,59 @@ class UserController extends Controller
         }
         $categories = $filters['params']['categories'];
         $tags = $filters['params']['tags'];
-        $users = User::where('email', '!=', 'admin@admin.com')->where('name', 'like', '%' . $query . '%')->with(['categories', 'foods' => function($query){
-            $query->with('tags');
-        }])->get();
+
+        switch ($filters['params']['order']) {
+            case 'rilevanza':
+                $users = User::where('email', '!=', 'admin@admin.com')->where('name', 'like', '%' . $query . '%')->with(['categories', 'foods' => function ($query) {
+                    $query->with('tags');
+                }])->get();
+
+                if (!empty($query)) {
+                    foreach ($users as $user) {
+                        $counter = 0;
+                        foreach ($user->foods as $food) {
+                            if (str_contains($food->name, $query)) $counter++;
+                        }
+                        $user['relevance'] = $counter;
+                    }
+                }
+
+                $users = $users->sortByDesc('relevance')->values();
+
+                break;
+
+            case 'costo consegna (basso-alto)':
+                $users = User::where('email', '!=', 'admin@admin.com')->where('name', 'like', '%' . $query . '%')->with(['categories', 'foods' => function ($query) {
+                    $query->with('tags');
+                }])->orderBy('shipping', 'asc')->get();
+                break;
+
+            case 'costo consegna (alto-basso)':
+                $users = User::where('email', '!=', 'admin@admin.com')->where('name', 'like', '%' . $query . '%')->with(['categories', 'foods' => function ($query) {
+                    $query->with('tags');
+                }])->orderBy('shipping', 'desc')->get();
+                break;
+
+            case 'ordine minimo (basso-alto)':
+                $users = User::where('email', '!=', 'admin@admin.com')->where('name', 'like', '%' . $query . '%')->with(['categories', 'foods' => function ($query) {
+                    $query->with('tags');
+                }])->orderBy('min_price', 'asc')->get();
+                break;
+
+            case 'ordine minimo (alto-basso)':
+                $users = User::where('email', '!=', 'admin@admin.com')->where('name', 'like', '%' . $query . '%')->with(['categories', 'foods' => function ($query) {
+                    $query->with('tags');
+                }])->orderBy('min_price', 'desc')->get();
+                break;
+
+            default:
+                # code...
+                break;
+        }
+
+        // $users = User::where('email', '!=', 'admin@admin.com')->where('name', 'like', '%' . $query . '%')->with(['categories', 'foods' => function($query){
+        //     $query->with('tags');
+        // }])->get();
 
         // filtro per categorie
         if (count($categories) > 0) {
@@ -62,6 +114,7 @@ class UserController extends Controller
             }
             $users = $filteredByCategoriesUsers;
         }
+
 
         // filtro per tags
         if (count($tags) > 0) {
@@ -80,7 +133,8 @@ class UserController extends Controller
             $users = $filteredByTagsUsers;
         }
 
-        if(!count($users)) {
+
+        if (!count($users)) {
             return response()->json(["message" => "Nessun risultato trovato"], 404);
         }
 
@@ -89,6 +143,7 @@ class UserController extends Controller
             'success' => true,
             'users' => $users,
         ];
+
 
         return response()->json($data, 200);
     }
