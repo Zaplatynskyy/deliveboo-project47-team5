@@ -8,24 +8,37 @@
                     <h1>Il miglior cibo, direttamente a casa tua</h1>
 
                     <div class="nav_bar_hero">
-                        <div @click="nameSearch()" class="search">
+                        <div class="search">
                             <i class="fa-solid fa-magnifying-glass"></i>
                         </div>
                         <input
                             type="text"
                             placeholder="Cerca ristorante"
-                            @keyup.enter="nameSearch()"
+                            @keyup.enter="searchRestaurants()"
                             v-model="dataShared.query"
                         />
-                        <router-link
-                            :to="{
-                                name: 'advanced-search',
-                            }"
-                        >
-                            <button class="advanced_search" type="button">
-                                Filtri
-                            </button>
-                        </router-link>
+                        
+                        <button class="advanced_search" type="button" @click="searchRestaurants()">
+                            Cerca
+                        </button>
+
+                        <div class="tags">
+                            <div
+                                v-for="tag in dataShared.tags"
+                                :key="tag.id"
+                                class="form-check form-check-inline"
+                            >
+                                <input
+                                    class="form-check-input checkboxTags"
+                                    type="checkbox"
+                                    :id="tag.slug"
+                                    :value="tag.id"
+                                />
+                                <label class="form-check-label" :for="tag.slug">
+                                    {{ tag.name }}
+                                </label>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -55,23 +68,45 @@ export default {
     },
 
     methods: {
-        nameSearch(query) {
-            if (dataShared.query != "") {
-                axios
-                    .get(`/api/restaurants/${dataShared.query}`)
-                    .then((response) => {
-                        this.dataShared.restaurants = [...response.data.users];
-                        this.dataShared.noResultsFound = null;
-                    })
-                    .catch((error) => {
-                        this.dataShared.restaurants = [];
-                        this.dataShared.noResultsFound =
-                            error.response.data.message;
-                    })
-                    .then(function () {
-                        dataShared.lastQuery = dataShared.query;
-                    });
+        
+
+        searchRestaurants() {
+            
+            let categories = this.checkCheckbox("checkboxCategories");
+            let tags = this.checkCheckbox("checkboxTags");
+
+            if(dataShared.query == '' && !categories.length && !tags.length) {
+                return ''
             }
+
+            axios
+                .post(`/api/restaurants/advanced`, {
+                    params: {
+                        categories: categories,
+                        tags: tags,
+                        query: dataShared.query,
+                    },
+                })
+                .then((response) => {
+                    dataShared.restaurants = [...response.data.users];
+                    dataShared.noResultsFound = null;
+                    dataShared.lastQuery = dataShared.query;
+                })
+                .catch((error) => {
+                    console.log(error);
+                    dataShared.noResultsFound = error.response.data.message;
+                    dataShared.restaurants = [];
+                });
+        },
+
+        checkCheckbox(type) {
+            let checked = [];
+            const input = document.getElementsByClassName(type);
+
+            for (let element of input) {
+                if (element.checked) checked.push(element.value);
+            }
+            return checked;
         },
     },
 };

@@ -4,8 +4,17 @@
             <div class="image">
                 <img :src="`/storage/${category.image}`" :alt="category.name" />
             </div>
-            <div class="name">{{ category.name }}</div>
+            <div class="name" :class = "{active : checked}">{{ category.name }}</div>
         </div>
+
+        <input
+            class="form-check-input checkboxCategories"
+            type="checkbox"
+            :id="category.slug"
+            :value="category.id"
+            ref="inputCategory"
+            hidden
+        />
     </div>
 </template>
 
@@ -20,22 +29,14 @@ export default {
     data() {
         return {
             dataShared,
+            checked : false
         };
     },
     methods: {
         categorySearch(slug) {
-            axios
-                .get(`/api/categories/${slug}`)
-                .then((response) => {
-                    dataShared.restaurants = [
-                        ...response.data.categories.users,
-                    ];
-                    dataShared.noResultsFound = null;
-                    dataShared.query = '';
-                })
-                .catch(function (error) {
-                    console.log(error);
-                })
+            this.$refs.inputCategory.click();
+            this.checked = !this.checked;
+
             dataShared.lastQuery = "";
         },
     },
@@ -50,6 +51,7 @@ export default {
     padding: 0;
     margin-bottom: 1.775rem;
     transition: 0.15s;
+    overflow: hidden;
     cursor: pointer;
 
     &:hover {
@@ -60,6 +62,7 @@ export default {
     &:active {
         transform: scale(1);
     }
+
 
     .image {
         height: 6.875rem;
@@ -74,6 +77,11 @@ export default {
     .name {
         color: var(--dark-grey);
         padding: 10px 7px;
+        
+        &.active {
+            background-color: #3eccbc;
+            color: white;
+        }
     }
 }
 </style>

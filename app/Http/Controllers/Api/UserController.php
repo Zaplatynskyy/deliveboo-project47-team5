@@ -44,7 +44,9 @@ class UserController extends Controller
         }
         $categories = $filters['params']['categories'];
         $tags = $filters['params']['tags'];
-        $users = User::where('email', '!=', 'admin@admin.com')->where('name', 'like', '%' . $query . '%')->get();
+        $users = User::where('email', '!=', 'admin@admin.com')->where('name', 'like', '%' . $query . '%')->with(['categories', 'foods' => function($query){
+            $query->with('tags');
+        }])->get();
 
         // filtro per categorie
         if (count($categories) > 0) {
