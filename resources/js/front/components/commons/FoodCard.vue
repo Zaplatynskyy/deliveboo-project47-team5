@@ -1,5 +1,5 @@
 <template>
-    <div class="col">
+    <div class="my_col">
         <div class="food-card">
             <div class="left">
                 <div class="top">
@@ -70,7 +70,7 @@ export default {
     methods: {
         checkFood() {
             let foods = JSON.parse(localStorage.getItem("foods"));
-            if(!foods) return
+            if (!foods) return;
             let check = foods.some((element) => {
                 return element.id == this.food.id;
             });
@@ -85,94 +85,138 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.food-card {
-    display: flex;
-    padding: 15px;
-    background-color: var(--white);
-    border-radius: 10px;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+.my_col {
+    width: 100%;
     margin-bottom: 1.775rem;
-    transition: 0.15s;
-    background-color: var(--white);
-    height: 120px;
 
-    .left {
-        width: 60%;
-        padding-right: 10px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-
-        .name {
-            font-weight: 600;
-            margin-bottom: 5px;
+    @media (min-width: 620px) {
+        &:nth-child(odd) {
+            padding-right: 12px;
         }
-
-        .ingredients {
-            font-size: 13px;
-            color: #606464;
-            height: 40px;
-            margin-bottom: 7px;
+        &:nth-child(even) {
+            padding-left: 12px;
         }
-
-        .price {
-            font-size: 17px;
-            color: #606464;
-        }
+        width: 50%;
     }
-
-    .right {
-        width: 40%;
-        height: 100%;
+    @media (min-width: 992px) {
+        
+        padding: 0 !important;
+        padding-right: 24px !important;
+    }
+    @media (min-width: 1400px) {
+        width: calc(100% / 3);
+    }
+    .food-card {
         display: flex;
+        padding: 15px;
+        background-color: var(--white);
+        border-radius: 10px;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        transition: 0.15s;
+        background-color: var(--white);
+        height: 100%;
 
-        .image {
-            width: 70%;
+        .left {
+            width: 60%;
+            padding-right: 10px;
             display: flex;
-            justify-content: center;
-            align-items: center;
-            img {
-                object-fit: cover;
-                width: 100%;
-                height: 100%;
+            flex-direction: column;
+            justify-content: space-between;
+
+            .name {
+                font-weight: 600;
+                margin-bottom: 5px;
+            }
+
+            .ingredients {
+                font-size: 12px;
+                color: #606464;
+                height: 40px;
+                margin-bottom: 7px;
+            }
+
+            .price {
+                font-size: 17px;
+                color: #606464;
+            }
+
+            @media (min-width: 468px) {
+                .ingredients {
+                    font-size: 13px;
+                }
+            }
+            @media (min-width: 620px) {
+                .ingredients {
+                    font-size: 11px;
+                }
+            }
+            @media (min-width: 768px) {
+                .ingredients {
+                    font-size: 12px;
+                }
+            }
+            @media (min-width: 1500px) {
+                .ingredients {
+                    font-size: 13px;
+                }
             }
         }
 
-        .buttons {
-            width: 30%;
+        .right {
+            width: 40%;
+            height: 100%;
             display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            color: var(--main-color);
 
-            .big {
-                user-select: none;
-                height: 100%;
-                width: 30px;
-                border: 1px solid #ebebeb;
-                border-radius: 3px;
+            .image {
+                width: 70%;
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                cursor: pointer;
+                img {
+                    object-fit: contain;
+                    width: 100%;
+                    height: 80%;
+                }
             }
 
-            .littles {
-                height: 100%;
-                width: 30px;
+            .buttons {
+                width: 30%;
                 display: flex;
-                flex-direction: column;
-                justify-content: space-between;
+                justify-content: flex-end;
+                align-items: center;
+                color: var(--main-color);
 
-                > div {
-                    cursor: pointer;
+                .big {
                     user-select: none;
-                    height: 30px;
-                    border: 1px solid #ebebeb;
+                    height: 100%;
+                    width: 30px;
+                    border: 2px solid #ebebeb;
                     border-radius: 3px;
                     display: flex;
                     justify-content: center;
                     align-items: center;
+                    cursor: pointer;
+                    margin-left: 6px;
+                }
+
+                .littles {
+                    height: 100%;
+                    width: 30px;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    margin-left: 6px;
+
+                    > div {
+                        cursor: pointer;
+                        user-select: none;
+                        height: 30px;
+                        border: 2px solid #ebebeb;
+                        border-radius: 3px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                    }
                 }
             }
         }
