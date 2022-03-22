@@ -174,7 +174,6 @@ export default {
             axios
                 .post("/api/orders/make/payment", this.form)
                 .then((response) => {
-                    console.log(response);
                     self.clearCart();
                     self.redirect();
                 })
@@ -189,7 +188,6 @@ export default {
 
         clearCart() {
             this.foods = [];
-            localStorage.removeItem("foods");
         },
 
         validationFormJs() {

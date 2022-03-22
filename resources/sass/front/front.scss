@@ -31,9 +31,9 @@ h2 {
     }
 }
 
-h3 {
-    font-size: 2.8125rem;
-}
+// h3 {
+//     font-size: 2.8125rem;
+// }
 
 .category-text {
     font-size: 2.25rem;
@@ -80,6 +80,30 @@ img {
     border-color: #e3342f;
 }
 
+.btn-main {
+    color: var(--white);
+    font-size: .9rem;
+    font-weight: bold;
+    background-color: var(--main-color);
+    padding: 5px 10px;
+    transition: 0.15s;
+
+    &:hover {
+        background-color: #43b6a8;
+    }
+
+    &:active {
+        transform: scale(.97);
+    }
+}
+
+@media screen and (min-width: 576px) {
+    .btn-main {
+        font-size: 1rem;
+        padding: 10px 15px;
+    };
+}
+
 // variables
 :root {
     --main-color: #3ECCBC;
@@ -87,5 +111,9 @@ img {
     --dark-grey: #9F9F9F;
     --black: #000;
     --white: #fff;
+}
+
+li {
+    list-style: none;
 }
 

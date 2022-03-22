@@ -4308,10 +4308,6 @@ h2 {
   }
 }
 
-h3 {
-  font-size: 2.8125rem;
-}
-
 .category-text {
   font-size: 2.25rem;
 }
@@ -4357,11 +4353,39 @@ img {
   border-color: #e3342f;
 }
 
+.btn-main {
+  color: var(--white);
+  font-size: 0.9rem;
+  font-weight: bold;
+  background-color: var(--main-color);
+  padding: 5px 10px;
+  transition: 0.15s;
+}
+
+.btn-main:hover {
+  background-color: #43b6a8;
+}
+
+.btn-main:active {
+  transform: scale(0.97);
+}
+
+@media screen and (min-width: 576px) {
+  .btn-main {
+    font-size: 1rem;
+    padding: 10px 15px;
+  }
+}
+
 :root {
   --main-color: #3ECCBC;
   --light-grey: #f3f3f6;
   --dark-grey: #9F9F9F;
   --black: #000;
   --white: #fff;
+}
+
+li {
+  list-style: none;
 }
 
