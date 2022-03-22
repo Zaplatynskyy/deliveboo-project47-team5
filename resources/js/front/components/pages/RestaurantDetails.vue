@@ -5,19 +5,18 @@
             <div class="types">
                 <div v-for="type in getTypes" :key="type.id" class="type">
                     <h3>{{ type }}</h3>
-                    <div class="foods row row-cols-2 row-cols-md-3">
+                    <div class="foods">
                         <FoodCard
                             @addCart="addToCart(food)"
                             @removeCart="removeToCart(food)"
                             v-for="food in filteredFoods(type)"
                             :key="food.id"
-                            style="max-width: 540px"
                             :food="food"
                         />
                     </div>
                 </div>
             </div>
-            <div class="cart-wrapper">
+            <div class="cart-wrapper d-none d-lg-block">
                 <div v-if="restaurant.id" class="cart">
                     <div v-if="foods.length" class="cart-info">
                         <div class="info-top">
@@ -59,10 +58,12 @@
                         <div class="info-bottom">
                             <div>
                                 <div>Spese di consegna</div>
-                                <div v-if="cartName.shipping">
+                                <div class="shipping" v-if="cartName.shipping">
                                     {{ cartName.shipping }}€
                                 </div>
-                                <div v-else>Consegna gratuita</div>
+                                <div class="shipping" v-else>
+                                    Consegna gratuita
+                                </div>
                             </div>
                             <div class="total">
                                 <div>Totale</div>
@@ -71,7 +72,7 @@
                         </div>
                         <div class="cart-buttons">
                             <button
-                                :class=" { not_validated: !validatePrice }"
+                                :class="{ not_validated: !validatePrice }"
                                 class="checkout btn btn-light"
                                 @click="checkout()"
                                 :disabled="!validatePrice"
@@ -248,25 +249,43 @@ export default {
         }
 
         .types {
-            width: 70%;
+            width: 100%;
+
+            @media (min-width: 992px) {
+                width: 70%;
+            }
 
             .type {
                 margin-bottom: 20px;
                 h3 {
+                    font-size: 40px;
                     margin-bottom: 15px;
                 }
+            }
+
+            .foods {
+                display: flex;
+                flex-wrap: wrap;
             }
         }
 
         .cart-wrapper {
             width: 30%;
             padding-left: 30px;
+            position: sticky;
+            top: 100px;
+            margin-top: 20px;
             .cart {
                 padding: 20px;
                 background-color: var(--white);
                 border-radius: 10px;
                 box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
                 user-select: none;
+                font-size: 15px;
+
+                @media (min-width: 1200px) {
+                    font-size: 16px;
+                }
 
                 .cart-buttons {
                     display: flex;
@@ -274,8 +293,8 @@ export default {
                     align-items: center;
 
                     button {
-                        padding: 12px 16px;
-                        font-size: 16px;
+                        padding: 8px 10px;
+                        font-size: 15px;
                         background: white;
                         &.checkout {
                             background-color: var(--main-color);
@@ -289,6 +308,11 @@ export default {
                             &:not(.not_validated):hover {
                                 background-color: #43b6a8;
                             }
+                        }
+
+                        @media (min-width: 1200px) {
+                            padding: 12px 16px;
+                            font-size: 16px;
                         }
                     }
                     svg {
@@ -324,6 +348,11 @@ export default {
                         .total {
                             font-weight: 600;
                             margin-bottom: 20px;
+                        }
+
+                        .shipping {
+                            text-align: right;
+                            padding-left: 20px;
                         }
                     }
 

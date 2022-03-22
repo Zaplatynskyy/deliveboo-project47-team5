@@ -82,17 +82,19 @@ export default {
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     background-color: var(--white);
     .main-card {
-        height: 400px;
         margin-bottom: 70px;
         padding: 0;
         transition: 0.15s;
         overflow: hidden;
         max-width: 1600px;
         margin: 0 auto;
+        display: flex;
+        flex-direction: column-reverse;
 
-        @media (min-width: 992px) {
-            display: flex;
+        @media (min-width: 768px) {
+            flex-direction: row;
             justify-content: space-between;
+            height: 400px;
         }
 
         .image {
@@ -105,7 +107,11 @@ export default {
             img {
                 width: 100%;
                 height: 100%;
-                object-fit: contain;
+                object-fit: cover;
+
+                @media (min-width: 1100px) {
+                    object-fit: contain;
+                }
             }
         }
 
@@ -114,32 +120,32 @@ export default {
             display: flex;
             flex-direction: column;
             justify-content: center;
-            align-items: center;
-            padding: 0 20px;
+            align-items: flex-start;
+            padding: 20px;
 
-            @media (min-width: 992px) {
+            @media (min-width: 768px) {
                 width: 50%;
             }
 
             .top {
                 margin: 12px 0;
                 .name {
-                    font-size: 24px;
+                    font-size: 30px;
                     font-weight: 600;
                     margin-top: 5px;
                     margin-bottom: 20px;
 
                     @media (min-width: 460px) {
-                        font-size: 28px;
+                        // font-size: 28px;
                     }
                     @media (min-width: 576px) {
-                        font-size: 32px;
-                    }
-                    @media (min-width: 768px) {
                         font-size: 35px;
                     }
-                    @media (min-width: 992px) {
+                    @media (min-width: 768px) {
                         font-size: 40px;
+                    }
+                    @media (min-width: 992px) {
+                        font-size: 50px;
                     }
                     @media (min-width: 1200px) {
                         font-size: 70px;
@@ -151,19 +157,13 @@ export default {
                 margin: 12px 0;
                 color: var(--dark-grey);
 
-                font-size: 10px;
+                font-size: 14px;
 
-                @media (min-width: 460px) {
-                    font-size: 12px;
-                }
                 @media (min-width: 576px) {
-                    font-size: 14px;
-                }
-                @media (min-width: 768px) {
-                    font-size: 14px;
+                    font-size: 16px;
                 }
                 @media (min-width: 992px) {
-                    font-size: 16px;
+                    font-size: 17px;
                 }
                 @media (min-width: 1200px) {
                     font-size: 18px;
