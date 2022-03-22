@@ -369,8 +369,15 @@ form {
 }
 
 .loading-payment {
+  min-height: calc(100vh - 80px);
   display: flex;
+  justify-content: center;
   align-items: center;
+  flex-direction: column;
+
+  h4 {
+    font-size: 1.5rem;
+  }
 }
 
 .lds-roller {
