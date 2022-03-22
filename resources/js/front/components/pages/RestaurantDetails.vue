@@ -7,6 +7,7 @@
                     <h3>{{ type }}</h3>
                     <div class="foods row row-cols-2 row-cols-md-3">
                         <FoodCard
+                            @addCart="addToCart(food)"
                             v-for="food in filteredFoods(type)"
                             :key="food.id"
                             style="max-width: 540px"
@@ -189,7 +190,6 @@ export default {
 
 <style lang="scss" scoped>
 .restaurant {
-    padding: 40px 0;
     .menu {
         display: flex;
         align-items: flex-start;

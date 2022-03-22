@@ -129,7 +129,6 @@ export default {
     background-size: contain;
     padding: 30px 20px;
     user-select: none;
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 
     .hero_nav {
         h1 {
