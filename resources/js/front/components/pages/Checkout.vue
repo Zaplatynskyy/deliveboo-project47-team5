@@ -25,7 +25,7 @@
             </div>
 
             <div class="form-group">
-              <label for="cognome">Inserisci Cognome *</label>
+              <label for="cognome">Inserisci il Cognome *</label>
               <input
                 type="text"
                 class="form-control"
