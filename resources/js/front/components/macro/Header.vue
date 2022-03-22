@@ -28,7 +28,7 @@ header {
   height: 80px;
   background-color: var(--white);
   padding: 15px;
-  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  box-shadow: rgba(60, 64, 67, 0.1) 0px 1px 6px 0px;
   position: fixed;
   top: 0;
   left: 0;

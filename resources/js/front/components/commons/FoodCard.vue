@@ -1,6 +1,6 @@
 <template>
     <div class="col">
-        <div class="food-card">
+        <div @click="$emit('addCart')" class="food-card">
             <div class="left">
                 <div class="name">
                     {{ food.name }}
