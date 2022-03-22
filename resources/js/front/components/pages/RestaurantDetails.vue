@@ -7,7 +7,7 @@
                     <h3>{{ type }}</h3>
                     <div class="foods">
                         <FoodCard
-                            @addCart="addToCart(food)"
+                            @addCart="confirmAddToCart(food)"
                             @removeCart="removeToCart(food)"
                             v-for="food in filteredFoods(type)"
                             :key="food.id"
@@ -79,7 +79,7 @@
                             >
                                 Procedi al pagamento
                             </button>
-                            <div @click="clearCart()">
+                            <div @click="toggleModalClear()">
                                 <i class="fa-solid fa-trash-can"></i>
                             </div>
                         </div>
@@ -89,18 +89,32 @@
                 </div>
             </div>
         </div>
+        <ClearCartModal
+            v-if="modalClear"
+            @clearCart="clearCart(); toggleModalClear()"
+            @closeModal="toggleModalClear()"
+        />
+        <NewCartModal
+            v-if="modalNew"
+            @clearCart="doModal(selectedFood)"
+            @closeModal="toggleModalNew()"
+        />
     </div>
 </template>
 
 <script>
 import MainRestaurantCard from "../commons/MainRestaurantCard.vue";
 import FoodCard from "../commons/FoodCard.vue";
+import ClearCartModal from "../commons/ClearCartModal.vue";
+import NewCartModal from "../commons/NewCartModal.vue";
 
 export default {
     name: "RestaurantDetails",
     components: {
         MainRestaurantCard,
         FoodCard,
+        ClearCartModal,
+        NewCartModal,
     },
     data() {
         return {
@@ -109,6 +123,9 @@ export default {
             prevRoute: null,
             validatePrice: null,
             cartName: null,
+            modalClear: false,
+            modalNew: false,
+            selectedFood: {},
         };
     },
     methods: {
@@ -178,6 +195,33 @@ export default {
                 this.$router.push({
                     name: "checkout",
                 });
+            }
+        },
+        toggleModalClear() {
+            this.modalClear = !this.modalClear;
+        },
+        toggleModalNew() {
+            this.modalNew = !this.modalNew;
+        },
+        doModal() {
+            this.clearCart();
+            localStorage.setItem("restaurant", JSON.stringify(this.restaurant));
+            this.cartName = this.restaurant;
+            this.selectedFood.quantity = 1;
+            this.foods.push(this.selectedFood);
+            localStorage.setItem("foods", JSON.stringify(this.foods));
+            this.toggleModalNew();
+        },
+        confirmAddToCart(food) {
+            if (this.foods.length) {
+                if (food.user_id != this.foods[0].user_id) {
+                    this.toggleModalNew();
+                    this.selectedFood = food;
+                } else {
+                    this.addToCart(food);
+                }
+            } else {
+                this.addToCart(food);
             }
         },
     },

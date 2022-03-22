@@ -115,6 +115,7 @@ export default {
         transition: 0.15s;
         background-color: var(--white);
         height: 100%;
+        user-select: none;
 
         .left {
             width: 60%;
@@ -131,7 +132,7 @@ export default {
             .ingredients {
                 font-size: 12px;
                 color: #606464;
-                height: 40px;
+                min-height: 40px;
                 margin-bottom: 7px;
             }
 

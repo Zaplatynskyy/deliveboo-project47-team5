@@ -37909,9 +37909,15 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
+<<<<<<< HEAD
 __webpack_require__(/*! C:\Users\vicoa\Desktop\deliveboo-project47-team5-1\resources\js\admin\admin.js */"./resources/js/admin/admin.js");
 __webpack_require__(/*! C:\Users\vicoa\Desktop\deliveboo-project47-team5-1\resources\sass\admin\admin.scss */"./resources/sass/admin/admin.scss");
 module.exports = __webpack_require__(/*! C:\Users\vicoa\Desktop\deliveboo-project47-team5-1\resources\sass\front\front.scss */"./resources/sass/front/front.scss");
+=======
+__webpack_require__(/*! /Users/simonespirito/Downloads/Boolean/deliveboo-project47-team5-1/resources/js/admin/admin.js */"./resources/js/admin/admin.js");
+__webpack_require__(/*! /Users/simonespirito/Downloads/Boolean/deliveboo-project47-team5-1/resources/sass/admin/admin.scss */"./resources/sass/admin/admin.scss");
+module.exports = __webpack_require__(/*! /Users/simonespirito/Downloads/Boolean/deliveboo-project47-team5-1/resources/sass/front/front.scss */"./resources/sass/front/front.scss");
+>>>>>>> feat-add-modal-confirm-clear-cart
 
 
 /***/ })
