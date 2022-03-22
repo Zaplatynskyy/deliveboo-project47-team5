@@ -12,6 +12,7 @@
                             v-for="food in filteredFoods(type)"
                             :key="food.id"
                             :food="food"
+                            :restaurant="cartName"
                         />
                     </div>
                 </div>
@@ -33,6 +34,7 @@
                                 v-for="food in foods"
                                 :key="food.id"
                                 class="food-info"
+
                             >
                                 <div class="left">
                                     <span> {{ food.name }}</span>
@@ -91,7 +93,7 @@
         </div>
         <ClearCartModal
             v-if="modalClear"
-            @clearCart="clearCart(); toggleModalClear()"
+            @clearCart="clearCart(); toggleModalClear();"
             @closeModal="toggleModalClear()"
         />
         <NewCartModal
@@ -122,7 +124,7 @@ export default {
             foods: [],
             prevRoute: null,
             validatePrice: null,
-            cartName: null,
+            cartName: 'c',
             modalClear: false,
             modalNew: false,
             selectedFood: {},

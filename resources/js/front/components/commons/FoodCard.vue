@@ -60,6 +60,7 @@ export default {
     name: "FoodCard",
     props: {
         food: Object,
+        restaurant: Object
     },
     data() {
         return {
@@ -81,6 +82,11 @@ export default {
     mounted() {
         this.checkFood();
     },
+    watch: {
+        restaurant(newValue) {
+            this.checkFood();
+        }
+    }
 };
 </script>
 
