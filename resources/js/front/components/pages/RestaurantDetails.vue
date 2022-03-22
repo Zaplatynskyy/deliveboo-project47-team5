@@ -8,6 +8,7 @@
                     <div class="foods row row-cols-2 row-cols-md-3">
                         <FoodCard
                             @addCart="addToCart(food)"
+                            @removeCart="removeToCart(food)"
                             v-for="food in filteredFoods(type)"
                             :key="food.id"
                             style="max-width: 540px"
@@ -19,31 +20,71 @@
             <div class="cart-wrapper">
                 <div v-if="restaurant.id" class="cart">
                     <div v-if="foods.length" class="cart-info">
-                        <div v-if="foods[0].user_id != restaurant.id">
-                            {{ cartName }}
-                        </div>
-                        <div v-for="food in foods" :key="food.id">
-                            <span>- {{ food.name }}</span>
-                            <span>- {{ food.price }}€</span>
-                            <span class="ms-3">x{{ food.quantity }}</span>
-                            <strong class="mx-3" @click="addToCart(food)"
-                                >+</strong
+                        <div class="info-top">
+                            <h4>Il tuo ordine</h4>
+                            <div
+                                v-if="foods[0].user_id != restaurant.id"
+                                class="restaurant-name"
                             >
-                            <strong @click="removeToCart(food)">-</strong>
+                                <div>
+                                    Stai ordinando da "{{ cartName.name }}"
+                                </div>
+                            </div>
+                            <div
+                                v-for="food in foods"
+                                :key="food.id"
+                                class="food-info"
+                            >
+                                <div class="left">
+                                    <span> {{ food.name }}</span>
+                                </div>
+                                <div class="right">
+                                    <span
+                                        @click="removeToCart(food)"
+                                        class="button"
+                                        >-</span
+                                    >
+                                    <span>{{ food.quantity }}</span>
+                                    <span
+                                        @click="addToCart(food)"
+                                        class="button"
+                                        >+</span
+                                    >
+                                    <span class="price">
+                                        {{ food.price }}€</span
+                                    >
+                                </div>
+                            </div>
                         </div>
-                        <div>Totale: {{ getTotal }}€</div>
+                        <div class="info-bottom">
+                            <div>
+                                <div>Spese di consegna</div>
+                                <div v-if="cartName.shipping">
+                                    {{ cartName.shipping }}€
+                                </div>
+                                <div v-else>Consegna gratuita</div>
+                            </div>
+                            <div class="total">
+                                <div>Totale</div>
+                                <div>{{ getTotal }}€</div>
+                            </div>
+                        </div>
+                        <div class="cart-buttons">
+                            <button
+                                :class=" { not_validated: !validatePrice }"
+                                class="checkout btn btn-light"
+                                @click="checkout()"
+                                :disabled="!validatePrice"
+                            >
+                                Procedi al pagamento
+                            </button>
+                            <div @click="clearCart()">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </div>
+                        </div>
                     </div>
-                    <div v-else class="mb-3">Carrello vuoto</div>
-                    <button @click="clearCart()" class="btn btn-light">
-                        Svuota carrello
-                    </button>
-                    <button
-                        class="btn btn-light"
-                        @click="checkout()"
-                        :disabled="!validatePrice"
-                    >
-                        Procedi al pagamento
-                    </button>
+
+                    <div v-else>Carrello vuoto</div>
                 </div>
             </div>
         </div>
@@ -91,10 +132,18 @@ export default {
             if (this.foods.length) {
                 if (food.user_id != this.foods[0].user_id) {
                     this.clearCart();
-                    localStorage.setItem("restaurant", this.restaurant.name);
+                    localStorage.setItem(
+                        "restaurant",
+                        JSON.stringify(this.restaurant)
+                    );
+                    this.cartName = this.restaurant;
                 }
             } else {
-                localStorage.setItem("restaurant", this.restaurant.name);
+                localStorage.setItem(
+                    "restaurant",
+                    JSON.stringify(this.restaurant)
+                );
+                this.cartName = this.restaurant;
             }
             let index = this.foods.findIndex((element) => {
                 return element.id == food.id;
@@ -139,7 +188,7 @@ export default {
     created() {
         if (localStorage.getItem("foods")) {
             this.foods = JSON.parse(localStorage.getItem("foods"));
-            this.cartName = localStorage.getItem("restaurant");
+            this.cartName = JSON.parse(localStorage.getItem("restaurant"));
         }
         axios
             .get(`/api/restaurants/details/${this.$route.params.slug}`)
@@ -172,8 +221,8 @@ export default {
         getTotal() {
             let total = 0;
 
-            if (this.restaurant.shipping) {
-                total += this.restaurant.shipping;
+            if (this.cartName.shipping) {
+                total += this.cartName.shipping;
             }
 
             this.foods.forEach((food) => {
@@ -193,6 +242,7 @@ export default {
     .menu {
         display: flex;
         align-items: flex-start;
+        padding: 60px 0;
         .food-image {
             width: 100%;
         }
@@ -212,28 +262,101 @@ export default {
             width: 30%;
             padding-left: 30px;
             .cart {
-                
                 padding: 20px;
-                background-color: lightgray;
-                border: 1px solid black;
-                border-radius: 8px;
+                background-color: var(--white);
+                border-radius: 10px;
+                box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
                 user-select: none;
 
-                .cart-info {
-                    > div {
-                        margin-bottom: 10px;
+                .cart-buttons {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+
+                    button {
+                        padding: 12px 16px;
+                        font-size: 16px;
+                        background: white;
+                        &.checkout {
+                            background-color: var(--main-color);
+                            color: var(--white);
+
+                            &.not_validated {
+                                cursor: initial;
+                                background-color: #c3c3c3;
+                            }
+
+                            &:not(.not_validated):hover {
+                                background-color: #43b6a8;
+                            }
+                        }
+                    }
+                    svg {
+                        color: red;
+                        cursor: pointer;
                     }
                 }
 
-                strong {
-                    display: inline-flex;
+                .cart-info {
+                    h4 {
+                        font-size: 20px;
+                        margin-bottom: 20px;
+                    }
+
+                    .info-top {
+                        padding-bottom: 15px;
+                        border-bottom: 1px solid #ebebeb;
+
+                        .restaurant-name {
+                            margin-bottom: 20px;
+                        }
+                    }
+
+                    .info-bottom {
+                        padding-top: 20px;
+
+                        > div {
+                            display: flex;
+                            justify-content: space-between;
+                            margin-bottom: 15px;
+                        }
+
+                        .total {
+                            font-weight: 600;
+                            margin-bottom: 20px;
+                        }
+                    }
+
+                    .food-info {
+                        display: flex;
+                        justify-content: space-between;
+                        margin-bottom: 10px;
+
+                        .right {
+                            display: flex;
+
+                            > * {
+                                margin-left: 7px;
+                            }
+
+                            .price {
+                                min-width: 30px;
+                                text-align: right;
+                            }
+                        }
+                    }
+                }
+
+                .button {
+                    display: flex;
                     align-items: center;
                     justify-content: center;
-                    width: 20px;
-                    height: 20px;
-                    font-size: 1.1rem;
+                    width: 16px;
+                    height: 16px;
+                    font-size: 16px;
                     border-radius: 50%;
-                    background-color: white;
+                    color: var(--main-color);
+                    border: 1px solid var(--main-color);
                     cursor: pointer;
                 }
             }
