@@ -4296,6 +4296,7 @@
 
 body {
   font-family: "Poppins", sans-serif;
+  background: var(--light-grey);
 }
 
 h2 {
