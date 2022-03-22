@@ -1,48 +1,90 @@
 <template>
-  <div class="_my_container">
-    <form v-if="!loading">
-      <div class="container">
+  <div class="checkout-page">
+    <div class="_my_container">
+      <form v-if="!loading">
         <div class="wrapper">
-          <div class="form-group">
-            <label for="name">Inserisci Nome *</label>
-            <input
-              type="text"
-              class="form-control"
-              :class="{ input_error_js: !validation.name.success }"
-              id="name"
-              name="name"
-              v-model="form.client.name"
-              required
-            />
-            <div
-              v-show="!validation.name.success"
-              id="input_name"
-              class="error_js"
-            >
-              {{ validation.name.message }}
+          <div class="info">
+            <div class="form-group">
+              <label for="name">Inserisci Nome *</label>
+              <input
+                type="text"
+                class="form-control"
+                :class="{ input_error_js: !validation.name.success }"
+                id="name"
+                name="name"
+                v-model="form.client.name"
+                required
+              />
+              <div
+                v-show="!validation.name.success"
+                id="input_name"
+                class="error_js"
+              >
+                {{ validation.name.message }}
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="cognome">Inserisci il cognome *</label>
+              <input
+                type="text"
+                class="form-control"
+                :class="{ input_error_js: !validation.cognome.success }"
+                id="cognome"
+                name="cognome"
+                v-model="form.client.cognome"
+                required
+              />
+              <div
+                v-show="!validation.cognome.success"
+                id="input_surname"
+                class="error_js"
+              >
+                {{ validation.cognome.message }}
+              </div>
             </div>
           </div>
 
-          <div class="form-group">
-            <label for="cognome">Inserisci il cognome *</label>
-            <input
-              type="text"
-              class="form-control"
-              :class="{ input_error_js: !validation.cognome.success }"
-              id="cognome"
-              name="cognome"
-              v-model="form.client.cognome"
-              required
-            />
-            <div
-              v-show="!validation.cognome.success"
-              id="input_surname"
-              class="error_js"
-            >
-              {{ validation.cognome.message }}
+          <div class="contacts">
+            <div class="form-group">
+              <label for="address">Indirizzo *</label>
+              <input
+                type="text"
+                class="form-control"
+                :class="{ input_error_js: !validation.address.success }"
+                id="address"
+                name="address"
+                v-model="form.client.address"
+                required
+              />
+              <div
+                v-show="!validation.address.success"
+                id="input_address"
+                class="error_js"
+              >
+                {{ validation.address.message }}
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="telephone">Telefono *</label>
+              <input
+                type="text"
+                class="form-control"
+                :class="{ input_error_js: !validation.telephone.success }"
+                id="telephone"
+                name="telephone"
+                v-model="form.client.telephone"
+                required
+              />
+              <div
+                v-show="!validation.telephone.success"
+                id="input_telephone"
+                class="error_js"
+              >
+                {{ validation.telephone.message }}
+              </div>
             </div>
           </div>
-
           <div class="form-group">
             <label for="email">Inserisci la mail *</label>
             <input
@@ -62,81 +104,42 @@
               {{ validation.email.message }}
             </div>
           </div>
+        </div>
 
-          <div class="form-group">
-            <label for="address">Indirizzo *</label>
-            <input
-              type="text"
-              class="form-control"
-              :class="{ input_error_js: !validation.address.success }"
-              id="address"
-              name="address"
-              v-model="form.client.address"
-              required
-            />
-            <div
-              v-show="!validation.address.success"
-              id="input_address"
-              class="error_js"
-            >
-              {{ validation.address.message }}
+        <div class="cart-payment">
+          <v-braintree
+            v-if="loaded"
+            locale="it_IT"
+            :authorization="tokenGenerated"
+            @success="onSuccess"
+            @error="onError"
+          >
+            <template #button="slotProps">
+              <div ref="paymentBtnRef" @click="slotProps.submit" />
+            </template>
+          </v-braintree>
+
+          <div v-else>
+            <div class="lds-roller">
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
             </div>
           </div>
-          <div class="form-group">
-            <label for="telephone">Telefono *</label>
-            <input
-              type="text"
-              class="form-control"
-              :class="{ input_error_js: !validation.telephone.success }"
-              id="telephone"
-              name="telephone"
-              v-model="form.client.telephone"
-              required
-            />
-            <div
-              v-show="!validation.telephone.success"
-              id="input_telephone"
-              class="error_js"
-            >
-              {{ validation.telephone.message }}
-            </div>
-          </div>
+          <button type="button" class="btn" @click="beforeBuy()">
+            Procedi al pagamento
+          </button>
         </div>
+      </form>
+      <div v-else class="loading-payment">
+        <h4>Pagamento in corso...</h4>
+        <div class="lds-circle"><div></div></div>
       </div>
-
-      <div class="cart-payment">
-        <v-braintree
-          v-if="loaded"
-          locale="it_IT"
-          :authorization="tokenGenerated"
-          @success="onSuccess"
-          @error="onError"
-        >
-          <template #button="slotProps">
-            <div ref="paymentBtnRef" @click="slotProps.submit" />
-          </template>
-        </v-braintree>
-
-        <div v-else>
-          <div class="lds-roller">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-          </div>
-        </div>
-        <button type="button" class="btn btn-primary" @click="beforeBuy()">
-          Submit
-        </button>
-      </div>
-    </form>
-    <div v-else class="loading-payment">
-      <h4>Pagamento in corso...</h4>
-      <div class="lds-circle"><div></div></div>
     </div>
   </div>
 </template>
@@ -341,23 +344,39 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-._my_container {
+.checkout-page {
   background-image: url("/storage/uploads/wave.svg");
   background-repeat: no-repeat;
+}
+._my_container {
+  // display: flex;
+  // justify-content: space-around;
+  padding: 20px 10px;
+  width: 100%;
 }
 
 .wrapper {
   background-color: white;
-  padding: 10px 20px;
+  padding: 20px;
   border-radius: 10px;
+  // width: 65%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  // margin-right: 100px;
 }
 form {
-  display: flex;
+  // display: flex;
   padding-top: 40px;
   .form-group {
     display: flex;
     flex-direction: column;
-    margin: 15px 0;
+    margin: 10px 0;
+    // width: 45%;
+
+    @media (min-width: 768px) {
+      width: 45%;
+    }
 
     input {
       border-radius: 5px;
@@ -366,6 +385,39 @@ form {
       border: 1px solid var(--dark-grey);
     }
   }
+}
+
+.btn {
+  background-color: var(--main-color);
+  color: white;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #3fb9ab;
+  }
+}
+
+.info {
+  justify-content: space-between;
+
+  @media (min-width: 992) {
+    display: block;
+  }
+}
+
+.contacts {
+  justify-content: space-between;
+
+  @media (min-width: 992) {
+    display: block;
+  }
+}
+
+.cart-payment {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  // width: 45%;
 }
 
 .loading-payment {
@@ -491,6 +543,68 @@ form {
   }
   100% {
     transform: rotateY(3600deg);
+  }
+}
+
+@media (min-width: 768px) {
+  .info,
+  .contacts {
+    display: flex;
+  }
+
+  form {
+    .form-group {
+      width: 45%;
+    }
+  }
+
+  ._my_container {
+    width: 90%;
+    margin: auto;
+  }
+}
+
+@media (min-width: 992px) {
+  .info,
+  .contacts {
+    display: block;
+  }
+
+  form {
+    display: flex;
+    justify-content: space-between;
+
+    .form-group {
+      width: 100%;
+    }
+  }
+
+  .wrapper {
+    width: 50%;
+  }
+
+  .cart-payment {
+    width: 40%;
+  }
+}
+
+@media (min-width: 1400px) {
+  .info,
+  .contacts {
+    display: flex;
+  }
+
+  form {
+    align-items: center;
+
+    .form-group {
+      width: 45%;
+      margin: 5px 0;
+    }
+  }
+
+  .wrapper {
+    padding: 30px 20px;
   }
 }
 </style>
