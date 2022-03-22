@@ -33,12 +33,12 @@
                                 <div v-else class="shipping">
                                     Consegna gratuita
                                 </div>
-                                <div
-                                    v-if="restaurant.min_price"
-                                    class="min_price"
-                                >
-                                    Ordine minimo {{ restaurant.min_price }}€
-                                </div>
+                            </div>
+                        </div>
+                        <div class="min_price-wrapper">
+                            <i class="fa-solid fa-coins"></i>
+                            <div v-if="restaurant.min_price" class="min_price">
+                                Ordine minimo {{ restaurant.min_price }}€
                             </div>
                         </div>
                     </div>
@@ -79,14 +79,14 @@ export default {
 
 <style lang="scss" scoped>
 .wrapper-card {
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    background-color: var(--white);
     .main-card {
-        height: 500px;
+        height: 400px;
         margin-bottom: 70px;
-        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
         padding: 0;
         transition: 0.15s;
         overflow: hidden;
-        background-color: var(--white);
         max-width: 1600px;
         margin: 0 auto;
 
@@ -127,6 +127,7 @@ export default {
                     font-size: 24px;
                     font-weight: 600;
                     margin-top: 5px;
+                    margin-bottom: 20px;
 
                     @media (min-width: 460px) {
                         font-size: 28px;
@@ -141,7 +142,7 @@ export default {
                         font-size: 40px;
                     }
                     @media (min-width: 1200px) {
-                        font-size: 50px;
+                        font-size: 70px;
                     }
                 }
             }
@@ -168,15 +169,15 @@ export default {
                     font-size: 18px;
                 }
 
-                > * {
-                    display: flex;
-                    margin-bottom: 5px;
-                }
-
                 svg {
                     color: var(--main-color);
                     width: 20px;
                     margin-right: 6px;
+                }
+
+                > * {
+                    display: flex;
+                    margin-bottom: 10px;
                 }
 
                 .tags-wrapper {
