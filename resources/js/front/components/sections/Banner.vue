@@ -84,7 +84,7 @@ export default {
 }
 .blog {
   padding: 50px 0;
-  width: 90%;
+  width: 80%;
   margin: 0 auto;
   h2 {
     font-size: 32px;
@@ -98,14 +98,14 @@ export default {
     display: grid;
     grid-template-columns: 1fr 1fr;
 
-    margin: 40px 30px;
+    margin: 40px 0;
     gap: 15px;
   }
 
   img {
     width: 100%;
     height: 65%;
-    border-radius: 5px;
+    border-radius: 10px;
     object-fit: cover;
   }
 
@@ -156,7 +156,7 @@ export default {
     }
     .row {
       grid-template-columns: 1fr 1fr 1fr !important;
-      margin: 40px 30px;
+      margin: 40px 0;
       gap: 15px;
     }
     .desc {
@@ -166,7 +166,7 @@ export default {
     img {
       width: 100%;
       height: 65%;
-      border-radius: 5px;
+      border-radius: 10px;
     }
 
     .card-text {
