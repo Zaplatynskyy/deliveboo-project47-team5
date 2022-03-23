@@ -14,5 +14,6 @@ export default Vue.observable = {
         'ordine minimo (alto-basso)',
     ],
     order: 'rilevanza',
-    noResultsFound: null
+    noResultsFound: null,
+    loaded: false
 }

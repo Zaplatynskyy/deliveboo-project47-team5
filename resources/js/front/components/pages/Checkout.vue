@@ -185,11 +185,15 @@
 </template>
 
 <script>
+import dataShared from "../../dataShared";
+
+
 export default {
     name: "Checkout",
     name: "Success",
     data() {
         return {
+            dataShared,
             tokenGenerated: "",
             loaded: false,
             loading: null,
@@ -275,8 +279,7 @@ export default {
                     self.clearCart();
                     self.redirect();
                 })
-                .catch(function (error) {
-                });
+                .catch(function (error) {});
         },
         onError(error) {
             let message = error.message;
@@ -390,14 +393,15 @@ export default {
                 quantity: element.quantity,
             });
         });
+        dataShared.loaded = false;
         axios
             .get("/api/orders/generate")
             .then((response) => {
                 this.tokenGenerated = response.data.token;
                 this.loaded = true;
+                dataShared.loaded = true;
             })
-            .catch(function (error) {
-            });
+            .catch(function (error) {});
     },
 };
 </script>
@@ -411,10 +415,10 @@ export default {
     padding: 20px 10px;
 
     .loading-page {
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 }
 
@@ -427,10 +431,10 @@ export default {
     justify-content: center;
 }
 form {
-  padding-top: 40px;
-  align-items: flex-start;
-  display: flex;
-  flex-direction: column-reverse;
+    padding-top: 40px;
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column-reverse;
 }
 .form-group {
     display: flex;
@@ -502,7 +506,7 @@ form {
     height: 80px;
 
     > div::after {
-      background-color: var(--main-color) !important;
+        background-color: var(--main-color) !important;
     }
 }
 .lds-roller div {
