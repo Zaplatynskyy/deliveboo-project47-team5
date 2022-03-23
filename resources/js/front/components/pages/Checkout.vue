@@ -2,138 +2,159 @@
   <div class="checkout-page">
     <div class="_my_container">
       <form v-if="!loading">
-        <div class="wrapper">
-          <div class="info">
-            <div class="form-group">
-              <label for="name">Inserisci Nome *</label>
-              <input
-                type="text"
-                class="form-control"
-                :class="{ input_error_js: !validation.name.success }"
-                id="name"
-                name="name"
-                v-model="form.client.name"
-                required
-              />
-              <div
-                v-show="!validation.name.success"
-                id="input_name"
-                class="error_js"
-              >
-                {{ validation.name.message }}
+        <div class="">
+          <div class="wrapper">
+            <div class="info">
+              <div class="form-group">
+                <label for="name">Inserisci Nome *</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  :class="{ input_error_js: !validation.name.success }"
+                  id="name"
+                  name="name"
+                  v-model="form.client.name"
+                  required
+                />
+                <div
+                  v-show="!validation.name.success"
+                  id="input_name"
+                  class="error_js"
+                >
+                  {{ validation.name.message }}
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="cognome">Inserisci il cognome *</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  :class="{ input_error_js: !validation.cognome.success }"
+                  id="cognome"
+                  name="cognome"
+                  v-model="form.client.cognome"
+                  required
+                />
+                <div
+                  v-show="!validation.cognome.success"
+                  id="input_surname"
+                  class="error_js"
+                >
+                  {{ validation.cognome.message }}
+                </div>
               </div>
             </div>
 
+            <div class="contacts">
+              <div class="form-group">
+                <label for="address">Indirizzo *</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  :class="{ input_error_js: !validation.address.success }"
+                  id="address"
+                  name="address"
+                  v-model="form.client.address"
+                  required
+                />
+                <div
+                  v-show="!validation.address.success"
+                  id="input_address"
+                  class="error_js"
+                >
+                  {{ validation.address.message }}
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="telephone">Telefono *</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  :class="{ input_error_js: !validation.telephone.success }"
+                  id="telephone"
+                  name="telephone"
+                  v-model="form.client.telephone"
+                  required
+                />
+                <div
+                  v-show="!validation.telephone.success"
+                  id="input_telephone"
+                  class="error_js"
+                >
+                  {{ validation.telephone.message }}
+                </div>
+              </div>
+            </div>
             <div class="form-group">
-              <label for="cognome">Inserisci il cognome *</label>
+              <label for="email">Inserisci la mail *</label>
               <input
-                type="text"
+                type="email"
                 class="form-control"
-                :class="{ input_error_js: !validation.cognome.success }"
-                id="cognome"
-                name="cognome"
-                v-model="form.client.cognome"
+                :class="{ input_error_js: !validation.email.success }"
+                id="email"
+                name="email"
+                v-model="form.client.email"
                 required
               />
               <div
-                v-show="!validation.cognome.success"
-                id="input_surname"
+                v-show="!validation.email.success"
+                id="input_email"
                 class="error_js"
               >
-                {{ validation.cognome.message }}
+                {{ validation.email.message }}
               </div>
             </div>
           </div>
-
-          <div class="contacts">
-            <div class="form-group">
-              <label for="address">Indirizzo *</label>
-              <input
-                type="text"
-                class="form-control"
-                :class="{ input_error_js: !validation.address.success }"
-                id="address"
-                name="address"
-                v-model="form.client.address"
-                required
-              />
-              <div
-                v-show="!validation.address.success"
-                id="input_address"
-                class="error_js"
-              >
-                {{ validation.address.message }}
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="telephone">Telefono *</label>
-              <input
-                type="text"
-                class="form-control"
-                :class="{ input_error_js: !validation.telephone.success }"
-                id="telephone"
-                name="telephone"
-                v-model="form.client.telephone"
-                required
-              />
-              <div
-                v-show="!validation.telephone.success"
-                id="input_telephone"
-                class="error_js"
-              >
-                {{ validation.telephone.message }}
-              </div>
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="email">Inserisci la mail *</label>
-            <input
-              type="email"
-              class="form-control"
-              :class="{ input_error_js: !validation.email.success }"
-              id="email"
-              name="email"
-              v-model="form.client.email"
-              required
-            />
-            <div
-              v-show="!validation.email.success"
-              id="input_email"
-              class="error_js"
+          <div class="cart-payment">
+            <v-braintree
+              v-if="loaded"
+              locale="it_IT"
+              :authorization="tokenGenerated"
+              @success="onSuccess"
+              @error="onError"
             >
-              {{ validation.email.message }}
+              <template #button="slotProps">
+                <div ref="paymentBtnRef" @click="slotProps.submit" />
+              </template>
+            </v-braintree>
+
+            <div v-else>
+              <div class="lds-roller">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+              </div>
             </div>
+            <button type="button" class="btn" @click="beforeBuy()">
+              Procedi al pagamento
+            </button>
           </div>
         </div>
 
-        <div class="cart-payment">
-          <v-braintree
-            v-if="loaded"
-            locale="it_IT"
-            :authorization="tokenGenerated"
-            @success="onSuccess"
-            @error="onError"
-          >
-            <template #button="slotProps">
-              <div ref="paymentBtnRef" @click="slotProps.submit" />
-            </template>
-          </v-braintree>
+        <div class="summary_card">
+          <div class="info-order">
+            <h3>{{ restaurant.name }}</h3>
 
-          <div v-else>
-            <div class="lds-roller">
-              <div></div>
-              <div></div>
-              <div></div>
-              <div></div>
-              <div></div>
-              <div></div>
-              <div></div>
-              <div></div>
+            <div class="img_restaurant">
+              <img
+                :src="`/storage/${restaurant.image}`"
+                :alt="restaurant.name"
+              />
             </div>
+            <ul>
+              <li v-for="food in foods" :key="food.id">
+                <span>- {{ food.name }}</span>
+                <span>x{{ food.quantity }}</span>
+              </li>
+            </ul>
+            <div class="total">Totale speso {{ getTotal() }}€</div>
           </div>
-          <button type="button" class="btn" @click="beforeBuy()">
-            Procedi al pagamento
-          </button>
         </div>
       </form>
       <div v-else class="loading-payment">
@@ -147,12 +168,14 @@
 <script>
 export default {
   name: "Checkout",
+  name: "Success",
   data() {
     return {
       tokenGenerated: "",
       loaded: false,
       loading: null,
       foods: [],
+      restaurant: {},
       form: {
         tokenClient: "",
         foods: [],
@@ -189,6 +212,24 @@ export default {
     };
   },
   methods: {
+    takeInfo() {
+      this.foods = JSON.parse(localStorage.getItem("foods"));
+      this.restaurant = JSON.parse(localStorage.getItem("restaurant"));
+    },
+
+    getTotal() {
+      let total = 0;
+
+      if (this.restaurant.shipping) {
+        total += this.restaurant.shipping;
+      }
+
+      this.foods.forEach((food) => {
+        total += food.price * food.quantity;
+      });
+
+      return total;
+    },
     redirect() {
       this.$router.push({
         name: "success",
@@ -322,7 +363,7 @@ export default {
   },
 
   created() {
-    this.foods = JSON.parse(localStorage.getItem("foods"));
+    this.takeInfo();
     this.foods.forEach((element) => {
       this.form.foods.push({
         id: element.id,
@@ -349,41 +390,37 @@ export default {
   background-repeat: no-repeat;
 }
 ._my_container {
-  // display: flex;
-  // justify-content: space-around;
   padding: 20px 10px;
-  width: 100%;
 }
 
 .wrapper {
   background-color: white;
   padding: 20px;
   border-radius: 10px;
-  // width: 65%;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  // margin-right: 100px;
 }
 form {
-  // display: flex;
   padding-top: 40px;
-  .form-group {
-    display: flex;
-    flex-direction: column;
-    margin: 10px 0;
-    // width: 45%;
+  align-items: start;
+  display: flex;
+  flex-direction: column-reverse;
+}
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin: 10px 0;
 
-    @media (min-width: 768px) {
-      width: 45%;
-    }
+  @media (min-width: 768px) {
+    width: 45%;
+  }
 
-    input {
-      border-radius: 5px;
-      padding: 10px;
-      margin: 5px 0;
-      border: 1px solid var(--dark-grey);
-    }
+  input {
+    border-radius: 5px;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid var(--dark-grey);
   }
 }
 
@@ -417,7 +454,8 @@ form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  // width: 45%;
+  justify-content: center;
+  margin-bottom: 30px;
 }
 
 .loading-payment {
@@ -562,6 +600,20 @@ form {
     width: 90%;
     margin: auto;
   }
+
+  .wrapper {
+    margin: 0 20px;
+  }
+
+  .cart-payment {
+    margin: 0 20px;
+  }
+
+  .summary_card {
+    padding: 20px;
+    margin: 20px auto;
+    width: 100% !important;
+  }
 }
 
 @media (min-width: 992px) {
@@ -571,20 +623,14 @@ form {
   }
 
   form {
-    display: flex;
-    justify-content: space-between;
+    flex-direction: row !important;
 
     .form-group {
       width: 100%;
     }
   }
-
-  .wrapper {
-    width: 50%;
-  }
-
-  .cart-payment {
-    width: 40%;
+  .summary_card {
+    width: 40% !important;
   }
 }
 
@@ -595,7 +641,7 @@ form {
   }
 
   form {
-    align-items: center;
+    align-items: start;
 
     .form-group {
       width: 45%;
@@ -606,6 +652,44 @@ form {
   .wrapper {
     padding: 30px 20px;
   }
+
+  .summary_card {
+    width: 40% !important;
+  }
+}
+
+.summary_card {
+  width: 100%;
+  background-color: var(--white);
+  border: 1px solid var(--dark-grey);
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 30px;
+
+  .info-order {
+    text-align: center;
+  }
+
+  .img_restaurant {
+    width: 200px;
+    margin: 10px auto;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  ul {
+    margin: 10px 0;
+
+    li {
+      font-size: 0.9rem;
+    }
+  }
+}
+
+a {
+  color: var(--white);
 }
 </style>
 
