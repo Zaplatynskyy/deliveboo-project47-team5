@@ -1,8 +1,8 @@
 <template>
   <div>
     <Header />
-    <Main />
-    <Footer />
+    <Main v-show="dataShared.loaded" />
+    <Footer v-show="dataShared.loaded" />
   </div>
 </template>
 
@@ -10,6 +10,7 @@
 import Header from "./components/macro/Header.vue";
 import Main from "./components/macro/Main.vue";
 import Footer from "./components/macro/Footer.vue";
+import dataShared from "./dataShared"
 
 export default {
   name: "App",
@@ -18,5 +19,10 @@ export default {
     Main,
     Footer,
   },
+  data() {
+    return {
+      dataShared
+    }
+  }
 };
 </script>

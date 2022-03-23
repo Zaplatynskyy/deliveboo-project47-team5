@@ -63,7 +63,10 @@ export default {
     name: "FoodCard",
     props: {
         food: Object,
-        restaurant: Object,
+        restaurant: {
+            type: Object,
+            required: false
+        },
         quantity: Number,
     },
     data() {

@@ -4,7 +4,7 @@
             <div class="title">
                 <h3>Vuoi creare un nuovo carrello?</h3>
             </div>
-            <div class="text">
+            <div v-if="cartName" class="text">
                 In questo modo cancelli il carrello esistente da <strong>{{cartName.name}}</strong>
                 e crei un nuovo carrello da <strong>{{restaurant.name}}</strong>.
             </div>
