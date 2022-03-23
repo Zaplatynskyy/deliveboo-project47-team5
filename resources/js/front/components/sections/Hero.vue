@@ -191,11 +191,11 @@ export default {
                     left: 10px;
 
                     &:hover {
-                        color: #5e5d5d;
+                        transform: scale(1.2);
                     }
 
                     &:active {
-                        color: var(--dark-grey);
+                        transform: scale(1);
                     }
                 }
 

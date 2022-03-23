@@ -204,6 +204,14 @@ export default {
                     align-items: center;
                     cursor: pointer;
                     margin-left: 6px;
+
+                    &:hover {
+                        border: 2px solid #d4d4d4;
+                    }
+
+                    &:active {
+                        box-shadow: 0px 0px 1px 2px #B2F0EB;
+                    }
                 }
 
                 .littles {
@@ -223,6 +231,14 @@ export default {
                         display: flex;
                         justify-content: center;
                         align-items: center;
+
+                        &:hover {
+                            border: 2px solid #d4d4d4;
+                        }
+
+                        &:active {
+                            box-shadow: 0px 0px 1px 2px #B2F0EB;
+                        }
                     }
                 }
             }

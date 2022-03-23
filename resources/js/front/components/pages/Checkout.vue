@@ -2,7 +2,7 @@
   <div class="checkout-page">
     <div class="_my_container">
       <form v-if="!loading">
-        <div class="">
+        <div>
           <div class="wrapper">
             <div class="info">
               <div class="form-group">
@@ -403,7 +403,7 @@ export default {
 }
 form {
   padding-top: 40px;
-  align-items: start;
+  align-items: flex-start;
   display: flex;
   flex-direction: column-reverse;
 }

@@ -1,5 +1,5 @@
 <template>
-    <div class="modal-overlay">
+    <div class="clear_cart_modal">
         <div class="modal">
             <div class="title">
                 <h3>Sei sicuro di voler eliminare i piatti salvati nel carrello?</h3>
@@ -23,17 +23,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.modal-overlay {
+.clear_cart_modal {
     position: fixed;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
-    z-index: 100;
+    z-index: 1000;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #0000007c;
+    // background-color: #0000007c;
 
     .modal {
         background-color: var(--white);
@@ -87,7 +87,7 @@ export default {
 }
 
 @media screen and (min-width: 576px) {
-    .modal-overlay {
+    .clear_cart_modal {
 
         .modal {
             width: 70%;
@@ -96,7 +96,7 @@ export default {
 }
 
 @media screen and (min-width: 768px) {
-    .modal-overlay {
+    .clear_cart_modal {
 
         .modal {
             width: 60%;
@@ -105,7 +105,7 @@ export default {
 }
 
 @media screen and (min-width: 992px) {
-    .modal-overlay {
+    .clear_cart_modal {
 
         .modal {
             width: 50%;
@@ -114,7 +114,7 @@ export default {
 }
 
 @media screen and (min-width: 1200px) {
-    .modal-overlay {
+    .clear_cart_modal {
 
         .modal {
             width: 40%;
@@ -123,7 +123,7 @@ export default {
 }
 
 @media screen and (min-width: 1400px) {
-    .modal-overlay {
+    .clear_cart_modal {
 
         .modal {
             width: 30%;

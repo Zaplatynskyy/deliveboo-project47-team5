@@ -1,7 +1,9 @@
 <template>
     <div class="restaurant">
 
-        <div class="modal-overlay d-lg-none" :class="{ display_none : cartOff }"></div>
+        <div class="modal-overlay" :class="{ display_none : cartOff }"></div>
+        <div class="modal-clear-overlay" :class="{ display_none : !modalClear }"></div>
+        <div class="modal-new-overlay" :class="{ display_none : !modalNew }"></div>
 
         <MainRestaurantCard :restaurant="restaurant" />
         <div v-if="restaurant.foods" class="menu my_container_fluid">
@@ -105,12 +107,14 @@
             </div>
         </div>
         <ClearCartModal
-            v-if="modalClear"
+            class="cart_modal"
+            :class="{ display_none : !modalClear }"
             @clearCart="clearCart(); toggleModalClear();"
             @closeModal="toggleModalClear()"
         />
         <NewCartModal
-            v-if="modalNew"
+            class="cart_modal"
+            :class="{ display_none : !modalNew }"
             @clearCart="doModal(selectedFood)"
             @closeModal="toggleModalNew()"
             :restaurant="restaurant"
@@ -306,17 +310,26 @@ export default {
 
 <style lang="scss" scoped>
 
-.modal-overlay {
+.modal-clear-overlay, .modal-new-overlay{
+    z-index: 1000;
+}
+
+.modal-overlay{
+    z-index: 100;
+}
+
+.modal-overlay, .modal-clear-overlay, .modal-new-overlay {
     position: fixed;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
-    z-index: 100;
-    background-color: #0000007c;
+    background-color: #0000007c; 
+    transition: .5s;
 
     &.display_none {
-        display: none;
+        opacity: 0;
+        visibility: hidden;
     }
 }
 
@@ -363,10 +376,15 @@ export default {
             left: 20px;
             bottom: 80px;
             z-index: 999;
+            opacity: 1;
+            transition: .5s;
 
             &.display_none {
-                display: none;
+                transform: translateX(100vw);
+                opacity: 0;
             }
+
+            
 
             .cart {
                 padding: 20px;
@@ -497,6 +515,14 @@ export default {
                     color: var(--main-color);
                     border: 1px solid var(--main-color);
                     cursor: pointer;
+
+                    &:hover {
+                        transform: scale(1.2);
+                    }
+
+                    &:active {
+                        transform: scale(1);
+                    }
                 }
 
                 .empty_trash {
@@ -517,6 +543,15 @@ export default {
                     }
                 }
             }
+        }
+    }
+
+    .cart_modal {
+        transition: .5s;
+
+        &.display_none {
+            transform: translateY(-100vh);
+            opacity: 0;
         }
     }
 
@@ -553,6 +588,11 @@ export default {
                 top: 100px;
                 margin-top: 20px;
                 z-index: 90;
+
+                &.display_none {
+                    transform: none;
+                    opacity: 1
+                }
             }
         }
 
