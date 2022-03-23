@@ -152,7 +152,8 @@ export default {
             modalClear: false,
             modalNew: false,
             selectedFood: {},
-            cartOff : true
+            cartOff : true,
+            windowWidth: window.innerWidth
         };
     },
     methods: {
@@ -285,6 +286,16 @@ export default {
             .catch(function (error) {
             });
     },
+
+     mounted() {
+        window.onresize = () => {
+            this.windowWidth = window.innerWidth
+            if ( this.windowWidth > 992 ) {
+                this.cartOff = true
+            }
+        }
+    },
+
     computed: {
         getTypes() {
             let typeNames = [];
@@ -377,12 +388,6 @@ export default {
         }
 
         .cart-wrapper {
-            // width: 30%;
-            // padding-left: 30px;
-            // position: sticky;
-            // top: 100px;
-            // margin-top: 20px;
-
             position: fixed;
             right: 20px;
             left: 20px;
