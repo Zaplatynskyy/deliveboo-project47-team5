@@ -35,7 +35,6 @@ export default {
         };
     },
     methods: {
-        
         searchRestaurants() {
             let categories = this.checkCheckbox("checkboxCategories");
             let tags = this.checkCheckbox("checkboxTags");
@@ -54,17 +53,23 @@ export default {
                     },
                 })
                 .then((response) => {
-                    console.log(response.data);
                     dataShared.restaurants = [...response.data.users];
                     dataShared.noResultsFound = null;
                 })
                 .catch((error) => {
-                    console.log(error);
                     dataShared.noResultsFound = error.response.data.message;
                     dataShared.restaurants = [];
                 })
                 .then(function () {
                     dataShared.lastQuery = dataShared.query;
+                    let restaurant = document.querySelector(".my_container.categories-container");
+                    window.scrollTo({
+                        top:
+                            window.pageYOffset +
+                            restaurant.getBoundingClientRect().top -
+                            90,
+                        behavior: "smooth",
+                    });
                 });
         },
         checkCheckbox(type) {

@@ -12,6 +12,7 @@ export default {
 
 <style lang="scss" scoped>
 main {
+    min-height: calc(100vh - 80px);
     margin-top: 80px;
 }
 </style>

@@ -38,6 +38,9 @@
                         >
                             +
                         </div>
+                        <span v-if="quantity" class="quantity">
+                            {{ quantity }}
+                        </span>
                         <div
                             @click="
                                 $emit('removeCart');
@@ -60,7 +63,8 @@ export default {
     name: "FoodCard",
     props: {
         food: Object,
-        restaurant: Object
+        restaurant: Object,
+        quantity: Number,
     },
     data() {
         return {
@@ -75,7 +79,6 @@ export default {
             let check = foods.some((element) => {
                 return element.id == this.food.id;
             });
-            console.log(check);
             this.exist = check;
         },
     },
@@ -85,8 +88,11 @@ export default {
     watch: {
         restaurant(newValue) {
             this.checkFood();
+        },
+        quantity(newValue) {
+            this.checkFood();
         }
-    }
+    },
 };
 </script>
 
@@ -105,7 +111,6 @@ export default {
         width: 50%;
     }
     @media (min-width: 992px) {
-        
         padding: 0 !important;
         padding-right: 24px !important;
     }
@@ -213,16 +218,26 @@ export default {
                     flex-direction: column;
                     justify-content: space-between;
                     margin-left: 6px;
+                    align-items: center;
 
                     > div {
                         cursor: pointer;
                         user-select: none;
+                        width: 30px;
                         height: 30px;
                         border: 2px solid #ebebeb;
                         border-radius: 3px;
                         display: flex;
                         justify-content: center;
                         align-items: center;
+                    }
+
+                    .minus {
+                        font-size: 22px;
+                    }
+
+                    .quantity {
+                        color: var(--main-color);
                     }
                 }
             }

@@ -16,6 +16,7 @@
                             :key="food.id"
                             :food="food"
                             :restaurant="cartName"
+                            :quantity="foodQuantity(food)"
                         />
                     </div>
                 </div>
@@ -246,6 +247,18 @@ export default {
                 this.addToCart(food);
             }
         },
+        foodQuantity(food) {
+            let cartFood = this.foods;
+            let index = cartFood.findIndex((element) => {
+                return element.id == food.id
+            })
+
+            if(index == -1) {
+                return 0;
+            } else {
+                return cartFood[index].quantity;
+            }
+        }
     },
     beforeRouteEnter(to, from, next) {
         next((app) => {
@@ -266,7 +279,6 @@ export default {
                 this.restaurant = response.data.user;
             })
             .catch(function (error) {
-                console.log(error);
             });
     },
     computed: {
@@ -384,6 +396,7 @@ export default {
                     display: flex;
                     justify-content: space-between;
                     align-items: center;
+                    flex-direction: row-reverse;
 
                     button {
                         padding: 8px 10px;
@@ -551,7 +564,7 @@ export default {
                 padding-left: 30px;
                 position: sticky;
                 top: 100px;
-                margin-top: 20px;
+                margin-top: 60px;
                 z-index: 90;
             }
         }
