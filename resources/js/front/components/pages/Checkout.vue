@@ -1,7 +1,7 @@
 <template>
     <div class="checkout-page">
         <div class="_my_container">
-            <form v-if="!loading && !loaded">
+            <form v-if="!loading && loaded">
                 <div class="">
                     <div class="wrapper">
                         <div class="info">

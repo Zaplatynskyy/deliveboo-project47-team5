@@ -1,11 +1,11 @@
 <template>
   <header class="d-flex justify-content-between align-items-center">
-      <router-link :to="{ name: 'home' }" >
+      <a href="/" >
         <div class="logo d-flex align-items-center">
             <img src="/storage/uploads/logo-deliveroo.png" alt="logo deliveroo">
             <span class="header_title">deliveboo</span>
         </div>
-      </router-link>
+      </a>
 
     <a href="/admin/home">
       <button class="btn btn-main">
