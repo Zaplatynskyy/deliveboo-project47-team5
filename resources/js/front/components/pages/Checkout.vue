@@ -427,10 +427,10 @@ export default {
     justify-content: center;
 }
 form {
-    padding-top: 40px;
-    align-items: flex-start;
-    display: flex;
-    flex-direction: column-reverse;
+  padding-top: 40px;
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column-reverse;
 }
 .form-group {
     display: flex;
