@@ -76,4 +76,10 @@ export default {
         }
     }
 }
+
+.no-results {
+    h2 {
+        margin-bottom: 2.5rem;
+    }
+}
 </style>

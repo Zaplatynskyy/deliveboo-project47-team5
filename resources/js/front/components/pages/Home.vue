@@ -3,10 +3,11 @@
     <div class="home_navbar">
       <Hero />
       <Categories :categories="dataShared.categories" />
-      <Banner />
+      
     </div>
 
     <Results />
+    <Banner />
   </div>
 </template>
 
@@ -44,11 +45,9 @@ export default {
               dataShared.tags = [...response.data.tags];
             })
             .catch(function (error) {
-              console.log(error);
             });
         })
         .catch(function (error) {
-          console.log(error);
         });
     },
     saveQuery(value) {
@@ -57,23 +56,6 @@ export default {
   },
   created() {
     this.getCategoriesAndTags();
-  },
-  watch: {
-    "dataShared.restaurants"(newValue) {
-      if (dataShared.restaurants.length > 0 || dataShared.noResultsFound) {
-        setTimeout(() => {
-          // const restaurant = document.querySelectorAll(".restaurant")
-          // console.log(restaurant[restaurant.length - 1]);
-          // restaurant[restaurant.length - 1].scrollIntoView({
-          //     behavior: "smooth",
-          // });
-          window.scrollTo({
-            top: document.body.scrollHeight,
-            behavior: "smooth",
-          });
-        }, 10);
-      }
-    },
   },
 };
 </script>

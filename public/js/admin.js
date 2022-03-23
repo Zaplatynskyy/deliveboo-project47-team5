@@ -37307,10 +37307,8 @@ if (editToggle != null && submitForm != null) {
   var _loop = function _loop(i) {
     editToggle[i].addEventListener("click", function () {
       var invalidInput = document.querySelector(".my_validation");
-      console.log(invalidInput);
 
       if (invalidInput != undefined) {
-        console.log('ciao');
         var alertDanger = document.querySelector(".alert-danger");
         var invalidSubmit = document.querySelector(".failed-validation.submitForm");
         var invalidName = document.querySelector("div.name-input");
@@ -37476,57 +37474,45 @@ if (buttonsToggle != null) {
 
 if (buttonDelete != null) {
   buttonDelete.addEventListener("click", function () {
-    console.log(dataId);
     axios({
       method: "delete",
       url: "foods/".concat(dataId)
     }).then(function (response) {
       item[counter].classList.add("d-none");
-    })["catch"](function (error) {
-      console.log(error);
-    });
+    })["catch"](function (error) {});
   });
 }
 
 if (buttonDeleteCategory != null) {
   buttonDeleteCategory.addEventListener("click", function () {
-    console.log(dataId);
     axios({
       method: "delete",
       url: "categories/".concat(dataId)
     }).then(function (response) {
       item[counter].classList.add("d-none");
-    })["catch"](function (error) {
-      console.log(error);
-    });
+    })["catch"](function (error) {});
   });
 }
 
 if (buttonDeleteType != null) {
   buttonDeleteType.addEventListener("click", function () {
-    console.log(dataId);
     axios({
       method: "delete",
       url: "types/".concat(dataId)
     }).then(function (response) {
       item[counter].classList.add("d-none");
-    })["catch"](function (error) {
-      console.log(error);
-    });
+    })["catch"](function (error) {});
   });
 }
 
 if (buttonDeleteTag != null) {
   buttonDeleteTag.addEventListener("click", function () {
-    console.log(dataId);
     axios({
       method: "delete",
       url: "tags/".concat(dataId)
     }).then(function (response) {
       item[counter].classList.add("d-none");
-    })["catch"](function (error) {
-      console.log(error);
-    });
+    })["catch"](function (error) {});
   });
 }
 
@@ -37625,7 +37611,6 @@ var registrationForm = document.getElementById('add_food_form');
 window.validateNumbers = function (input) {
   var pattern = /^[0-9]*\.?[0-9]*$/;
   input.value = input.value.replace('.', '');
-  console.log(!input.value.match(pattern));
   if (!input.value.match(pattern)) input.value = input.value.replace(input.value[input.value.length - 1], '');
 };
 
@@ -37909,15 +37894,9 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-<<<<<<< HEAD
-__webpack_require__(/*! C:\Users\vicoa\Desktop\deliveboo-project47-team5-1\resources\js\admin\admin.js */"./resources/js/admin/admin.js");
-__webpack_require__(/*! C:\Users\vicoa\Desktop\deliveboo-project47-team5-1\resources\sass\admin\admin.scss */"./resources/sass/admin/admin.scss");
-module.exports = __webpack_require__(/*! C:\Users\vicoa\Desktop\deliveboo-project47-team5-1\resources\sass\front\front.scss */"./resources/sass/front/front.scss");
-=======
 __webpack_require__(/*! /Users/simonespirito/Downloads/Boolean/deliveboo-project47-team5-1/resources/js/admin/admin.js */"./resources/js/admin/admin.js");
 __webpack_require__(/*! /Users/simonespirito/Downloads/Boolean/deliveboo-project47-team5-1/resources/sass/admin/admin.scss */"./resources/sass/admin/admin.scss");
 module.exports = __webpack_require__(/*! /Users/simonespirito/Downloads/Boolean/deliveboo-project47-team5-1/resources/sass/front/front.scss */"./resources/sass/front/front.scss");
->>>>>>> feat-add-modal-confirm-clear-cart
 
 
 /***/ })

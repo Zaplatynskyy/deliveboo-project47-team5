@@ -10,9 +10,7 @@ if (editToggle != null && submitForm != null) {
     for (let i = 0; i < editToggle.length; i++) {
         editToggle[i].addEventListener("click", function () {
             const invalidInput = document.querySelector(".my_validation");
-            console.log(invalidInput);
             if (invalidInput != undefined) {
-                console.log('ciao');
                 const alertDanger = document.querySelector(".alert-danger");
                 const invalidSubmit = document.querySelector(
                     ".failed-validation.submitForm"

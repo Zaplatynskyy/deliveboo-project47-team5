@@ -1,5 +1,5 @@
 <template>
-    <div class="my_container">
+    <div class="my_container categories-container">
         <div class="title">
             <h2>Ordina subito il tuo cibo preferito</h2>
         </div>

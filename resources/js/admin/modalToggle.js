@@ -41,7 +41,6 @@ if (buttonsToggle != null) {
 
 if (buttonDelete != null) {
     buttonDelete.addEventListener("click", function () {
-        console.log(dataId);
         axios({
             method: "delete",
             url: `foods/${dataId}`,
@@ -50,14 +49,12 @@ if (buttonDelete != null) {
                 item[counter].classList.add("d-none");
             })
             .catch(function (error) {
-                console.log(error);
             });
     });
 }
 
 if (buttonDeleteCategory != null) {
     buttonDeleteCategory.addEventListener("click", function () {
-        console.log(dataId);
         axios({
             method: "delete",
             url: `categories/${dataId}`,
@@ -66,14 +63,12 @@ if (buttonDeleteCategory != null) {
                 item[counter].classList.add("d-none");
             })
             .catch(function (error) {
-                console.log(error);
             });
     });
 }
 
 if (buttonDeleteType != null) {
     buttonDeleteType.addEventListener("click", function () {
-        console.log(dataId);
         axios({
             method: "delete",
             url: `types/${dataId}`,
@@ -82,14 +77,12 @@ if (buttonDeleteType != null) {
                 item[counter].classList.add("d-none");
             })
             .catch(function (error) {
-                console.log(error);
             });
     });
 }
 
 if (buttonDeleteTag != null) {
     buttonDeleteTag.addEventListener("click", function () {
-        console.log(dataId);
         axios({
             method: "delete",
             url: `tags/${dataId}`,
@@ -98,7 +91,6 @@ if (buttonDeleteTag != null) {
                 item[counter].classList.add("d-none");
             })
             .catch(function (error) {
-                console.log(error);
             });
     });
 }
