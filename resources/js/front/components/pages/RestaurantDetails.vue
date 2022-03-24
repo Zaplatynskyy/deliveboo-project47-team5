@@ -248,6 +248,7 @@ export default {
             this.foods = [];
             localStorage.removeItem("foods");
             localStorage.removeItem("restaurant");
+            this.cartName = null;
         },
         checkout() {
             if (this.validatePrice) {
