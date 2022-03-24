@@ -22,9 +22,8 @@
                     <div
                         @click="
                             $emit('addCart');
-                            checkFood();
                         "
-                        v-if="!exist"
+                        v-if="!quantity"
                         class="big"
                     >
                         +
@@ -33,7 +32,6 @@
                         <div
                             @click="
                                 $emit('addCart');
-                                checkFood();
                             "
                         >
                             +
@@ -44,7 +42,6 @@
                         <div
                             @click="
                                 $emit('removeCart');
-                                checkFood();
                             "
                         >
                             -
@@ -72,29 +69,7 @@ export default {
     data() {
         return {
             dataShared,
-            exist: null,
         };
-    },
-    methods: {
-        checkFood() {
-            let foods = JSON.parse(localStorage.getItem("foods"));
-            if (!foods) return;
-            let check = foods.some((element) => {
-                return element.id == this.food.id;
-            });
-            this.exist = check;
-        },
-    },
-    mounted() {
-        this.checkFood();
-    },
-    watch: {
-        restaurant(newValue) {
-            this.checkFood();
-        },
-        quantity(newValue) {
-            this.checkFood();
-        }
     },
 };
 </script>
