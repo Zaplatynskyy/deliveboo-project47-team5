@@ -41,7 +41,16 @@
                                 class="restaurant-name"
                             >
                                 <div>
-                                    Stai ordinando da "{{ cartName.name }}"
+                                    Stai ordinando da
+                                    <router-link
+                                        :to="{
+                                            name: 'restaurant-details',
+                                            params: {
+                                                slug: cartName.slug,
+                                            },
+                                        }"
+                                        ><span>"{{ cartName.name }}"</span>
+                                    </router-link>
                                 </div>
                             </div>
                             <div
@@ -500,6 +509,11 @@ export default {
 
                         .restaurant-name {
                             margin-bottom: 20px;
+
+                            span {
+                                color: var(--main-color);
+                                font-weight: 600;
+                            }
                         }
                     }
 
