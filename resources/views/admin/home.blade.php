@@ -5,6 +5,19 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
+                    <div class="card-header">
+                        Statistiche
+                    </div>
+
+                    <div class="card-body">
+                        <canvas id="popChart" width="600" height="400"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
                     <div class="card-header">Ordini in arrivo</div>
 
                     <div class="card-body">

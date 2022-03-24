@@ -37268,6 +37268,18 @@ module.exports = function(module) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 __webpack_require__(/*! ../bootstrap */ "./resources/js/bootstrap.js");
 
 __webpack_require__(/*! ./validationFormUser */ "./resources/js/admin/validationFormUser.js");
@@ -37279,6 +37291,43 @@ __webpack_require__(/*! ./validationFormAdmin */ "./resources/js/admin/validatio
 __webpack_require__(/*! ./modalToggle */ "./resources/js/admin/modalToggle.js");
 
 __webpack_require__(/*! ./editSubmitForm */ "./resources/js/admin/editSubmitForm.js");
+
+var popCanvas = document.getElementById("popChart");
+var d = new Date();
+var month = d.getMonth() + 1;
+var year = d.getFullYear();
+
+var getDaysInMonth = function getDaysInMonth(month, year) {
+  return new Date(year, month, 0).getDate();
+};
+
+var days = getDaysInMonth(month, year);
+console.log(month);
+console.log(year);
+console.log(days);
+var arrayDays = [];
+
+for (var i = 1; i <= days; i++) {
+  arrayDays.push(i);
+}
+
+var data = [];
+console.log("/api/orders/".concat(month));
+axios.get("/api/orders/".concat(month)).then(function (response) {
+  data = _toConsumableArray(response.data.orders);
+  var barChart = new Chart(popCanvas, {
+    type: "bar",
+    data: {
+      labels: arrayDays,
+      datasets: [{
+        label: "Ordini",
+        data: data,
+        backgroundColor: ["rgba(255, 99, 132, 0.6)", "rgba(54, 162, 235, 0.6)", "rgba(255, 206, 86, 0.6)", "rgba(75, 192, 192, 0.6)", "rgba(153, 102, 255, 0.6)", "rgba(255, 159, 64, 0.6)", "rgba(255, 99, 132, 0.6)", "rgba(54, 162, 235, 0.6)", "rgba(255, 206, 86, 0.6)", "rgba(75, 192, 192, 0.6)", "rgba(153, 102, 255, 0.6)"]
+      }]
+    }
+  });
+})["catch"](function (error) {});
+console.log(data);
 
 /***/ }),
 

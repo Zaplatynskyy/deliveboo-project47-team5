@@ -48,15 +48,15 @@ class OrderController extends Controller
         }
 
         $data = $request->all();
-        
-        
+
+
         $foods = $data['foods'];
         $food = Food::find($foods[0]['id']);
         $user = $food->user;
 
         $total = 0;
 
-        if($user->shipping) {
+        if ($user->shipping) {
             $total += $user->shipping;
         }
 
@@ -67,7 +67,7 @@ class OrderController extends Controller
         if ($total < $user->min_price && $user->min_price) {
             return response()->json([
                 "success" => false,
-                "errors" => 'Per procedere devi acquistare un minimo di '. $user->min_price
+                "errors" => 'Per procedere devi acquistare un minimo di ' . $user->min_price
             ], 400);
         }
 
@@ -111,5 +111,28 @@ class OrderController extends Controller
             ];
             return response()->json($data, 401);
         }
+    }
+
+    public function date($date)
+    {
+
+        if ($date < 10) $date = '0' . $date;
+
+        $numberOfOrders = [];
+
+        $days = cal_days_in_month(CAL_GREGORIAN, $date, date("Y"));
+
+        for ($i = 1; $i <= $days; $i++) {
+            if ($i < 10) $i = '0' . $i;
+            $orders = Order::where('created_at', 'like', '%' . '-' . $date . '-' . $i . '%')->where('accepted', 1)->get();
+            $numberOfOrders[] = count($orders);
+        }
+
+
+        $data = [
+            'success' => true,
+            'orders' => $numberOfOrders
+        ];
+        return response()->json($data, 200);
     }
 }
