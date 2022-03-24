@@ -77,7 +77,7 @@ export default {
   display: flex;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  height: 100%;
+  height: 170px;
   margin-bottom: 1.775rem;
   transition: 0.15s;
   cursor: pointer;
@@ -139,7 +139,7 @@ export default {
           font-size: 20px;
         }
         @media (min-width: 1200px) {
-          font-size: 20px;
+          font-size: 24px;
         }
       }
     }
