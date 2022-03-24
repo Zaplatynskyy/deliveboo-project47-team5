@@ -29,4 +29,7 @@ Route::post('orders/make/payment', 'Api\OrderController@makePayment');
 
 //orders
 Route::post('/orders/sending', 'Api\OrderController@store');
-Route::get('/orders/{date}', 'Api\OrderController@date');
+Route::post('/orders/last-month', 'Api\OrderController@month');
+
+// foods
+Route::post('/foods/last-month', 'Api\FoodController@month');

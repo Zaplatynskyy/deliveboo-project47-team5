@@ -8,6 +8,10 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    @auth
+        <meta name="user-id" content="{{ Auth::user()->id }}">
+    @endauth
+
     <title>Deliveboo</title>
 
     <!-- Scripts -->
@@ -31,7 +35,7 @@
                 {{-- <a class="navbar-brand" href="{{ url('/') }}">
                     Deliveboo
                 </a> --}}
-                <a href="{{ url('/') }}" >
+                <a href="{{ url('/') }}">
                     <div class="logo d-flex align-items-center">
                         <img src="/storage/uploads/logo-deliveroo.png" alt="logo deliveroo">
                         <span class="header_title">deliveboo</span>
@@ -105,8 +109,8 @@
                                         </a>
                                     @endif
                                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                                             document.getElementById('logout-form').submit();
-                                                                             ">
+                                                                                 document.getElementById('logout-form').submit();
+                                                                                 ">
                                         Esci
                                     </a>
 

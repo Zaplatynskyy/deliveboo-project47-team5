@@ -108,11 +108,20 @@
             <div class="col-12 col-lg-6">
                 <div class="card">
                     <div class="card-header">
-                        Statistiche
+                        Ordini nell'ultimo mese
                     </div>
     
                     <div class="card-body">
                         <canvas id="popChart" width="600" height="400"></canvas>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        Piatti ordinati nell'ultimo mese
+                    </div>
+    
+                    <div class="card-body">
+                        <canvas id="foodChart" width="600" height="400"></canvas>
                     </div>
                 </div>
             </div>

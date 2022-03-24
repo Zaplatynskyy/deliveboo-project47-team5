@@ -5,50 +5,53 @@
         <div class="row justify-content-center">
             <div class="col-md-10">
                 <div class="card">
-                    <div class="card-header">Menù</div>
+                    <div class="card-header">
+                        <h2 class="m-0">Menù</h2>
+                    </div>
                     <div class="card-body">
                         <div class="new-food">
-                            <button type="button" class="btn btn-success mb-3"><a class="text-white"
+                            <button type="button" class="my_btn btn btn-success mb-3"><a class="text-white"
                                     href="{{ route('foods.create') }}">Crea nuovo</a></button>
                         </div>
-                        <div class="foods">
-                            <table class="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">Nome</th>
-                                        <th scope="col">Prezzo</th>
-                                        <th scope="col">Visibile nel menù</th>
-                                        <th scope="col">Ingredienti</th>
-                                        <th scope="col">Azioni</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($foods as $key => $food)
-                                        <tr class="my_item">
-                                            <th scope="row">{{ $key + 1 }}</th>
-                                            <td>{{ $food->name }}</td>
-                                            <td>{{ $food->price }}€</td>
-                                            <td>
-                                                @if ($food->visible)
-                                                    <span class="badge badge-success">Visibile</span>
-                                                @else
-                                                    <span class="badge badge-danger">Non visibile</span>
-                                                @endif
-                                            </td>
-                                            <td>{{ $food->ingredients }}</td>
-                                            <td>
-                                                <button type="button" class="btn btn-info mt-1"><a class="text-white"
-                                                        href="{{ route('foods.show', $food->id) }}">Visualizza</a></button>
+                        <div class="foods row row-cols-1 row-cols-lg-2">
+                            @foreach ($foods as $key => $food)
+                                <div class="col mb-3">
+                                    <div class="food-card flex-wrap">
+                                        <div class="left">
+                                            <div class="top">
+                                                <div class="name">
+                                                    {{ $food->name }}
+                                                </div>
+                                                <div class="ingredients">
+                                                    {{ $food->ingredients }}
+                                                </div>
+                                            </div>
+                                            <div class="bottom">
+                                                <div class="price">{{ $food->price }}€</div>
+                                            </div>
+                                        </div>
+                                        <div class="right">
+                                            <div class="image">
+                                                <img src="{{ asset("storage/{$food->image}") }}"
+                                                    alt="{{ $food->name }}" />
+                                            </div>
+                                        </div>
+                                        <div class="buttons d-flex justify-content-between w-100">
+                                            <button type="button" class="view btn btn-info mt-1"><a class="text-white"
+                                                    href="{{ route('foods.show', $food->id) }}">Visualizza</a></button>
+                                            <div class="right w-50 d-flex justify-content-end">
                                                 <button type="button" class="btn btn-warning mt-1"><a class="text-white"
                                                         href="{{ route('foods.edit', $food->id) }}">Modifica</a></button>
-                                                <button type="button" class="my_btn btn btn-danger mt-1 btnToggle btnP"
+                                                <button type="button" class="my_btn btn btn-danger mt-1 ml-1 btnToggle btnP"
                                                     data-toggle="modal" data-target="#exampleModal"
                                                     data-slug="{{ $food->id }}">Elimina</button>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            @endforeach
+                            </tbody>
                             </table>
                             <!-- Modal -->
                             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
