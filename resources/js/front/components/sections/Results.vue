@@ -21,8 +21,9 @@
                     "{{ dataShared.lastQuery }}"
                 </h2>
                 <div class="order">
-                    <select name="order" id="order" v-model="dataShared.order">
+                    <select name="order" id="order" v-model="dataShared.order" hidden>
                         <option
+                            class="order_option"
                             v-for="(orderOption, i) in dataShared.orderOptions"
                             :key="i"
                             :value="orderOption"
@@ -30,6 +31,27 @@
                             {{ orderOption }}
                         </option>
                     </select>
+
+                    <div class="my_select">
+                        <div class="select_head">
+                            <span class="name selected">ciao</span>
+                            <span class="icon">$</span>
+                        </div>
+                        <div class="my_options_content">
+                            <div class="my_option">
+                                <span class="name">ciao 1</span>
+                                <span class="icon">$</span>
+                            </div>
+                            <div class="my_option">
+                                <span class="name">ciao 2</span>
+                                <span class="icon">$</span>
+                            </div>
+                            <div class="my_option">
+                                <span class="name">ciao 3</span>
+                                <span class="icon">$</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="restaurants row row-cols-1 row-cols-md-2">
@@ -80,6 +102,30 @@ export default {
 .no-results {
     h2 {
         margin-bottom: 2.5rem;
+    }
+}
+
+.my_select {
+    font-size: .9rem;
+    text-align: right;
+    text-transform: uppercase;
+    width: 100px;
+    background-color: var(--white);
+    border-radius: 5px;
+
+    .select_head {
+        padding: 5px 2px;
+        cursor: pointer;
+    }
+
+    .my_option {
+        color: var(--dark-grey);
+        padding: 5px 2px;
+        cursor: pointer;
+
+        &:hover {
+            background-color: var(--light-grey);
+        }
     }
 }
 </style>
