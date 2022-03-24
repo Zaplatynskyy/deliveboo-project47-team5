@@ -37292,42 +37292,85 @@ __webpack_require__(/*! ./modalToggle */ "./resources/js/admin/modalToggle.js");
 
 __webpack_require__(/*! ./editSubmitForm */ "./resources/js/admin/editSubmitForm.js");
 
-var popCanvas = document.getElementById("popChart");
-var d = new Date();
-var month = d.getMonth() + 1;
-var year = d.getFullYear();
+var user = document.querySelector("meta[name='user-id']");
 
-var getDaysInMonth = function getDaysInMonth(month, year) {
-  return new Date(year, month, 0).getDate();
-};
+if (user) {
+  var userId = user.getAttribute("content");
+  var popCanvas = document.getElementById("popChart");
+  var d = new Date();
+  var month = d.getMonth() + 1;
+  var year = d.getFullYear();
 
-var days = getDaysInMonth(month, year);
-console.log(month);
-console.log(year);
-console.log(days);
-var arrayDays = [];
+  var getDaysInMonth = function getDaysInMonth(month, year) {
+    return new Date(year, month, 0).getDate();
+  };
 
-for (var i = 1; i <= days; i++) {
-  arrayDays.push(i);
-}
+  var days = getDaysInMonth(month, year);
+  var arrayDays = [];
 
-var data = [];
-console.log("/api/orders/".concat(month));
-axios.get("/api/orders/".concat(month)).then(function (response) {
-  data = _toConsumableArray(response.data.orders);
-  var barChart = new Chart(popCanvas, {
-    type: "bar",
-    data: {
-      labels: arrayDays,
-      datasets: [{
-        label: "Ordini",
-        data: data,
-        backgroundColor: ["rgba(255, 99, 132, 0.6)", "rgba(54, 162, 235, 0.6)", "rgba(255, 206, 86, 0.6)", "rgba(75, 192, 192, 0.6)", "rgba(153, 102, 255, 0.6)", "rgba(255, 159, 64, 0.6)", "rgba(255, 99, 132, 0.6)", "rgba(54, 162, 235, 0.6)", "rgba(255, 206, 86, 0.6)", "rgba(75, 192, 192, 0.6)", "rgba(153, 102, 255, 0.6)"]
-      }]
+  for (var i = 1; i <= days; i++) {
+    arrayDays.push(i);
+  }
+
+  var data = [];
+  axios.post("/api/orders/last-month", {
+    params: {
+      month: month,
+      userId: userId
     }
-  });
-})["catch"](function (error) {});
-console.log(data);
+  }).then(function (response) {
+    data = _toConsumableArray(response.data.orders);
+    var barChart = new Chart(popCanvas, {
+      type: "bar",
+      data: {
+        labels: arrayDays,
+        datasets: [{
+          label: "Ordini",
+          data: data,
+          backgroundColor: ["rgba(255, 99, 132, 0.6)", "rgba(54, 162, 235, 0.6)", "rgba(255, 206, 86, 0.6)", "rgba(75, 192, 192, 0.6)", "rgba(153, 102, 255, 0.6)", "rgba(255, 159, 64, 0.6)", "rgba(255, 99, 132, 0.6)", "rgba(54, 162, 235, 0.6)", "rgba(255, 206, 86, 0.6)", "rgba(75, 192, 192, 0.6)", "rgba(153, 102, 255, 0.6)"]
+        }]
+      },
+      options: {
+        plugins: {
+          legend: {
+            display: false
+          }
+        }
+      }
+    });
+  })["catch"](function (error) {});
+  var foodChart = document.getElementById("foodChart");
+  axios.post("/api/foods/last-month", {
+    params: {
+      month: month,
+      userId: userId
+    }
+  }).then(function (response) {
+    console.log(response.data.orders);
+    var names = response.data.orders.names;
+    var quantities = response.data.orders.quantities;
+    console.log(names);
+    console.log(quantities);
+    var pieChart = new Chart(foodChart, {
+      type: "pie",
+      data: {
+        labels: names,
+        datasets: [{
+          label: "Ordini",
+          data: quantities,
+          backgroundColor: ["rgba(255, 99, 132, 0.6)", "rgba(54, 162, 235, 0.6)", "rgba(255, 206, 86, 0.6)", "rgba(75, 192, 192, 0.6)", "rgba(153, 102, 255, 0.6)", "rgba(255, 159, 64, 0.6)", "rgba(255, 99, 132, 0.6)", "rgba(54, 162, 235, 0.6)", "rgba(255, 206, 86, 0.6)", "rgba(75, 192, 192, 0.6)", "rgba(153, 102, 255, 0.6)"]
+        }]
+      },
+      options: {
+        plugins: {
+          legend: {
+            display: false
+          }
+        }
+      }
+    });
+  })["catch"](function (error) {});
+}
 
 /***/ }),
 
@@ -37943,9 +37986,9 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\User\Desktop\boolean-full\esercizi\php\deliveboo-project47-team5\resources\js\admin\admin.js */"./resources/js/admin/admin.js");
-__webpack_require__(/*! C:\Users\User\Desktop\boolean-full\esercizi\php\deliveboo-project47-team5\resources\sass\admin\admin.scss */"./resources/sass/admin/admin.scss");
-module.exports = __webpack_require__(/*! C:\Users\User\Desktop\boolean-full\esercizi\php\deliveboo-project47-team5\resources\sass\front\front.scss */"./resources/sass/front/front.scss");
+__webpack_require__(/*! /Users/simonespirito/Downloads/Boolean/deliveboo-project47-team5-1/resources/js/admin/admin.js */"./resources/js/admin/admin.js");
+__webpack_require__(/*! /Users/simonespirito/Downloads/Boolean/deliveboo-project47-team5-1/resources/sass/admin/admin.scss */"./resources/sass/admin/admin.scss");
+module.exports = __webpack_require__(/*! /Users/simonespirito/Downloads/Boolean/deliveboo-project47-team5-1/resources/sass/front/front.scss */"./resources/sass/front/front.scss");
 
 
 /***/ })

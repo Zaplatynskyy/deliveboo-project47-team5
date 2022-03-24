@@ -113,18 +113,24 @@ class OrderController extends Controller
         }
     }
 
-    public function date($date)
+    public function month(Request $request)
     {
 
-        if ($date < 10) $date = '0' . $date;
+        $data = $request->all()['params'];
+        
+        $month = $data['month'];
+        $userId = $data['userId'];
+
+
+        if ($month < 10) $month = '0' . $month;
 
         $numberOfOrders = [];
 
-        $days = cal_days_in_month(CAL_GREGORIAN, $date, date("Y"));
+        $days = cal_days_in_month(CAL_GREGORIAN, $month, date("Y"));
 
         for ($i = 1; $i <= $days; $i++) {
             if ($i < 10) $i = '0' . $i;
-            $orders = Order::where('created_at', 'like', '%' . '-' . $date . '-' . $i . '%')->where('accepted', 1)->get();
+            $orders = Order::where('user_id', $userId)->where('created_at', 'like', '%' . '-' . $month . '-' . $i . '%')->where('accepted', 1)->get();
             $numberOfOrders[] = count($orders);
         }
 
