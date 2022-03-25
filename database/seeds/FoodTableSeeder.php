@@ -19,7 +19,7 @@ class FoodTableSeeder extends Seeder
                 "user_id" => 2,
                 "image" => "uploads/Pizza-margherita-fatta-in-casa-orizzontale.jpeg",
                 "price" => 5,
-                "types" => 1,
+                "types" => 6,
                 "ingredients" => "Pomodoro, Mozzarella, Basilico",
                 "visible" => true
             ],
@@ -27,7 +27,7 @@ class FoodTableSeeder extends Seeder
                 "name" => "Marinara",
                 "image" => "uploads/pizza-marinara.jpg",
                 "user_id" => 2,
-                "types" => 1,
+                "types" => 6,
                 "price" => 4,
                 "ingredients" => "Pomodoro, Aglio, Origano",
                 "visible" => true
@@ -36,7 +36,7 @@ class FoodTableSeeder extends Seeder
                 "name" => "Diavola",
                 "image" => "uploads/pizza-diavola.jpg",
                 "user_id" => 2,
-                "types" => 1,
+                "types" => 6,
                 "price" => 6,
                 "ingredients" => "Pomodoro, Mozzarella, Salame",
                 "visible" => true
@@ -45,7 +45,7 @@ class FoodTableSeeder extends Seeder
                 "name" => "Tonno e Cipolle",
                 "image" => "uploads/pizza-tonno-cipolle.jpg",
                 "user_id" => 2,
-                "types" => 1,
+                "types" => 6,
                 "price" => 7,
                 "ingredients" => "Pomodoro, Mozzarella, Tonno, Cipolla",
                 "visible" => true
@@ -54,7 +54,7 @@ class FoodTableSeeder extends Seeder
                 "name" => "America",
                 "image" => "uploads/pizza-america.jpg",
                 "user_id" => 2,
-                "types" => 1,
+                "types" => 6,
                 "price" => 5,
                 "ingredients" => "Mozzarella, Wurstel, Patatine Fritte",
                 "visible" => true
@@ -63,7 +63,7 @@ class FoodTableSeeder extends Seeder
                 "name" => "4 Stagioni",
                 "image" => "uploads/pizza-4-stagioni.jpg",
                 "user_id" => 2,
-                "types" => 1,
+                "types" => 6,
                 "price" => 7,
                 "ingredients" => "Pomodoro, Mozzarella, Funghi, Prosciutto Cotto, Carciofi, Olive",
                 "visible" => true
@@ -72,7 +72,7 @@ class FoodTableSeeder extends Seeder
                 "name" => "Ortolana",
                 "image" => "uploads/pizza-ortolana.jpg",
                 "user_id" => 2,
-                "types" => 1,
+                "types" => 6,
                 "price" => 7,
                 "ingredients" => "Mozzarella, Melanzane, Zucchine, Peperoni",
                 "visible" => true
@@ -81,7 +81,7 @@ class FoodTableSeeder extends Seeder
                 "name" => "4 Formaggi",
                 "image" => "uploads/pizza-formaggi.jpg",
                 "user_id" => 2,
-                "types" => 1,
+                "types" => 6,
                 "price" => 8,
                 "ingredients" => "Mozzarella, Emmenthal, Fontina, Gorgonzola, Parmigiano",
                 "visible" => true
@@ -136,7 +136,7 @@ class FoodTableSeeder extends Seeder
                 "name" => "Patatine",
                 "image" => "uploads/patatine.png",
                 "user_id" => 5,
-                "types" => 3,
+                "types" => 7,
                 "price" => 3,
                 "ingredients" => "Patatine Fritte",
                 "visible" => true
@@ -145,7 +145,7 @@ class FoodTableSeeder extends Seeder
                 "name" => "Coca Cola",
                 "image" => "uploads/cocacola.png",
                 "user_id" => 5,
-                "types" => 8,
+                "types" => 10,
                 "price" => 3,
                 "ingredients" => "Coca Cola",
                 "visible" => true
@@ -154,7 +154,7 @@ class FoodTableSeeder extends Seeder
                 "name" => "Sashimi Sake",
                 "image" => "uploads/sashimi-sake.jpg",
                 "user_id" => 6,
-                "types" => 6,
+                "types" => 8,
                 "price" => 8,
                 "ingredients" => "Salmone",
                 "visible" => true
@@ -163,7 +163,7 @@ class FoodTableSeeder extends Seeder
                 "name" => "Sashimi Maguro",
                 "image" => "uploads/sashimi-maguro.jpg",
                 "user_id" => 6,
-                "types" => 6,
+                "types" => 8,
                 "price" => 8,
                 "ingredients" => "Tonno",
                 "visible" => true
@@ -172,7 +172,7 @@ class FoodTableSeeder extends Seeder
                 "name" => "Philadelphia Roll",
                 "image" => "uploads/philadeplhia-roll.jpg",
                 "user_id" => 6,
-                "types" => 6,
+                "types" => 8,
                 "price" => 10,
                 "ingredients" => "Salmone, philadelphia, avocado, ricoperto da philadelphia",
                 "visible" => true
@@ -181,7 +181,7 @@ class FoodTableSeeder extends Seeder
                 "name" => "Arakawa roll",
                 "image" => "uploads/rice-violet.jpg",
                 "user_id" => 6,
-                "types" => 6,
+                "types" => 8,
                 "price" => 14,
                 "ingredients" => "Polpa di granchio, mango, philadelphia, ricoperto da philadelphia e salsa dello chef ",
                 "visible" => true
@@ -190,7 +190,7 @@ class FoodTableSeeder extends Seeder
                 "name" => "Gelato Artigianale 500gr",
                 "image" => "uploads/gelato-al-cioccolato.jpg",
                 "user_id" => 4,
-                "types" => 7,
+                "types" => 9,
                 "price" => 12.50,
                 "ingredients" => "Cioccolato",
                 "visible" => true
@@ -199,7 +199,7 @@ class FoodTableSeeder extends Seeder
                 "name" => "Gelato Artigianale 500gr",
                 "image" => "uploads/gelato-al-pistacchio.jpg",
                 "user_id" => 4,
-                "types" => 7,
+                "types" => 9,
                 "price" => 12.50,
                 "ingredients" => "Pistacchio",
                 "visible" => true
@@ -352,7 +352,7 @@ class FoodTableSeeder extends Seeder
                 "name" => "Bucket Tender Crispy",
                 "image" => "uploads/bucket-tender.jpg",
                 "user_id" => 11,
-                "types" => 4,
+                "types" => 7,
                 "price" => 12,
                 "ingredients" => "Un Bucket con 12 deliziosi Tender Crispy",
                 "visible" => true
@@ -361,7 +361,7 @@ class FoodTableSeeder extends Seeder
                 "name" => "Coca Cola",
                 "image" => "uploads/cocacola.png",
                 "user_id" => 11,
-                "types" => 8,
+                "types" => 10,
                 "price" => 3,
                 "ingredients" => "Coca Cola",
                 "visible" => true
@@ -371,7 +371,7 @@ class FoodTableSeeder extends Seeder
                 "user_id" => 12,
                 "image" => "uploads/Pizza-margherita-fatta-in-casa-orizzontale.jpeg",
                 "price" => 6,
-                "types" => 1,
+                "types" => 6,
                 "ingredients" => "Pomodoro, fior di latte di Agerola, olio e basilico",
                 "visible" => true
             ],
@@ -379,7 +379,7 @@ class FoodTableSeeder extends Seeder
                 "name" => "Marinara",
                 "image" => "uploads/pizza-marinara.jpg",
                 "user_id" => 12,
-                "types" => 1,
+                "types" => 6,
                 "price" => 6,
                 "ingredients" => "Pomodoro, Aglio, Origano",
                 "visible" => true
@@ -388,7 +388,7 @@ class FoodTableSeeder extends Seeder
                 "name" => "Cosacca",
                 "image" => "uploads/cosacca.jpg",
                 "user_id" => 12,
-                "types" => 1,
+                "types" => 6,
                 "price" => 6,
                 "ingredients" => "Pomodoro, Pecorino, olio e basilico",
                 "visible" => true
@@ -397,7 +397,7 @@ class FoodTableSeeder extends Seeder
                 "name" => "Marita",
                 "image" => "uploads/marita.jpg",
                 "user_id" => 12,
-                "types" => 1,
+                "types" => 6,
                 "price" => 6,
                 "ingredients" => "Mezza Margherita e Mezza Marinara",
                 "visible" => true
@@ -406,7 +406,7 @@ class FoodTableSeeder extends Seeder
                 "name" => "Pizza Fritta",
                 "image" => "uploads/pizza-fritta.jpg",
                 "user_id" => 12,
-                "types" => 1,
+                "types" => 6,
                 "price" => 9,
                 "ingredients" => "Pomodoro, Ricotta agerola, Provola, Ciccioli di maiale, Pepe",
                 "visible" => true
@@ -415,7 +415,7 @@ class FoodTableSeeder extends Seeder
                 "name" => "Sashimi Sake",
                 "image" => "uploads/sashimi-sake.jpg",
                 "user_id" => 13,
-                "types" => 6,
+                "types" => 8,
                 "price" => 8,
                 "ingredients" => "Salmone",
                 "visible" => true
@@ -424,7 +424,7 @@ class FoodTableSeeder extends Seeder
                 "name" => "Sashimi Maguro",
                 "image" => "uploads/sashimi-maguro.jpg",
                 "user_id" => 13,
-                "types" => 6,
+                "types" => 8,
                 "price" => 8,
                 "ingredients" => "Tonno",
                 "visible" => true
@@ -433,7 +433,7 @@ class FoodTableSeeder extends Seeder
                 "name" => "Philadelphia Roll",
                 "image" => "uploads/philadeplhia-roll.jpg",
                 "user_id" => 13,
-                "types" => 6,
+                "types" => 8,
                 "price" => 10,
                 "ingredients" => "Salmone, philadelphia, avocado, ricoperto da philadelphia",
                 "visible" => true
@@ -442,7 +442,7 @@ class FoodTableSeeder extends Seeder
                 "name" => "Arakawa roll",
                 "image" => "uploads/rice-violet.jpg",
                 "user_id" => 13,
-                "types" => 6,
+                "types" => 8,
                 "price" => 14,
                 "ingredients" => "Polpa di granchio, mango, philadelphia, ricoperto da philadelphia e salsa dello chef ",
                 "visible" => true
@@ -451,7 +451,7 @@ class FoodTableSeeder extends Seeder
                 "name" => "Sashimi Sake",
                 "image" => "uploads/sashimi-sake.jpg",
                 "user_id" => 14,
-                "types" => 6,
+                "types" => 8,
                 "price" => 8,
                 "ingredients" => "Salmone",
                 "visible" => true
@@ -460,7 +460,7 @@ class FoodTableSeeder extends Seeder
                 "name" => "Sashimi Maguro",
                 "image" => "uploads/sashimi-maguro.jpg",
                 "user_id" => 14,
-                "types" => 6,
+                "types" => 8,
                 "price" => 8,
                 "ingredients" => "Tonno",
                 "visible" => true
@@ -469,7 +469,7 @@ class FoodTableSeeder extends Seeder
                 "name" => "Philadelphia Roll",
                 "image" => "uploads/philadeplhia-roll.jpg",
                 "user_id" => 14,
-                "types" => 6,
+                "types" => 8,
                 "price" => 10,
                 "ingredients" => "Salmone, philadelphia, avocado, ricoperto da philadelphia",
                 "visible" => true
@@ -478,7 +478,7 @@ class FoodTableSeeder extends Seeder
                 "name" => "Arakawa roll",
                 "image" => "uploads/rice-violet.jpg",
                 "user_id" => 14,
-                "types" => 6,
+                "types" => 8,
                 "price" => 14,
                 "ingredients" => "Polpa di granchio, mango, philadelphia, ricoperto da philadelphia e salsa dello chef ",
                 "visible" => true
@@ -488,7 +488,7 @@ class FoodTableSeeder extends Seeder
                 "user_id" => 15,
                 "image" => "uploads/Pizza-margherita-fatta-in-casa-orizzontale.jpeg",
                 "price" => 5,
-                "types" => 1,
+                "types" => 6,
                 "ingredients" => "Pomodoro, Mozzarella, Basilico",
                 "visible" => true
             ],
@@ -496,7 +496,7 @@ class FoodTableSeeder extends Seeder
                 "name" => "Marinara",
                 "image" => "uploads/pizza-marinara.jpg",
                 "user_id" => 15,
-                "types" => 1,
+                "types" => 6,
                 "price" => 4,
                 "ingredients" => "Pomodoro, Aglio, Origano",
                 "visible" => true
@@ -505,7 +505,7 @@ class FoodTableSeeder extends Seeder
                 "name" => "Diavola",
                 "image" => "uploads/pizza-diavola.jpg",
                 "user_id" => 15,
-                "types" => 1,
+                "types" => 6,
                 "price" => 6,
                 "ingredients" => "Pomodoro, Mozzarella, Salame",
                 "visible" => true
@@ -514,7 +514,7 @@ class FoodTableSeeder extends Seeder
                 "name" => "Tonno e Cipolle",
                 "image" => "uploads/pizza-tonno-cipolle.jpg",
                 "user_id" => 15,
-                "types" => 1,
+                "types" => 6,
                 "price" => 7,
                 "ingredients" => "Pomodoro, Mozzarella, Tonno, Cipolla",
                 "visible" => true
@@ -523,7 +523,7 @@ class FoodTableSeeder extends Seeder
                 "name" => "America",
                 "image" => "uploads/pizza-america.jpg",
                 "user_id" => 15,
-                "types" => 1,
+                "types" => 6,
                 "price" => 5,
                 "ingredients" => "Mozzarella, Wurstel, Patatine Fritte",
                 "visible" => true
@@ -532,7 +532,7 @@ class FoodTableSeeder extends Seeder
                 "name" => "4 Stagioni",
                 "image" => "uploads/pizza-4-stagioni.jpg",
                 "user_id" => 15,
-                "types" => 1,
+                "types" => 6,
                 "price" => 7,
                 "ingredients" => "Pomodoro, Mozzarella, Funghi, Prosciutto Cotto, Carciofi, Olive",
                 "visible" => true
@@ -541,7 +541,7 @@ class FoodTableSeeder extends Seeder
                 "name" => "Ortolana",
                 "image" => "uploads/pizza-ortolana.jpg",
                 "user_id" => 15,
-                "types" => 1,
+                "types" => 6,
                 "price" => 7,
                 "ingredients" => "Mozzarella, Melanzane, Zucchine, Peperoni",
                 "visible" => true
@@ -550,7 +550,7 @@ class FoodTableSeeder extends Seeder
                 "name" => "4 Formaggi",
                 "image" => "uploads/pizza-formaggi.jpg",
                 "user_id" => 15,
-                "types" => 1,
+                "types" => 6,
                 "price" => 8,
                 "ingredients" => "Mozzarella, Emmenthal, Fontina, Gorgonzola, Parmigiano",
                 "visible" => true
@@ -560,7 +560,7 @@ class FoodTableSeeder extends Seeder
                 "user_id" => 16,
                 "image" => "uploads/Pizza-margherita-fatta-in-casa-orizzontale.jpeg",
                 "price" => 5,
-                "types" => 1,
+                "types" => 6,
                 "ingredients" => "Pomodoro, Mozzarella, Basilico",
                 "visible" => true
             ],
@@ -568,7 +568,7 @@ class FoodTableSeeder extends Seeder
                 "name" => "Marinara",
                 "image" => "uploads/pizza-marinara.jpg",
                 "user_id" => 16,
-                "types" => 1,
+                "types" => 6,
                 "price" => 4,
                 "ingredients" => "Pomodoro, Aglio, Origano",
                 "visible" => true
@@ -577,7 +577,7 @@ class FoodTableSeeder extends Seeder
                 "name" => "Diavola",
                 "image" => "uploads/pizza-diavola.jpg",
                 "user_id" => 16,
-                "types" => 1,
+                "types" => 6,
                 "price" => 6,
                 "ingredients" => "Pomodoro, Mozzarella, Salame",
                 "visible" => true
@@ -586,7 +586,7 @@ class FoodTableSeeder extends Seeder
                 "name" => "Tonno e Cipolle",
                 "image" => "uploads/pizza-tonno-cipolle.jpg",
                 "user_id" => 16,
-                "types" => 1,
+                "types" => 6,
                 "price" => 7,
                 "ingredients" => "Pomodoro, Mozzarella, Tonno, Cipolla",
                 "visible" => true
@@ -595,7 +595,7 @@ class FoodTableSeeder extends Seeder
                 "name" => "America",
                 "image" => "uploads/pizza-america.jpg",
                 "user_id" => 16,
-                "types" => 1,
+                "types" => 6,
                 "price" => 5,
                 "ingredients" => "Mozzarella, Wurstel, Patatine Fritte",
                 "visible" => true
@@ -604,7 +604,7 @@ class FoodTableSeeder extends Seeder
                 "name" => "4 Stagioni",
                 "image" => "uploads/pizza-4-stagioni.jpg",
                 "user_id" => 16,
-                "types" => 1,
+                "types" => 6,
                 "price" => 7,
                 "ingredients" => "Pomodoro, Mozzarella, Funghi, Prosciutto Cotto, Carciofi, Olive",
                 "visible" => true
@@ -613,7 +613,7 @@ class FoodTableSeeder extends Seeder
                 "name" => "Ortolana",
                 "image" => "uploads/pizza-ortolana.jpg",
                 "user_id" => 16,
-                "types" => 1,
+                "types" => 6,
                 "price" => 7,
                 "ingredients" => "Mozzarella, Melanzane, Zucchine, Peperoni",
                 "visible" => true
@@ -622,7 +622,7 @@ class FoodTableSeeder extends Seeder
                 "name" => "4 Formaggi",
                 "image" => "uploads/pizza-formaggi.jpg",
                 "user_id" => 16,
-                "types" => 1,
+                "types" => 6,
                 "price" => 8,
                 "ingredients" => "Mozzarella, Emmenthal, Fontina, Gorgonzola, Parmigiano",
                 "visible" => true
@@ -748,7 +748,7 @@ class FoodTableSeeder extends Seeder
                 "name" => "Gelato Artigianale 500gr",
                 "image" => "uploads/gelato-al-cioccolato.jpg",
                 "user_id" => 22,
-                "types" => 7,
+                "types" => 9,
                 "price" => 12.50,
                 "ingredients" => "Cioccolato",
                 "visible" => true
@@ -757,7 +757,7 @@ class FoodTableSeeder extends Seeder
                 "name" => "Gelato Artigianale 500gr",
                 "image" => "uploads/gelato-al-pistacchio.jpg",
                 "user_id" => 22,
-                "types" => 7,
+                "types" => 9,
                 "price" => 12.50,
                 "ingredients" => "Pistacchio",
                 "visible" => true
@@ -766,7 +766,7 @@ class FoodTableSeeder extends Seeder
                 "name" => "Gelato Artigianale 500gr",
                 "image" => "uploads/gelato-al-cioccolato.jpg",
                 "user_id" => 23,
-                "types" => 7,
+                "types" => 9,
                 "price" => 12.50,
                 "ingredients" => "Cioccolato",
                 "visible" => true
@@ -775,7 +775,7 @@ class FoodTableSeeder extends Seeder
                 "name" => "Gelato Artigianale 500gr",
                 "image" => "uploads/gelato-al-pistacchio.jpg",
                 "user_id" => 23,
-                "types" => 7,
+                "types" => 9,
                 "price" => 12.50,
                 "ingredients" => "Pistacchio",
                 "visible" => true
@@ -796,6 +796,267 @@ class FoodTableSeeder extends Seeder
                 "types" => 2,
                 "price" => 7,
                 "ingredients" => "Bocconcini di pollo su carbone marinati in yogurt e spezie",
+                "visible" => true
+            ],
+            [
+                "name" => "Chicken Asiago DOP",
+                "image" => "uploads/asiago-dop.png",
+                "user_id" => 5,
+                "types" => 5,
+                "price" => 7,
+                "ingredients" => "Petto di Pollo, Bacon, Asiago DOP, Salsa con olive taggiasche",
+                "visible" => true
+            ],
+            [
+                "name" => "Montasio DOP & Pancetta",
+                "image" => "uploads/montasio-dop.png",
+                "user_id" => 5,
+                "types" => 5,
+                "price" => 7,
+                "ingredients" => "Carne bovina, Pancetta, formaggio Montasio DOP, Salsa alle cipolle & Mela Alto Adige IGP",
+                "visible" => true
+            ],
+            [
+                "name" => "Triplo Cheeseburger",
+                "image" => "uploads/triplo-cheeseburger.png",
+                "user_id" => 5,
+                "types" => 5,
+                "price" => 5,
+                "ingredients" => "Carne Bovina, Formaggio, Ketchup, Senape, Cipolla, Cetriolo",
+                "visible" => true
+            ],
+            [
+                "name" => "McToast",
+                "image" => "uploads/mctoast.png",
+                "user_id" => 5,
+                "types" => 5,
+                "price" => 1,
+                "ingredients" => "Prosciutto Cotto, Fomraggio",
+                "visible" => true
+            ],
+            [
+                "name" => "Chicken McNuggets",
+                "image" => "uploads/mcnuggets.png",
+                "user_id" => 5,
+                "types" => 7,
+                "price" => 6,
+                "ingredients" => " Tenere crocchette di petto di pollo 100% italiano impanato",
+                "visible" => true
+            ],
+            [
+                "name" => "Chicken Wings",
+                "image" => "uploads/chicken-wings.png",
+                "user_id" => 5,
+                "types" => 7,
+                "price" => 6,
+                "ingredients" => "Le Chicken Wings ti conquisteranno",
+                "visible" => true
+            ],
+            [
+                "name" => "Panzerotti",
+                "image" => "uploads/panzerotti.png",
+                "user_id" => 5,
+                "types" => 7,
+                "price" => 4,
+                "ingredients" => "Pomodoro e Mozzarella",
+                "visible" => true
+            ],
+            [
+                "name" => "Fanta",
+                "image" => "uploads/fanta.png",
+                "user_id" => 5,
+                "types" => 10,
+                "price" => 3,
+                "ingredients" => "Fanta Orange",
+                "visible" => true
+            ],
+            [
+                "name" => "Sprite",
+                "image" => "uploads/sprite.png",
+                "user_id" => 5,
+                "types" => 10,
+                "price" => 3,
+                "ingredients" => "Sprite",
+                "visible" => true
+            ],
+            [
+                "name" => "Acqua Lilia",
+                "image" => "uploads/acqua.png",
+                "user_id" => 5,
+                "types" => 10,
+                "price" => 1,
+                "ingredients" => "Acqua",
+                "visible" => true
+            ],
+            [
+                "name" => "McFlurry Bounty",
+                "image" => "uploads/mcflurry-bounty.png",
+                "user_id" => 5,
+                "types" => 9,
+                "price" => 5,
+                "ingredients" => "Granella al cioccolato e cocco, Topping al cioccolato e cocco, Gelato fiordilatte",
+                "visible" => true
+            ],
+            [
+                "name" => "McFlurry Oreo",
+                "image" => "uploads/mcflurry-oreo.png",
+                "user_id" => 5,
+                "types" => 9,
+                "price" => 5,
+                "ingredients" => "Biscotti Oreo, Gelato fiordilatte",
+                "visible" => true
+            ],
+            [
+                "name" => "Sundae Cioccolato",
+                "image" => "uploads/sundae-cioccolato.png",
+                "user_id" => 5,
+                "types" => 9,
+                "price" => 5,
+                "ingredients" => "Gelato fiordilatte, Topping al Cioccolato",
+                "visible" => true
+            ],
+            [
+                "name" => "Sundae Caramello",
+                "image" => "uploads/sundae-caramello.png",
+                "user_id" => 5,
+                "types" => 9,
+                "price" => 5,
+                "ingredients" => "Gelato fiordilatte, Topping al Caramello",
+                "visible" => true
+            ],
+            [
+                "name" => "Milkshake Vaniglia",
+                "image" => "uploads/milkshake-vaniglia.png",
+                "user_id" => 5,
+                "types" => 9,
+                "price" => 3,
+                "ingredients" => "Latte e sciroppo di vaniglia frullati insieme",
+                "visible" => true
+            ],
+            [
+                "name" => "Milkshake Cioccolato",
+                "image" => "uploads/milkshake-cioccolato.png",
+                "user_id" => 5,
+                "types" => 9,
+                "price" => 3,
+                "ingredients" => "Latte e cioccolato frullati insieme",
+                "visible" => true
+            ],
+            [
+                "name" => "Croissant con Nutella",
+                "image" => "uploads/croissant-nutella.png",
+                "user_id" => 5,
+                "types" => 9,
+                "price" => 2,
+                "ingredients" => " Croissant farcito con Nutella",
+                "visible" => true
+            ],
+            [
+                "name" => "Donut Marshmallows",
+                "image" => "uploads/marshmallow.png",
+                "user_id" => 5,
+                "types" => 9,
+                "price" => 2,
+                "ingredients" => " Ciambella, con una glassatura di zucchero e piccoli marshmallows",
+                "visible" => true
+            ],
+            [
+                "name" => "Muffin Cioccolato",
+                "image" => "uploads/muffin-cioccolato.png",
+                "user_id" => 5,
+                "types" => 9,
+                "price" => 2,
+                "ingredients" => " Muffin con gocce di cioccolato.",
+                "visible" => true
+            ],
+            [
+                "name" => "Mimosa",
+                "image" => "uploads/mimosa.png",
+                "user_id" => 15,
+                "types" => 6,
+                "price" => 5,
+                "ingredients" => "Panna, prosciutto cotto, mais e mozzarella",
+                "visible" => true
+            ],
+            [
+                "name" => "Siciliana",
+                "image" => "uploads/siciliana.jpg",
+                "user_id" => 15,
+                "types" => 6,
+                "price" => 6,
+                "ingredients" => "Fiordilatte, pomodoro, melanzane e basilico",
+                "visible" => true
+            ],
+            [
+                "name" => "Fanta",
+                "image" => "uploads/fanta.png",
+                "user_id" => 15,
+                "types" => 10,
+                "price" => 3,
+                "ingredients" => "Fanta Orange",
+                "visible" => true
+            ],
+            [
+                "name" => "Sprite",
+                "image" => "uploads/sprite.png",
+                "user_id" => 15,
+                "types" => 10,
+                "price" => 3,
+                "ingredients" => "Sprite",
+                "visible" => true
+            ],
+            [
+                "name" => "Acqua Lilia",
+                "image" => "uploads/acqua.png",
+                "user_id" => 15,
+                "types" => 10,
+                "price" => 1,
+                "ingredients" => "Acqua",
+                "visible" => true
+            ],
+            [
+                "name" => "Coca Cola",
+                "image" => "uploads/cocacola.png",
+                "user_id" => 15,
+                "types" => 10,
+                "price" => 3,
+                "ingredients" => "Coca Cola",
+                "visible" => true
+            ],
+            [
+                "name" => "Frittatina di Pasta",
+                "image" => "uploads/frittatina.png",
+                "user_id" => 15,
+                "types" => 7,
+                "price" => 4,
+                "ingredients" => "Besciamella, Prosiutto, Piselli",
+                "visible" => true
+            ],
+            [
+                "name" => "Crocché",
+                "image" => "uploads/crocche.jpg",
+                "user_id" => 15,
+                "types" => 7,
+                "price" => 2,
+                "ingredients" => "Patate, Mozzarella, Prosiuctto",
+                "visible" => true
+            ],
+            [
+                "name" => "Arancino",
+                "image" => "uploads/arancino.jpg",
+                "user_id" => 15,
+                "types" => 7,
+                "price" => 2,
+                "ingredients" => "Riso, Pomodoro, Mozzarella, Carne",
+                "visible" => true
+            ],
+            [
+                "name" => "Patatine Fritte",
+                "image" => "uploads/patate-fritte.jpg",
+                "user_id" => 15,
+                "types" => 7,
+                "price" => 2,
+                "ingredients" => "Patatine fritte",
                 "visible" => true
             ],
         ];
