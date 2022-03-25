@@ -94,7 +94,7 @@ if (user) {
             console.log(names);
             console.log(quantities);
             var pieChart = new Chart(foodChart, {
-                type: "pie",
+                type: "doughnut",
                 data: {
                     labels: names,
                     datasets: [

@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 Auth::routes(['verify' => true]);
 
 // Rotte area Admin
-Route::middleware('verified')->namespace('Admin')->prefix('admin')->group(function () {
+Route::middleware('auth')->namespace('Admin')->prefix('admin')->group(function () {
     Route::get('/home', 'HomeController@index')->name('home');
     Route::resource('users', 'UserController');
     Route::get('user/edit', 'UserController@editUser')->name('user.edit');

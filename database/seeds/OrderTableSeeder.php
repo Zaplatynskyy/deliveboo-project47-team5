@@ -1,9 +1,10 @@
 <?php
 
-use App\Order;
-use Illuminate\Database\Seeder;
-use Illuminate\Support\Str;
+use App\Food;
 use App\User;
+use App\Order;
+use Illuminate\Support\Str;
+use Illuminate\Database\Seeder;
 
 
 class OrderTableSeeder extends Seeder
@@ -188,21 +189,38 @@ class OrderTableSeeder extends Seeder
             $newOrder->user_id = rand(2, count(User::all()));
             $newOrder->address = $order['address'];
             $newOrder->telephone = '3' . rand(111111111, 999999999);
-            $newOrder->total = rand(10, 250);
+
+            $days = cal_days_in_month(CAL_GREGORIAN, date('m'), date('Y'));;
+            $newOrder->created_at = date('Y') . '-' . date('m') . '-' . rand(1, $days);
+
+            $random = rand(1, 6);
+            $foods = collect();
+
+            $thisFoods = Food::where('user_id', $newOrder->user_id)->get();
+
+            for ($i = 0; $i < $random; $i++) {
+                $index = rand(0, count($thisFoods) - 1);
+                $newFood = $thisFoods[$index];
+                $exist = $foods->contains(function ($value) use ($newFood) {
+                    return $value->id == $newFood->id;
+                });
+                if (!$exist) $foods[] = $newFood;
+            }
+
+            (User::find($newOrder->user_id)->shipping) ? $total = User::find($newOrder->user_id)->shipping : $total = 0;
+
+            $newOrder->total = 0;
+            $newOrder->timestamps = false;
             $newOrder->save();
 
-            $random = rand(1, 4);
-            $foods = [];
-            for ($i = 0; $i < $random; $i++) {
-                $newFood = rand(1, 3);
-                if (!in_array($newFood, $foods)) {
-                    $foods[] = $newFood;
-                }
+            foreach ($foods as $food) {
+                $quantity = rand(1, 4);
+                $total += $food->price * $quantity;
+                $newOrder->foods()->attach($food->id, ['quantity' => $quantity]);
             }
 
-            foreach ($foods as $food) {
-                $newOrder->foods()->attach($food, ['quantity' => rand(1, 4)]);
-            }
+            $newOrder->total = $total;
+            $newOrder->save();
         }
     }
 }
