@@ -124,9 +124,18 @@ main {
     z-index: 9;
 }
 
-.list_order {
-    height: calc(100vh - 100px);
-    overflow-y: auto;
+
+
+@media (min-width: 992px) {
+    .list_order {
+        height: calc(100vh - 100px);
+        overflow-y: auto;
+    }
+    
+    .list_order_not_null {
+        height: calc(100vh - 180px);
+        overflow-y: auto;
+    }
 }
 
 //home
@@ -149,6 +158,16 @@ main {
     color: #3eccbc;
     border-bottom: 1px solid lightgray;
     margin-top: 10px;
+}
+
+.label_img {
+    font-size: 1rem;
+    color: #3eccbc;
+    margin-top: 10px;
+}
+
+.edit-img {
+    font-size: .9rem;
 }
 
 .my_txt {
