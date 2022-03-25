@@ -14,7 +14,7 @@ class TagTableSeeder extends Seeder
     public function run()
     {
         $tags = [
-            "Vegan", "Vegetariano", "Gluten free", 
+            "Vegan", "Vegetariano", "Gluten free", "Senza lattosio", "Carne", "Pesce", "Fritto", "Crudo"
         ];
 
         foreach ($tags as $tag) {

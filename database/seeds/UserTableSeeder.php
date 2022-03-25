@@ -202,7 +202,7 @@ class UserTableSeeder extends Seeder
                 'address' => 'Via Gelso, 51',
                 'p_iva' => '84123745346',
                 'telephone' => '0693413444',
-                'image' => 'uploads/san-giorgio.jpg',
+                'image' => 'uploads/antonio-sorbillo.jpg',
                 'shipping' => '0',
                 'min_price' => '15',
                 'categories' => [1, 3]
