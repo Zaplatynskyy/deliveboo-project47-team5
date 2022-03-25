@@ -9,32 +9,70 @@
                         <h2 class="text-uppercase mb-0">{{ $food->name }}</h2>
                     </div>
                     <div class="card-body">
-                        <div class="food">
-                            @if ($food->image)
-                                <img src="{{ asset("storage/{$food->image}") }}" alt="{{ $food->name }}"
-                                    class="w-25">
-                            @endif
-                            <p class="my-4"><span class="my_bold">Ingredienti:</span> {{$food->ingredients}}</p>
-                            <p class="my-4"><span class="my_bold">Prezzo:</span> {{$food->price}}€</p>
-                            <span
-                                class="badge {{ $food->visible ? 'badge-success' : 'badge-secondary' }}">{{ $food->visible ? 'Visible' : 'Not visible' }}</span>
-                            @if ($food->type)
-                                <span class="badge badge-info text-white">{{ $food->type->name }}</span>
-                            @endif
-                            @if (count($food->tags) > 0)
-                                <h5 class="mt-3">Tags:</h5>
-                                @foreach ($food->tags as $tag)
-                                    <span class="badge badge-primary">{{ $tag->name }}</span>
-                                @endforeach
-                            @endif
+                        <div class="food row">
+                            <div class="col-12 col-lg-5 col-xl-4 d-flex align-items-center">
+                                @if ($food->image)
+                                    <img src="{{ asset("storage/{$food->image}") }}" alt="{{ $food->name }}"
+                                        class="w-100">
+                                @endif
+                            </div>
+
+                            <div class="col-12 col-lg-7 col-xl-8">
+
+                                <div class="row_info">
+                                    <div class="label d-flex justify-content-between">
+                                        <span>Tipologia</span>
+                                        <span>Visibilità</span>
+                                    </div>
+                                    <div class="my_txt telephone_price d-flex justify-content-between">
+                                        <span>
+                                            @if ($food->type)
+                                                <span class="badge badge-info text-white">{{ $food->type->name }}</span>
+                                            @endif
+                                        </span>
+                                        <span>
+                                            <span class="badge {{ $food->visible ? 'badge-success' : 'badge-secondary' }}">{{ $food->visible ? 'Visible' : 'Not visible' }}</span>
+                                        </span>
+                                    </div>
+                                </div>
+                                
+                                @if (count($food->tags) > 0)
+                                    <div class="col-12 col-lg-7">
+                                        <div class="row_info">
+                                            <div class="label">Tag associati</div>
+                                            <div class="my_txt name_order">
+                                                @foreach ($food->tags as $tag)
+                                                    <span class="badge badge-primary">{{ $tag->name }}</span>
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endif
+
+                                <div class="row_info">
+                                    <div class="label">Ingredienti</div>
+                                    <div class="my_txt name_order">
+                                        <span>{{$food->ingredients}}</span>
+                                    </div>
+                                </div>
+
+                                <div class="row_info">
+                                    <div class="label">Prezzo</div>
+                                    <div class="my_txt name_order">
+                                        <span>{{$food->price}}€</span>
+                                    </div>
+                                </div>
+
+                            </div>
                         </div>
+
                         <div class="buttons mt-4">
-                            <button type="button" class="btn btn-warning"><a class="text-white"
+                            <button type="button" class="btn btn-warning"><a class="text-black"
                                     href="{{ route('foods.edit', $food->id) }}">Modifica</a></button>
                             <button type="button" class="my_btn btn btn-danger btnP" data-toggle="modal"
                                 data-target="#exampleModal">Elimina</button>
                             <button type="button" class="btn btn-primary"><a class="text-white"
-                                    href="{{ route('foods.index') }}">Torna alla lista</a></button>
+                                    href="{{ route('foods.index') }}">Indietro</a></button>
                             {{-- Modal --}}
                             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                                 aria-hidden="true">
