@@ -454,6 +454,7 @@ export default {
                 border-bottom-left-radius: 10px;
                 padding: 10px 5px;
                 display: flex;
+                flex-wrap: wrap;
 
                 .form-check {
                     font-size: 0.9rem;
