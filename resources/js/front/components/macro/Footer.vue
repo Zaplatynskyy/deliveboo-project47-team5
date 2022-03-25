@@ -7,25 +7,25 @@
                         <h5>Credits</h5>
                         <ul>
                             <li>
-                                <a href="https://github.com/SimoneSpirito01"
+                                <a target="_blank" href="https://github.com/SimoneSpirito01"
                                     ><i class="fa-brands fa-github"></i> Simone
                                     Spirito</a
                                 >
                             </li>
                             <li>
-                                <a href="https://github.com/RobertoVillani98"
+                                <a target="_blank" href="https://github.com/RobertoVillani98"
                                     ><i class="fa-brands fa-github"></i> Roberto
                                     Villani</a
                                 >
                             </li>
                             <li>
-                                <a href="https://github.com/Zaplatynskyy"
+                                <a target="_blank" href="https://github.com/Zaplatynskyy"
                                     ><i class="fa-brands fa-github"></i> Igor
                                     Zaplatynskyy</a
                                 >
                             </li>
                             <li>
-                                <a href="https://github.com/AndreaVk"
+                                <a target="_blank" href="https://github.com/AndreaVk"
                                     ><i class="fa-brands fa-github"></i> Andrea
                                     Ciccantelli</a
                                 >
@@ -77,8 +77,8 @@
                     <div class="footer-card">
                         <h5>Porta Deliveboo con te</h5>
                         <div class="store">
-                            <img src="storage/uploads/google-play.png" alt="" />
-                            <img src="storage/uploads/app-store.png" alt="" />
+                            <img src="/storage/uploads/google-logoo.png" alt="logo google" />
+                            <img src="/storage/uploads/apple-logo.png" alt="logo apple" />
                         </div>
                     </div>
                 </div>
