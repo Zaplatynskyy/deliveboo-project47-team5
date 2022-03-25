@@ -31,11 +31,18 @@
 
                                     <div class="row_info">
                                         <div class="label d-flex justify-content-between">
+                                            <span>Email</span>
                                             <span>Telefono</span>
-                                            <span>Importo</span>
                                         </div>
                                         <div class="my_txt telephone_price d-flex justify-content-between">
+                                            <span>{{ $order->email }}</span>
                                             <span>{{ $order->telephone }}</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="row_info">
+                                        <div class="label">Totale ordine</div>
+                                        <div class="my_txt name_order">
                                             <span>{{ $order->total }}€</span>
                                         </div>
                                     </div>
@@ -81,11 +88,18 @@
 
                                     <div class="row_info">
                                         <div class="label d-flex justify-content-between">
+                                            <span>Email</span>
                                             <span>Telefono</span>
-                                            <span>Importo</span>
                                         </div>
                                         <div class="my_txt telephone_price d-flex justify-content-between">
+                                            <span>{{ $order->email }}</span>
                                             <span>{{ $order->telephone }}</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="row_info">
+                                        <div class="label">Totale ordine</div>
+                                        <div class="my_txt name_order">
                                             <span>{{ $order->total }}€</span>
                                         </div>
                                     </div>
