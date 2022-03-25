@@ -23,7 +23,7 @@ class CreateOrdersTable extends Migration
             $table->bigInteger("telephone");
             $table->float("total", 6, 2);
             $table->boolean("accepted")->nullable();
-            $table->timestamps();
+            $table->date('created_at');
         });
     }
 
