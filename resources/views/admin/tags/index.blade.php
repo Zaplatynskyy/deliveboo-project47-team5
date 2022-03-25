@@ -32,7 +32,7 @@
                     </div>
                     <div class="posts mt-3">
                         @foreach ($tags as $key => $tag)
-                            <div class="card-body mb-3">
+                            <div class="card-body my_item mb-3">
                                 <h4>Tag #{{ $key + 1 }}</h4>
 
                                 <div class="row_info">

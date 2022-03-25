@@ -15,7 +15,7 @@
                         </div>
                         <div class="foods row row-cols-1 row-cols-lg-2">
                             @foreach ($foods as $key => $food)
-                                <div class="col mb-3">
+                                <div class="my_item col mb-3">
                                     <div class="food-card flex-wrap">
                                         <div class="left">
                                             <div class="top">

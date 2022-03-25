@@ -32,7 +32,7 @@
                     </div>
                     <div class="posts mt-3">
                         @foreach ($types as $key => $type)
-                            <div class="card-body mb-3">
+                            <div class="card-body my_item mb-3">
                                 <h4>Tipologia #{{ $key + 1 }}</h4>
 
                                 <div class="row_info">
