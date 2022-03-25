@@ -3,12 +3,12 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-8">
+            <div class="col-12 col-md-8">
                 <div class="card">
-                    <div class="card-header">Utenti registrati</div>
+                    <h3 class="card-header">Utenti registrati</h3>
 
-                    <div class="search px-4">
-                        <form class="d-flex mt-4" action="{{ route('users.index') }}" method="GET">
+                    <div class="card-header search mb-3">
+                        <form class="d-flex" action="{{ route('users.index') }}" method="GET">
                             <button type="submit" class="my_btn btn btn-success mr-2 btnP">Cerca</button>
                             <div>
                                 @csrf
@@ -29,34 +29,40 @@
                     </div>
 
                     @if (count($users) > 0)
-                        <div class="card-body">
-                            <table class="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Nome ristorante</th>
-                                        <th scope="col">Indirizzo</th>
-                                        <th scope="col">Telefono</th>
-                                        <th scope="col">Partita iva</th>
-                                        <th scope="col">Azioni</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
+                        @foreach ($users as $user)
+                            <div class="card-body mb-3">
+                                <h4>Utente #{{ $user->id }}</h4>
 
-                                    @foreach ($users as $user)
-                                        <tr>
-                                            <td>{{ $user->name }}</td>
-                                            <td>{{ $user->address }}</td>
-                                            <td>{{ $user->telephone }}</td>
-                                            <td>{{ $user->p_iva }}</td>
-                                            <td>
-                                                <button type="button" class="btn btn-info"><a class="text-white"
-                                                        href="{{ route('users.show', $user->id) }}">Visualizza</a></button>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
+                                <div class="row_info">
+                                    <div class="label">Nome Attività</div>
+                                    <div class="my_txt name_order">
+                                        <span>{{ $user->name }}</span>
+                                        {{-- <span>{{ $order->cognome }}</span> --}}
+                                    </div>
+                                </div>
+
+                                <div class="row_info">
+                                    <div class="label">Indirizzo</div>
+                                    <div class="my_txt address">{{ $user->address }}</div>
+                                </div>
+
+                                <div class="row_info">
+                                    <div class="label d-flex justify-content-between">
+                                        <span>Telefono</span>
+                                        <span>P. IVA</span>
+                                    </div>
+                                    <div class="my_txt telephone_price d-flex justify-content-between">
+                                        <span>{{ $user->telephone }}</span>
+                                        <span>{{ $user->p_iva }}</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="buttons d-flex justify-content-between mt-3">
+                                    <button type="button" class="btn btn-info"><a class="text-white"
+                                        href="{{ route('users.show', $user->id) }}">Visualizza</a></button>
+                                </div>
+                            </div>
+                        @endforeach
                     @else
                         <div class="mx-4 mt-3 py-3 border-top my_grey_border">Nessun risultato trovato.</div>
                     @endif

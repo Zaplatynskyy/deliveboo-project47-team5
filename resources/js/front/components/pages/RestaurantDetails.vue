@@ -541,10 +541,12 @@ export default {
                     .food-info {
                         display: flex;
                         justify-content: space-between;
+                        align-items: center;
                         margin-bottom: 10px;
 
                         .right {
                             display: flex;
+                            align-items: center;
 
                             > * {
                                 margin-left: 7px;
@@ -562,8 +564,8 @@ export default {
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    width: 16px;
-                    height: 16px;
+                    width: 25px;
+                    height: 25px;
                     font-size: 16px;
                     border-radius: 50%;
                     color: var(--main-color);

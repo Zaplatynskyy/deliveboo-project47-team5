@@ -21,18 +21,6 @@
                     "{{ dataShared.lastQuery }}"
                 </h2>
                 <div class="order">
-                    <!-- <select name="order" id="order" v-model="dataShared.order">
-                        <option
-                            v-for="(orderOption, i) in dataShared.orderOptions"
-                            :id="`order_option_${i}`"
-                            class="order_option"
-                            :key="i"
-                            :value="orderOption"
-                        >
-                            {{ orderOption }}
-                        </option>
-                    </select> -->
-
                     <div class="my_select">
 
                         <div class="select_head" @click="dropSelect()">
@@ -113,7 +101,7 @@ export default {
     .title {
         display: flex;
         justify-content: space-between;
-        // align-items: center;
+
         h2 {
             margin-bottom: 1.35rem;
         }
@@ -130,12 +118,16 @@ export default {
     font-size: .75rem;
     text-align: right;
     text-transform: uppercase;
+    min-width: 160px;
     max-width: 300px;
     margin-top: 3px;
+    position: relative;
+    z-index: 9;
 
     .select_head {
         background-color: var(--white);
         border: 1px solid var(--dark-grey);
+        border-radius: 5px;
         padding: 5px 10px;
         display: flex;
         flex-direction: row-reverse;
@@ -156,6 +148,7 @@ export default {
     }
 
     .my_options_content {
+        width: 100%;
         background-color: var(--white);
         border-left: 1px solid var(--dark-grey);
         border-right: 1px solid var(--dark-grey);
@@ -164,6 +157,7 @@ export default {
         border-bottom-left-radius: 5px;
         transition: .2s;
         overflow: hidden;
+        position: absolute;
 
         &.display_none {
             opacity: 0;
