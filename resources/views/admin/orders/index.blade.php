@@ -7,10 +7,10 @@
             <div class="col-12 col-lg-6 mt-4 list_order_not_null">
                 <div class="card">
                     
+                    <div class="card-header">
+                        <h4>Ordini accettati:</h4>
+                    </div>
                     <div class="card_orders">
-                        <div class="card-header">
-                            <h4>Ordini accettati:</h4>
-                        </div>
                         @if (count($ordersApproved) > 0)
                             @foreach ($ordersApproved as $order)
                                 <div class="card-body mb-3">
@@ -57,10 +57,10 @@
 
             <div class="col-12 col-lg-6 mt-4 list_order_not_null">
                 <div class="card">
+                    <div class="card-header">
+                        <h4>Ordini rifiutati:</h4>
+                    </div>
                     <div class="card_orders">
-                        <div class="card-header">
-                            <h4>Ordini rifiutati:</h4>
-                        </div>
                         @if (count($ordersNotApproved) > 0)
                             @foreach ($ordersNotApproved as $order)
                                 <div class="card-body mb-3">

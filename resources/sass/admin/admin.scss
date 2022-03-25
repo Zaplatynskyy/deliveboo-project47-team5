@@ -136,13 +136,16 @@ main {
         height: calc(100vh - 180px);
         overflow-y: auto;
     }
+
+    .card_orders {
+        height: calc(100vh - 240px);
+        overflow-y: auto;
+    }
 }
 
 //home
 
-// .card_orders {
-//     padding: 0 10px;
-// }
+
 
 .card-body {
     background-color: #fff;
@@ -154,14 +157,14 @@ main {
 }
 
 .label {
-    font-size: 1rem;
+    font-size: .9rem;
     color: #3eccbc;
     border-bottom: 1px solid lightgray;
     margin-top: 10px;
 }
 
 .label_img {
-    font-size: 1rem;
+    font-size: .9rem;
     color: #3eccbc;
     margin-top: 10px;
 }

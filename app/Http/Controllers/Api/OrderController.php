@@ -90,6 +90,7 @@ class OrderController extends Controller
             $newOrder->telephone = $data['client']['telephone'];
             $newOrder->total = $total;
             $newOrder->user_id = $user->id;
+            $newOrder->created_at = date("Y-m-d");
             $newOrder->save();
 
             foreach ($foods as $food) {

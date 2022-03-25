@@ -72,7 +72,7 @@
                         <canvas id="popChart" width="600" height="400"></canvas>
                     </div>
                 </div>
-                <div class="card">
+                <div class="card mt-3">
                     <div class="card-header">
                         Piatti ordinati nell'ultimo mese
                     </div>
