@@ -2,7 +2,7 @@
     <div class="checkout-page">
         <div class="_my_container">
             <form v-if="!loading && loaded">
-                <div class="">
+                <div class="content_info_client">
                     <div class="wrapper">
                         <div class="info">
                             <div class="form-group">
@@ -145,24 +145,62 @@
                 </div>
 
                 <div class="summary_card">
-                    <div class="info-order">
-                        <h3>{{ restaurant.name }}</h3>
 
+                    <div class="order_restaurant_details">
                         <div class="img_restaurant">
                             <img
                                 :src="`/storage/${restaurant.image}`"
                                 :alt="restaurant.name"
                             />
                         </div>
+
+                        <div class="info_restaurant">
+                            <h3>{{ restaurant.name }}</h3>
+                            <div class="info telephone">
+                                <div class="svg">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M511.2 387l-23.25 100.8c-3.266 14.25-15.79 24.22-30.46 24.22C205.2 512 0 306.8 0 54.5c0-14.66 9.969-27.2 24.22-30.45l100.8-23.25C139.7-2.602 154.7 5.018 160.8 18.92l46.52 108.5c5.438 12.78 1.77 27.67-8.98 36.45L144.5 207.1c33.98 69.22 90.26 125.5 159.5 159.5l44.08-53.8c8.688-10.78 23.69-14.51 36.47-8.975l108.5 46.51C506.1 357.2 514.6 372.4 511.2 387z"/></svg>
+                                </div>
+                                {{restaurant.telephone}}
+                            </div>
+                            <div class="info address">
+                                <div class="svg">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M168.3 499.2C116.1 435 0 279.4 0 192C0 85.96 85.96 0 192 0C298 0 384 85.96 384 192C384 279.4 267 435 215.7 499.2C203.4 514.5 180.6 514.5 168.3 499.2H168.3zM192 256C227.3 256 256 227.3 256 192C256 156.7 227.3 128 192 128C156.7 128 128 156.7 128 192C128 227.3 156.7 256 192 256z"/></svg>
+                                </div>
+                                {{restaurant.address}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="info-order">
+                        <h4>Il tuo ordine</h4>
                         <ul>
-                            <li v-for="food in foods" :key="food.id">
-                                <span>- {{ food.name }}</span>
-                                <span>x{{ food.quantity }}</span>
+                            <li v-for="food in foods" :key="food.id" class="d-flex justify-content-between">
+                                <div class="name_food">
+                                    <span class="food_name">{{ food.name }}</span>
+                                </div>
+
+                                <div class="price_food">
+                                    <span class="food_quantity">x {{ food.quantity }}</span>
+                                    <span class="food_price">{{priceFood(food.price, food.quantity)}}€</span>
+                                </div>
                             </li>
                         </ul>
-                        <div class="total">Totale speso {{ getTotal() }}€</div>
+                        <div class="total">
+                            <div class="price sub_total">
+                                <span>Subtotale</span>
+                                <div>{{ subTotal() }}€</div>
+                            </div>
+                            <div class="price shipping">
+                                <span>Costo di spedizione</span>
+                                <div>{{ restaurant.shipping }}€</div>
+                            </div>
+                            <div class="price final">
+                                <span>Totale</span>
+                                <div>{{ getTotal() }}€</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
+
             </form>
             <div v-else-if="loading" class="loading-payment">
                 <h4>Pagamento in corso...</h4>
@@ -253,6 +291,11 @@ export default {
 
             return total;
         },
+
+        subTotal() {
+            return this.getTotal() - this.restaurant.shipping
+        },
+
         redirect() {
             this.$router.push({
                 name: "success",
@@ -383,6 +426,10 @@ export default {
 
             return true;
         },
+
+        priceFood(price, quantity) {
+            return price*quantity
+        }
     },
 
     created() {
@@ -435,6 +482,10 @@ form {
     align-items: flex-start;
     display: flex;
     flex-direction: column-reverse;
+
+    .content_info_client {
+        margin: auto;
+    }
 }
 .form-group {
     display: flex;
@@ -617,6 +668,17 @@ form {
     }
 }
 
+@media (min-width: 576px) {
+    ._my_container {
+        width: 80%;
+        margin: auto;
+    }
+
+    .info_order {
+        font-size: 1.1rem;
+    }
+}
+
 @media (min-width: 768px) {
     .info,
     .contacts {
@@ -635,17 +697,18 @@ form {
     }
 
     .wrapper {
-        margin: 0 20px;
+        margin: 0;
     }
 
     .cart-payment {
-        margin: 0 20px;
+        margin: 0;
     }
 
     .summary_card {
+        width: 100% !important;
+        max-width: 670px;
         padding: 20px;
         margin: 20px auto;
-        width: 100% !important;
     }
 }
 
@@ -662,6 +725,15 @@ form {
             width: 100%;
         }
     }
+
+    .wrapper {
+        margin: 0 20px;
+    }
+
+    .cart-payment {
+        margin: 0 20px;
+    }
+
     .summary_card {
         width: 40% !important;
     }
@@ -699,24 +771,100 @@ form {
     padding: 20px;
     margin-bottom: 30px;
 
-    .info-order {
-        text-align: center;
-    }
 
-    .img_restaurant {
-        width: 200px;
-        margin: 10px auto;
+    .order_restaurant_details {
+        display: flex;
+        margin-bottom: 20px;
 
-        img {
-            width: 100%;
+        .img_restaurant {
+            width: 100px;
+            margin-right: 15px;
+    
+            img {
+                width: 100%;
+            }
+        }
+
+        .info_restaurant {
+            font-size: .9rem;
+
+            h3 {
+                margin-bottom: 10px;
+            }
+
+            .info {
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                margin-bottom: 5px;
+
+                &.telephone {
+                    color: #3fb9ab;
+                }
+
+                &.address {
+                    .svg {
+                        width: 10px;
+                    }
+                }
+
+
+                .svg {
+                    width: 15px;
+                    display: inline-block;
+                    margin-right: 10px;
+                }
+            }
         }
     }
 
-    ul {
-        margin: 10px 0;
+    .info-order {
+        h4 {
+            color: #3fb9ab;
+            border-bottom: 1px solid var(--dark-grey);
+        }
+        ul {
+            margin: 10px 0;
 
-        li {
-            font-size: 0.9rem;
+            li {
+                margin-bottom: 5px;
+                .food_name {
+                    font-size: 0.8rem;
+                }
+
+                .price_food {
+                    display: flex;
+                    justify-content: space-between;
+                    width: 70px;
+
+                    .food_quantity {
+                        font-size: 0.9rem;
+                    }
+
+                    .food_price {
+                        font-size: 0.9rem;
+                    }
+                }
+            }
+        }
+
+        .total {
+            border-top: 1px solid var(--dark-grey);
+            margin-top: 5px;
+            .price {
+                font-size: .9rem;
+                display: flex;
+                justify-content: space-between;
+                margin-top: 5px;
+
+                &.final {
+                    font-size: 1.1rem;
+                }
+
+                .sub_total > span, .final > span {
+                    text-transform: uppercase;
+                }
+            }
         }
     }
 }
