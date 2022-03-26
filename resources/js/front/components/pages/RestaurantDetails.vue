@@ -74,14 +74,20 @@
                                         >+</span
                                     >
                                     <span class="price">
-                                        {{ food.price }}€</span
+                                        {{ priceFood(food.price, food.quantity) }}€</span
                                     >
                                 </div>
                             </div>
                         </div>
                         <div class="info-bottom">
                             <div>
-                                <div>Spese di consegna</div>
+                                <div>Subtotale</div>
+                                <div class="shipping" v-if="cartName.shipping">
+                                    {{ subTotal }}€
+                                </div>
+                            </div>
+                            <div>
+                                <div>Costo di spedizione</div>
                                 <div class="shipping" v-if="cartName.shipping">
                                     {{ cartName.shipping }}€
                                 </div>
@@ -296,6 +302,10 @@ export default {
                 return cartFood[index].quantity;
             }
         },
+
+        priceFood(price, quantity) {
+            return price*quantity
+        },
     },
     beforeRouteEnter(to, from, next) {
         next((app) => {
@@ -359,6 +369,13 @@ export default {
                 ? (this.validatePrice = true)
                 : (this.validatePrice = false);
             return total;
+        },
+
+        subTotal() {
+            if (this.cartName.shipping) {
+                return this.getTotal - this.cartName.shipping
+            }
+            return this.getTotal
         },
     },
 };
@@ -555,6 +572,7 @@ export default {
                             .price {
                                 min-width: 30px;
                                 text-align: right;
+                                margin-left: 10px;
                             }
                         }
                     }
