@@ -37293,83 +37293,83 @@ __webpack_require__(/*! ./modalToggle */ "./resources/js/admin/modalToggle.js");
 __webpack_require__(/*! ./editSubmitForm */ "./resources/js/admin/editSubmitForm.js");
 
 var user = document.querySelector("meta[name='user-id']");
+var thisURL = window.location.href;
 
-if (user) {
-  var userId = user.getAttribute("content");
-  var popCanvas = document.getElementById("popChart");
-  var d = new Date();
-  var month = d.getMonth() + 1;
-  var year = d.getFullYear();
+if (user != 1 && thisURL.endsWith("/admin/home")) {
+  if (user) {
+    var userId = user.getAttribute("content");
+    var popCanvas = document.getElementById("popChart");
+    var d = new Date();
+    var month = d.getMonth() + 1;
+    var year = d.getFullYear();
 
-  var getDaysInMonth = function getDaysInMonth(month, year) {
-    return new Date(year, month, 0).getDate();
-  };
+    var getDaysInMonth = function getDaysInMonth(month, year) {
+      return new Date(year, month, 0).getDate();
+    };
 
-  var days = getDaysInMonth(month, year);
-  var arrayDays = [];
+    var days = getDaysInMonth(month, year);
+    var arrayDays = [];
 
-  for (var i = 1; i <= days; i++) {
-    arrayDays.push(i);
+    for (var i = 1; i <= days; i++) {
+      arrayDays.push(i);
+    }
+
+    var data = [];
+    axios.post("/api/orders/last-month", {
+      params: {
+        month: month,
+        userId: userId
+      }
+    }).then(function (response) {
+      data = _toConsumableArray(response.data.orders);
+      var barChart = new Chart(popCanvas, {
+        type: "bar",
+        data: {
+          labels: arrayDays,
+          datasets: [{
+            label: "Ordini",
+            data: data,
+            backgroundColor: ["rgba(255, 99, 132, 0.6)", "rgba(54, 162, 235, 0.6)", "rgba(255, 206, 86, 0.6)", "rgba(75, 192, 192, 0.6)", "rgba(153, 102, 255, 0.6)", "rgba(255, 159, 64, 0.6)", "rgba(255, 99, 132, 0.6)", "rgba(54, 162, 235, 0.6)", "rgba(255, 206, 86, 0.6)", "rgba(75, 192, 192, 0.6)", "rgba(153, 102, 255, 0.6)"]
+          }]
+        },
+        options: {
+          plugins: {
+            legend: {
+              display: false
+            }
+          }
+        }
+      });
+    })["catch"](function (error) {});
+    var foodChart = document.getElementById("foodChart");
+    axios.post("/api/foods/last-month", {
+      params: {
+        month: month,
+        userId: userId
+      }
+    }).then(function (response) {
+      var names = response.data.orders.names;
+      var quantities = response.data.orders.quantities;
+      var pieChart = new Chart(foodChart, {
+        type: "doughnut",
+        data: {
+          labels: names,
+          datasets: [{
+            label: "Ordini",
+            data: quantities,
+            backgroundColor: ["rgba(255, 99, 132, 0.6)", "rgba(54, 162, 235, 0.6)", "rgba(255, 206, 86, 0.6)", "rgba(75, 192, 192, 0.6)", "rgba(153, 102, 255, 0.6)", "rgba(255, 159, 64, 0.6)", "rgba(255, 99, 132, 0.6)", "rgba(54, 162, 235, 0.6)", "rgba(255, 206, 86, 0.6)", "rgba(75, 192, 192, 0.6)", "rgba(153, 102, 255, 0.6)"]
+          }]
+        },
+        options: {
+          plugins: {
+            legend: {
+              display: false
+            }
+          }
+        }
+      });
+    })["catch"](function (error) {});
   }
-
-  var data = [];
-  axios.post("/api/orders/last-month", {
-    params: {
-      month: month,
-      userId: userId
-    }
-  }).then(function (response) {
-    data = _toConsumableArray(response.data.orders);
-    var barChart = new Chart(popCanvas, {
-      type: "bar",
-      data: {
-        labels: arrayDays,
-        datasets: [{
-          label: "Ordini",
-          data: data,
-          backgroundColor: ["rgba(255, 99, 132, 0.6)", "rgba(54, 162, 235, 0.6)", "rgba(255, 206, 86, 0.6)", "rgba(75, 192, 192, 0.6)", "rgba(153, 102, 255, 0.6)", "rgba(255, 159, 64, 0.6)", "rgba(255, 99, 132, 0.6)", "rgba(54, 162, 235, 0.6)", "rgba(255, 206, 86, 0.6)", "rgba(75, 192, 192, 0.6)", "rgba(153, 102, 255, 0.6)"]
-        }]
-      },
-      options: {
-        plugins: {
-          legend: {
-            display: false
-          }
-        }
-      }
-    });
-  })["catch"](function (error) {});
-  var foodChart = document.getElementById("foodChart");
-  axios.post("/api/foods/last-month", {
-    params: {
-      month: month,
-      userId: userId
-    }
-  }).then(function (response) {
-    console.log(response.data.orders);
-    var names = response.data.orders.names;
-    var quantities = response.data.orders.quantities;
-    console.log(names);
-    console.log(quantities);
-    var pieChart = new Chart(foodChart, {
-      type: "doughnut",
-      data: {
-        labels: names,
-        datasets: [{
-          label: "Ordini",
-          data: quantities,
-          backgroundColor: ["rgba(255, 99, 132, 0.6)", "rgba(54, 162, 235, 0.6)", "rgba(255, 206, 86, 0.6)", "rgba(75, 192, 192, 0.6)", "rgba(153, 102, 255, 0.6)", "rgba(255, 159, 64, 0.6)", "rgba(255, 99, 132, 0.6)", "rgba(54, 162, 235, 0.6)", "rgba(255, 206, 86, 0.6)", "rgba(75, 192, 192, 0.6)", "rgba(153, 102, 255, 0.6)"]
-        }]
-      },
-      options: {
-        plugins: {
-          legend: {
-            display: false
-          }
-        }
-      }
-    });
-  })["catch"](function (error) {});
 }
 
 /***/ }),
@@ -37534,11 +37534,32 @@ window.previewUpload = function (event) {
   }
 };
 
+window.previewCreateCategory = function (event) {
+  if (event.target.files.length > 0) {
+    var src = URL.createObjectURL(event.target.files[0]);
+    var preview = document.querySelector(".my_image_create");
+    preview.src = src;
+    preview.classList.remove('d-none');
+  }
+};
+
 window.previewUploadCategory = function (event, i) {
   if (event.target.files.length > 0) {
     var src = URL.createObjectURL(event.target.files[0]);
     var preview = document.querySelectorAll(".my_image");
     preview[i].src = src;
+  }
+};
+
+window.toggleFile = function (input) {
+  var createCategoryFile = document.querySelector(".create-img");
+
+  if (input.value == '') {
+    createCategoryFile.classList.remove("d-inline-flex", "justify-content-center", "align-items-center", "flex-wrap");
+    createCategoryFile.classList.add("d-none");
+  } else {
+    createCategoryFile.classList.remove("d-none");
+    createCategoryFile.classList.add("d-inline-flex", "justify-content-center", "align-items-center", "flex-wrap");
   }
 };
 
@@ -37986,9 +38007,9 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\User\Desktop\boolean-full\esercizi\php\deliveboo-project47-team5\resources\js\admin\admin.js */"./resources/js/admin/admin.js");
-__webpack_require__(/*! C:\Users\User\Desktop\boolean-full\esercizi\php\deliveboo-project47-team5\resources\sass\admin\admin.scss */"./resources/sass/admin/admin.scss");
-module.exports = __webpack_require__(/*! C:\Users\User\Desktop\boolean-full\esercizi\php\deliveboo-project47-team5\resources\sass\front\front.scss */"./resources/sass/front/front.scss");
+__webpack_require__(/*! /Users/simonespirito/Downloads/Boolean/deliveboo-project47-team5-1/resources/js/admin/admin.js */"./resources/js/admin/admin.js");
+__webpack_require__(/*! /Users/simonespirito/Downloads/Boolean/deliveboo-project47-team5-1/resources/sass/admin/admin.scss */"./resources/sass/admin/admin.scss");
+module.exports = __webpack_require__(/*! /Users/simonespirito/Downloads/Boolean/deliveboo-project47-team5-1/resources/sass/front/front.scss */"./resources/sass/front/front.scss");
 
 
 /***/ })

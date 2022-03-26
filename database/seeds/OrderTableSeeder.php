@@ -189,6 +189,7 @@ class OrderTableSeeder extends Seeder
             $newOrder->user_id = rand(2, count(User::all()));
             $newOrder->address = $order['address'];
             $newOrder->telephone = '3' . rand(111111111, 999999999);
+            $newOrder->restaurant_number = count(Order::where('user_id', $newOrder->user_id)->get()) + 1;
 
             $days = cal_days_in_month(CAL_GREGORIAN, date('m'), date('Y'));;
             $newOrder->created_at = date('Y') . '-' . date('m') . '-' . rand(1, $days);

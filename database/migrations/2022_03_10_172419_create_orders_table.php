@@ -16,6 +16,7 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->foreignId("user_id")->constrained()->onDelete("cascade");
+            $table->bigInteger('restaurant_number');
             $table->string("name", 100);
             $table->string("cognome", 100);
             $table->string('email', 255);

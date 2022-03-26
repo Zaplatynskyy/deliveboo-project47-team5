@@ -253,3 +253,18 @@ main {
        } 
     }
 }
+
+
+.create_category {
+    input {
+        width: initial;
+        display: inline-block;
+    }
+    .create-img {
+        input[type='file'] {
+            width: 78px;
+            overflow: hidden;
+        }
+    }
+}
+
