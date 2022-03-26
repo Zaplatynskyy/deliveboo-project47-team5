@@ -44,7 +44,6 @@ export default {
                         .then((response) => {
                             dataShared.tags = [...response.data.tags];
                             dataShared.loaded = true;
-                            console.log(dataShared.loaded);
                         })
                         .catch(function (error) {});
                 })

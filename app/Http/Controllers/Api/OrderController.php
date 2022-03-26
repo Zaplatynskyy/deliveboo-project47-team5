@@ -90,7 +90,9 @@ class OrderController extends Controller
             $newOrder->telephone = $data['client']['telephone'];
             $newOrder->total = $total;
             $newOrder->user_id = $user->id;
+            $newOrder->restaurant_number = count(Order::where('user_id', $newOrder->user_id)->get()) + 1;
             $newOrder->created_at = date("Y-m-d");
+
             $newOrder->save();
 
             foreach ($foods as $food) {

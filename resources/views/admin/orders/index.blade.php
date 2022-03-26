@@ -14,7 +14,7 @@
                         @if (count($ordersApproved) > 0)
                             @foreach ($ordersApproved as $order)
                                 <div class="card-body mb-3">
-                                    <h4>Ordine #{{ $order->id }}</h4>
+                                    <h4>Ordine #{{ $order->restaurant_number }}</h4>
 
                                     <div class="row_info">
                                         <div class="label">Cliente</div>
@@ -71,7 +71,7 @@
                         @if (count($ordersNotApproved) > 0)
                             @foreach ($ordersNotApproved as $order)
                                 <div class="card-body mb-3">
-                                    <h4>Ordine #{{ $order->id }}</h4>
+                                    <h4>Ordine #{{ $order->restaurant_number }}</h4>
 
                                     <div class="row_info">
                                         <div class="label">Cliente</div>

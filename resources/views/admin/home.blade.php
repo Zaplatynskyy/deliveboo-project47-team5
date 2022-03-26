@@ -10,7 +10,7 @@
                         @if (count($orders) > 0)
                             @foreach ($orders as $order)
                                 <div class="card-body my-4">
-                                    {{-- <h4>Ordine #{{ $order->id }}</h4> --}}
+                                    <h4>Ordine #{{ $order->restaurant_number }}</h4>
 
                                     <div class="row_info">
                                         <div class="label">Cliente</div>

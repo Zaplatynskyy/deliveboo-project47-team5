@@ -40,6 +40,10 @@ class CategoryController extends Controller
         $newCategory = new Category();
         $newCategory->name = $data['name'];
         $newCategory->slug = Str::of($newCategory->name)->slug('-');
+
+        $path = Storage::put('uploads', $data['image']);
+        $newCategory->image = $path;
+
         $newCategory->save();
 
         return redirect()->route('categories.index');
@@ -86,7 +90,7 @@ class CategoryController extends Controller
 
         $previous = URL::previous();
 
-        $url = '/admin/categories/'.$category->id;
+        $url = '/admin/categories/' . $category->id;
 
         if (str_ends_with($previous, $url)) {
             return redirect()->route('categories.index');
