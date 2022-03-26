@@ -7,13 +7,13 @@
                 <div class="card">
                     <h3 class="card-header">Lista dei tag</h3>
                     <div class="card-header">
-                        <form class="d-flex mb-3" action="{{ route('tags.store') }}" method="POST" id="add_tag_form" onsubmit="return validationFormTag()">
-                            <button type="submit" class="my_btn btn btn-success mr-2 btnP">Crea nuovo *</button>
+                        <form class="d-flex" action="{{ route('tags.store') }}" method="POST" id="add_tag_form" onsubmit="return validationFormTag()">
+                            <button type="submit" class="my_btn btn btn-success mr-2 btnP">Crea nuovo</button>
                             <div>
                                 @csrf
                                 <input value="@if (old('formType') == 'create') {{ old('name') }} @endif" type="text"
                                     class="form-control @if (old('formType') == 'create') is-invalid @endif" id="name"
-                                    placeholder="Inserisci il tag" name="name" required>
+                                    placeholder="Inserisci il tag *" name="name" required>
                                 <input type="hidden" name="formType" value="create">
                             </div>
 

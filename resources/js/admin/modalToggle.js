@@ -13,12 +13,35 @@ window.previewUpload = function (event) {
     }
 };
 
+window.previewCreateCategory = function (event) {
+    if (event.target.files.length > 0) {
+        var src = URL.createObjectURL(event.target.files[0]);
+        var preview = document.querySelector(".my_image_create");
+        preview.src = src;
+        preview.classList.remove('d-none')
+    }
+};
+
 window.previewUploadCategory = function (event, i) {
     if (event.target.files.length > 0) {
         var src = URL.createObjectURL(event.target.files[0]);
         var preview = document.querySelectorAll(".my_image");
         preview[i].src = src;
     }
+};
+
+window.toggleFile = function (input) {
+    const createCategoryFile = document.querySelector(".create-img")
+    if(input.value == '') {
+        createCategoryFile.classList.remove("d-inline-flex", "justify-content-center", "align-items-center", "flex-wrap")
+        createCategoryFile.classList.add("d-none")
+    } else {
+        createCategoryFile.classList.remove("d-none")
+        createCategoryFile.classList.add("d-inline-flex", "justify-content-center", "align-items-center", "flex-wrap")
+
+    }
+    
+    
 };
 
 const buttonsToggle = document.getElementsByClassName("btnToggle");
