@@ -319,6 +319,9 @@ export default {
             axios
                 .post("/api/orders/make/payment", this.form)
                 .then((response) => {
+                    console.log(this.form.client);
+                    this.dataShared.client = this.form.client;
+                    console.log(this.dataShared.client);
                     self.clearCart();
                     self.redirect();
                 })

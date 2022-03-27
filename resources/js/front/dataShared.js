@@ -15,5 +15,6 @@ export default Vue.observable = {
     ],
     order: 'rilevanza',
     noResultsFound: null,
-    loaded: false
+    loaded: false,
+    client : {}
 }
