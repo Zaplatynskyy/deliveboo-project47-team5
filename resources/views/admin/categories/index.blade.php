@@ -145,7 +145,7 @@
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h5 class="modal-title text-uppercase" id="exampleModalLabel">Attenzione! ❌</h5>
-                                        <button type="button" class="close" data-dismiss="modal"
+                                        <button type="button my_btn" class="close" data-dismiss="modal"
                                             aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
@@ -154,12 +154,12 @@
                                         Sei sicuro di voler eliminare questa categoria?
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-primary btnP"
+                                        <button type="button" class="btn btn-primary btnP my_btn"
                                             data-dismiss="modal">Chiudi</button>
                                         <form action="" method="POST" class="my_form">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="button" class="btn btn-danger toastClicker delete-category btnP"
+                                            <button type="button" class="btn btn-danger toastClicker delete-category btnP my_btn"
                                                 data-dismiss="modal">Conferma</button>
                                         </form>
                                     </div>

@@ -69,7 +69,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-lg-6">
+            <div class="col-12 col-lg-6 graphs">
                 <div class="card">
                     <div class="card-header">
                         Ordini nell'ultimo mese

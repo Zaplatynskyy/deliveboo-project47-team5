@@ -17,10 +17,10 @@ class CheckAdmin
     public function handle($request, Closure $next)
     {
         $user = Auth::user();
-    if ($user->email == 'admin@admin.com') {
-        return $next($request);
-    }
+        if ($user->email == 'admin@admin.com') {
+            return $next($request);
+        }
 
-    return response('Unauthorized.', 401);
+        return response()->view('admin.notAuth');
     }
 }

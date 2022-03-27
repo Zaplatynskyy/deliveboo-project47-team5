@@ -55,12 +55,14 @@
                                 <div class="label">Dettagli ordine</div>
                                 <div class="my_txt name_order">
                                     @foreach ($order->foods as $food)
-                                            <span class="my_food_list">
-                                                {{ $food->name }}
-                                            </span>
-                                            <span>
-                                                x{{ $food->pivot->quantity }}
-                                            </span>
+                                            <div class="order_list">
+                                                <span class="my_food_list mr-2">
+                                                    {{ $food->name }}
+                                                </span>
+                                                <span>
+                                                    x{{ $food->pivot->quantity }}
+                                                </span>
+                                            </div>
                                     @endforeach
                                 </div>
                             </div>

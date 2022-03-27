@@ -138,8 +138,13 @@ main {
     }
 
     .card_orders {
-        height: calc(100vh - 240px);
+        height: calc(100vh - 156px);
         overflow-y: auto;
+    }
+
+    .graphs {
+        height: calc(100vh - 100px);
+        overflow: auto;
     }
 }
 
@@ -265,6 +270,16 @@ main {
             width: 78px;
             overflow: hidden;
         }
+    }
+}
+
+//pagina accesso negato
+
+.not_auth {
+    width: 900px;
+
+    img {
+        width: 100%;
     }
 }
 

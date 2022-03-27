@@ -106,13 +106,13 @@
                                         Sei sicuro di voler eliminare questo tag?
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-primary btnP"
+                                        <button type="button" class="btn btn-primary btnP my_btn"
                                             data-dismiss="modal">Chiudi</button>
                                         <form action="" method="POST" class="my_form">
                                             @csrf
                                             @method('DELETE')
                                             <button type="button"
-                                                class="btn btn-danger toastClicker delete-tag btnP"
+                                                class="btn btn-danger toastClicker delete-tag btnP my_btn"
                                                 data-dismiss="modal">Conferma</button>
                                         </form>
                                     </div>

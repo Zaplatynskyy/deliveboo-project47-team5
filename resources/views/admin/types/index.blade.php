@@ -87,64 +87,7 @@
                                 </div>
                             </div>
                         @endforeach
-                        {{-- <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">Nome</th>
-                                    <th scope="col">Slug</th>
-                                    <th scope="col">Azioni</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($types as $key => $type)
-                                    <tr class="my_item">
-                                        <th scope="row">{{ $key + 1 }}</th>
-                                        <td>
-                                            <div
-                                                class="name {{ old('formType') == 'edit' && old('oldName') == $type->name ? 'd-none' : '' }}">
-                                                {{ $type->name }}</div>
-                                            <div
-                                                class="name-input {{ old('formType') == 'edit' && old('oldName') == $type->name ? '' : 'd-none' }}">
-                                                <form class="d-inline-block edit-form"
-                                                    action="{{ route('types.update', $type) }}"
-                                                    method="POST">
-                                                    @csrf
-                                                    @method('PUT')
-                                                    <input
-                                                        value="{{ old('oldName') == $type->name ? old('name') : $type->name }}"
-                                                        type="text"
-                                                        class="form-control @if (old('formType') == 'edit' && old('oldName') == $type->name) is-invalid my_validation @endif"
-                                                        id="name" placeholder="Insert the name" name="name" data-old-name="{{$type->name}}">
-                                                    <input type="hidden" name="formType" value="edit">
-                                                    <input type="hidden" name="oldName" value="{{ $type->name }}">
-                                                    @if (old('formType') == 'edit' && old('oldName') == $type->name)
-                                                        @error('name')
-                                                            <div
-                                                                class="alert alert-danger mb-0 py-0 px-4 d-flex align-items-center">
-                                                                {{ $message }}
-                                                            </div>
-                                                        @enderror
-                                                    @endif
-                                                </form>
-                                            </div>
-                                        </td>
-                                        <td>{{ $type->slug }}</td>
-                                        <td>
-                                            <div class="edit-buttons d-inline-block">
-                                                <button type="button"
-                                                    class="my_btn btn btn-warning btnP text-white toggleForm {{ old('oldName') == $type->name ? 'd-none' : '' }}">Modifica</button>
-                                                <button type="button"
-                                                    class="my_btn btn btn-warning btnP text-white submitForm {{ old('oldName') == $type->name ? 'failed-validation' : 'd-none' }} ">Conferma</button>
-                                            </div>
-                                            <button type="submit" class="my_btn btn btn-danger btnToggle btnP"
-                                                data-toggle="modal" data-target="#exampleModal"
-                                                data-slug="{{ $type->id }}">Elimina</button>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table> --}}
+                        
                         <!-- Modal -->
                         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                             aria-hidden="true">
@@ -161,13 +104,13 @@
                                         Sei sicuro di voler eliminare questa tipologia?
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-primary btnP"
+                                        <button type="button" class="btn btn-primary btnP my_btn"
                                             data-dismiss="modal">Chiudi</button>
                                         <form action="" method="POST" class="my_form">
                                             @csrf
                                             @method('DELETE')
                                             <button type="button"
-                                                class="btn btn-danger toastClicker delete-type btnP"
+                                                class="btn btn-danger toastClicker delete-type btnP my_btn"
                                                 data-dismiss="modal">Conferma</button>
                                         </form>
                                     </div>

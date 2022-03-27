@@ -22,6 +22,6 @@ class checkUser
             return $next($request);
         }
 
-        return response('Unauthorized.', 401);
+        return response()->view('admin.notAuth');
     }
 }
