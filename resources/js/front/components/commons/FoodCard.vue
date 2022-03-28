@@ -12,6 +12,34 @@
                 </div>
                 <div class="bottom">
                     <div class="price">{{ food.price }}€</div>
+                    <div v-if="food.tags.length" class="tags">
+                        <div
+                            v-if="checkTags('Gluten free')"
+                            class="gluten-free"
+                        >
+                            <i
+                                class="fa-solid fa-wheat-awn-circle-exclamation"
+                            ></i>
+                        </div>
+                        <div
+                            v-if="checkTags('Vegetariano')"
+                            class="vegetariano"
+                        >
+                            <i class="fa-solid fa-carrot"></i>
+                        </div>
+                        <div
+                            v-if="checkTags('Vegan')"
+                            class="vegan"
+                        >
+                            <i class="fa-solid fa-leaf"></i>
+                        </div>
+                        <div
+                            v-if="checkTags('Senza lattosio')"
+                            class="senza-lattosio"
+                        >
+                            <i class="fa-solid fa-cow"></i>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="right">
@@ -19,33 +47,15 @@
                     <img :src="`/storage/${food.image}`" :alt="food.name" />
                 </div>
                 <div class="buttons">
-                    <div
-                        @click="
-                            $emit('addCart');
-                        "
-                        v-if="!quantity"
-                        class="big"
-                    >
+                    <div @click="$emit('addCart')" v-if="!quantity" class="big">
                         +
                     </div>
                     <div v-else class="littles">
-                        <div
-                            @click="
-                                $emit('addCart');
-                            "
-                        >
-                            +
-                        </div>
+                        <div @click="$emit('addCart')">+</div>
                         <span v-if="quantity" class="quantity">
                             {{ quantity }}
                         </span>
-                        <div
-                            @click="
-                                $emit('removeCart');
-                            "
-                        >
-                            -
-                        </div>
+                        <div @click="$emit('removeCart')">-</div>
                     </div>
                 </div>
             </div>
@@ -62,7 +72,7 @@ export default {
         food: Object,
         restaurant: {
             type: Object,
-            required: false
+            required: false,
         },
         quantity: Number,
     },
@@ -70,6 +80,13 @@ export default {
         return {
             dataShared,
         };
+    },
+    methods: {
+        checkTags(tagName) {
+            return this.food.tags.some((element) => {
+                return element.name == tagName;
+            });
+        },
     },
 };
 </script>
@@ -125,9 +142,31 @@ export default {
                 margin-bottom: 7px;
             }
 
-            .price {
-                font-size: 17px;
-                color: #606464;
+            .bottom {
+                display: flex;
+                justify-content: space-between;
+
+                .price {
+                    font-size: 17px;
+                    color: #606464;
+                }
+
+                svg {
+                    font-size: 18px;
+                }
+
+                .gluten-free {
+                    color: #e2ab33;
+                }
+                .vegetariano {
+                    color: #f26a00;
+                }
+                .vegan {
+                    color: #007e3f;
+                }
+                .senza-lattosio {
+                    color: #98cff2;
+                }
             }
 
             @media (min-width: 468px) {
@@ -193,7 +232,7 @@ export default {
                     }
 
                     &:active {
-                        box-shadow: 0px 0px 1px 2px #B2F0EB;
+                        box-shadow: 0px 0px 1px 2px #b2f0eb;
                     }
                 }
 
@@ -222,7 +261,7 @@ export default {
                         }
 
                         &:active {
-                            box-shadow: 0px 0px 1px 2px #B2F0EB;
+                            box-shadow: 0px 0px 1px 2px #b2f0eb;
                         }
                     }
 
