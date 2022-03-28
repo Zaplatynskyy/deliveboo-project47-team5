@@ -11085,8 +11085,13 @@ main {
   }
 
   .card_orders {
-    height: calc(100vh - 240px);
+    height: calc(100vh - 156px);
     overflow-y: auto;
+  }
+
+  .graphs {
+    height: calc(100vh - 100px);
+    overflow: auto;
   }
 }
 
@@ -11207,5 +11212,13 @@ main {
 .create_category .create-img input[type=file] {
   width: 78px;
   overflow: hidden;
+}
+
+.not_auth {
+  width: 900px;
+}
+
+.not_auth img {
+  width: 100%;
 }
 
