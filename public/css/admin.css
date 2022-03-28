@@ -11079,13 +11079,13 @@ main {
     overflow-y: auto;
   }
 
-  .list_order_not_null {
-    height: calc(100vh - 180px);
+  .card_orders_all {
+    height: calc(100vh - 156px);
     overflow-y: auto;
   }
 
   .card_orders {
-    height: calc(100vh - 156px);
+    height: calc(100vh - 240px);
     overflow-y: auto;
   }
 
@@ -11214,8 +11214,19 @@ main {
   overflow: hidden;
 }
 
+.container.page_not_auth {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: calc(100vh - 100px);
+}
+
 .not_auth {
   width: 900px;
+  border-radius: 28px;
+  overflow: hidden;
+  margin-bottom: 20px;
 }
 
 .not_auth img {
