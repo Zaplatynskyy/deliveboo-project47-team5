@@ -30,6 +30,7 @@ Route::post('orders/make/payment', 'Api\OrderController@makePayment');
 //orders
 Route::post('/orders/sending', 'Api\OrderController@store');
 Route::post('/orders/last-month', 'Api\OrderController@month');
+Route::post('/orders/total-month', 'Api\OrderController@totalMonth');
 
 // foods
 Route::post('/foods/last-month', 'Api\FoodController@month');
