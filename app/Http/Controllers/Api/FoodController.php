@@ -12,28 +12,19 @@ class FoodController extends Controller
     public function month(Request $request)
     {
         $data = $request->all()['params'];
-        
+
         $month = $data['month'];
         if ($month < 10) $month = '0' . $month;
-        
+
         $userId = $data['userId'];
 
-
-
-
-        // for ($i = 1; $i <= $days; $i++) {
-        //     if ($i < 10) $i = '0' . $i;
-        //     $orders = Order::where('created_at', 'like', '%' . '-' . $date . '-' . $i . '%')->where('accepted', 1)->get();
-        //     $numberOfOrders[] = count($orders);
-        // }
-
-
-        $foods = Food::where('user_id', $userId)->whereHas('orders', function($query) use ($month){
+        $foods = Food::where('user_id', $userId)->whereHas('orders', function ($query) use ($month) {
             $query->where('orders.created_at', 'like', '%' . '-' . $month . '-' . '%');
         })->get();
 
         $ordersFoodsName = [];
         $ordersQuantity = [];
+        $orders = [];
 
         foreach ($foods as $food) {
             $quantity = 0;
@@ -41,8 +32,16 @@ class FoodController extends Controller
             foreach ($food->orders as $order) {
                 $quantity = $quantity + $order->pivot->quantity;
             }
-            $ordersFoodsName[] = $food->name;
-            $ordersQuantity[] = $quantity;
+            $orders[] = ['name' => $food->name, 'quantity' => $quantity];
+        }
+
+        usort($orders, function($a, $b) {
+            return strcmp($a['quantity'] , $b['quantity']);
+         });
+
+        foreach ($orders as $order) {
+            $ordersFoodsName[] = $order['name'];
+            $ordersQuantity[] = $order['quantity'];
         }
 
         $ordersData = [
