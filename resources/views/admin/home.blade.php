@@ -88,6 +88,15 @@
                         <canvas id="foodChart" width="600" height="400"></canvas>
                     </div>
                 </div>
+                <div class="card mt-3">
+                    <div class="card-header">
+                        I tuoi guadagni nell'ultimo mese
+                    </div>
+    
+                    <div class="card-body">
+                        <canvas id="totalChart" width="600" height="400"></canvas>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

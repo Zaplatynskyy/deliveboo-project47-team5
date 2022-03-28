@@ -14,8 +14,8 @@ class OrderController extends Controller
     public function index()
     {
 
-        $ordersApproved = Order::where('accepted', 1)->where('user_id', Auth::id())->orderBy('created_at', 'desc')->get();
-        $ordersNotApproved = Order::where('accepted', 0)->where('user_id', Auth::id())->orderBy('created_at', 'desc')->get();
+        $ordersApproved = Order::where('accepted', 1)->where('user_id', Auth::id())->orderBy('restaurant_number', 'desc')->get();
+        $ordersNotApproved = Order::where('accepted', 0)->where('user_id', Auth::id())->orderBy('restaurant_number', 'desc')->get();
         return view('admin.orders.index', compact('ordersApproved', 'ordersNotApproved'));
     }
 
@@ -25,7 +25,7 @@ class OrderController extends Controller
         if (Auth::id() == $order->user->id) {
             return view('admin.orders.show', compact('order'));
         } else {
-            return redirect()->route('home');
+            return redirect()->route('notAuth');
         }
     }
 

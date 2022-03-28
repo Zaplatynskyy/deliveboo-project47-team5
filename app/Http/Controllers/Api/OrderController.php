@@ -120,7 +120,7 @@ class OrderController extends Controller
     {
 
         $data = $request->all()['params'];
-        
+
         $month = $data['month'];
         $userId = $data['userId'];
 
@@ -138,10 +138,39 @@ class OrderController extends Controller
         }
 
 
-        $data = [
+        $newData = [
             'success' => true,
             'orders' => $numberOfOrders
         ];
-        return response()->json($data, 200);
+        return response()->json($newData, 200);
+    }
+
+    public function totalMonth(Request $request)
+    {
+        $data = $request->all()['params'];
+
+        $month = $data['month'];
+        $userId = $data['userId'];
+
+
+        if ($month < 10) $month = '0' . $month;
+
+        $totalMonth = [];
+
+        $days = cal_days_in_month(CAL_GREGORIAN, $month, date("Y"));
+
+        for ($i = 1; $i <= $days; $i++) {
+            if ($i < 10) $i = '0' . $i;
+            $orders = Order::where('user_id', $userId)->where('created_at', 'like', '%' . '-' . $month . '-' . $i . '%')->where('accepted', 1)->get();
+            $totalMonth[] = $orders->reduce(function ($total, $order) {
+                return $total + $order->total;
+            });
+        }
+
+        $newData = [
+            'success' => true,
+            'orders' => $totalMonth
+        ];
+        return response()->json($newData, 200);
     }
 }

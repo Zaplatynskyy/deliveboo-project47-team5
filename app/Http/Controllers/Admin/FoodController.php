@@ -89,7 +89,7 @@ class FoodController extends Controller
         if (Auth::id() == $food->user->id) {
             return view('admin.foods.show', compact('food'));
         } else {
-            return redirect()->route('home');
+            return redirect()->route('notAuth');
         }
     }
 
@@ -106,7 +106,7 @@ class FoodController extends Controller
             $tags = Tag::all();
             return view('admin.foods.edit', compact('types', 'tags', 'food'));
         } else {
-            return redirect()->route('home');
+            return redirect()->route('notAuth');
         }
     }
 

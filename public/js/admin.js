@@ -37261,12 +37261,12 @@ module.exports = function(module) {
 
 /***/ }),
 
-/***/ "./resources/js/admin/admin.js":
-/*!*************************************!*\
-  !*** ./resources/js/admin/admin.js ***!
-  \*************************************/
+/***/ "./resources/js/admin/Charts.js":
+/*!**************************************!*\
+  !*** ./resources/js/admin/Charts.js ***!
+  \**************************************/
 /*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
@@ -37279,18 +37279,6 @@ function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symb
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
 
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-__webpack_require__(/*! ../bootstrap */ "./resources/js/bootstrap.js");
-
-__webpack_require__(/*! ./validationFormUser */ "./resources/js/admin/validationFormUser.js");
-
-__webpack_require__(/*! ./validationFormFood */ "./resources/js/admin/validationFormFood.js");
-
-__webpack_require__(/*! ./validationFormAdmin */ "./resources/js/admin/validationFormAdmin.js");
-
-__webpack_require__(/*! ./modalToggle */ "./resources/js/admin/modalToggle.js");
-
-__webpack_require__(/*! ./editSubmitForm */ "./resources/js/admin/editSubmitForm.js");
 
 var user = document.querySelector("meta[name='user-id']");
 var thisURL = window.location.href;
@@ -37369,8 +37357,78 @@ if (user != 1 && thisURL.endsWith("/admin/home")) {
         }
       });
     })["catch"](function (error) {});
+    var totalChart = document.getElementById("totalChart");
+    axios.post("/api/orders/total-month", {
+      params: {
+        month: month,
+        userId: userId
+      }
+    }).then(function (response) {
+      data = _toConsumableArray(response.data.orders);
+      var barChartTotal = new Chart(totalChart, {
+        type: "bar",
+        data: {
+          labels: arrayDays,
+          datasets: [{
+            label: "Totale",
+            data: data,
+            backgroundColor: ["rgba(255, 99, 132, 0.6)", "rgba(54, 162, 235, 0.6)", "rgba(255, 206, 86, 0.6)", "rgba(75, 192, 192, 0.6)", "rgba(153, 102, 255, 0.6)", "rgba(255, 159, 64, 0.6)", "rgba(255, 99, 132, 0.6)", "rgba(54, 162, 235, 0.6)", "rgba(255, 206, 86, 0.6)", "rgba(75, 192, 192, 0.6)", "rgba(153, 102, 255, 0.6)"]
+          }]
+        },
+        options: {
+          plugins: {
+            legend: {
+              display: false
+            },
+            tooltip: {
+              callbacks: {
+                label: function label(context) {
+                  var label = context.dataset.label || '';
+
+                  if (label) {
+                    label += ': ';
+                  }
+
+                  if (context.parsed.y !== null) {
+                    label += new Intl.NumberFormat('en-US', {
+                      style: 'currency',
+                      currency: 'EUR'
+                    }).format(context.parsed.y);
+                  }
+
+                  return label;
+                }
+              }
+            }
+          }
+        }
+      });
+    })["catch"](function (error) {});
   }
 }
+
+/***/ }),
+
+/***/ "./resources/js/admin/admin.js":
+/*!*************************************!*\
+  !*** ./resources/js/admin/admin.js ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(/*! ../bootstrap */ "./resources/js/bootstrap.js");
+
+__webpack_require__(/*! ./validationFormUser */ "./resources/js/admin/validationFormUser.js");
+
+__webpack_require__(/*! ./validationFormFood */ "./resources/js/admin/validationFormFood.js");
+
+__webpack_require__(/*! ./validationFormAdmin */ "./resources/js/admin/validationFormAdmin.js");
+
+__webpack_require__(/*! ./modalToggle */ "./resources/js/admin/modalToggle.js");
+
+__webpack_require__(/*! ./editSubmitForm */ "./resources/js/admin/editSubmitForm.js");
+
+__webpack_require__(/*! ./Charts.js */ "./resources/js/admin/Charts.js");
 
 /***/ }),
 
@@ -38007,9 +38065,9 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\User\Desktop\boolean-full\esercizi\php\deliveboo-project47-team5\resources\js\admin\admin.js */"./resources/js/admin/admin.js");
-__webpack_require__(/*! C:\Users\User\Desktop\boolean-full\esercizi\php\deliveboo-project47-team5\resources\sass\admin\admin.scss */"./resources/sass/admin/admin.scss");
-module.exports = __webpack_require__(/*! C:\Users\User\Desktop\boolean-full\esercizi\php\deliveboo-project47-team5\resources\sass\front\front.scss */"./resources/sass/front/front.scss");
+__webpack_require__(/*! /Users/simonespirito/Downloads/Boolean/deliveboo-project47-team5-1/resources/js/admin/admin.js */"./resources/js/admin/admin.js");
+__webpack_require__(/*! /Users/simonespirito/Downloads/Boolean/deliveboo-project47-team5-1/resources/sass/admin/admin.scss */"./resources/sass/admin/admin.scss");
+module.exports = __webpack_require__(/*! /Users/simonespirito/Downloads/Boolean/deliveboo-project47-team5-1/resources/sass/front/front.scss */"./resources/sass/front/front.scss");
 
 
 /***/ })

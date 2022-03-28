@@ -67,7 +67,7 @@
                         </div>
 
                         <div class="buttons mt-4">
-                            <button type="button" class="btn btn-warning"><a class="text-black"
+                            <button type="button" class="btn btn-warning"><a class="text-white"
                                     href="{{ route('foods.edit', $food->id) }}">Modifica</a></button>
                             <button type="button" class="my_btn btn btn-danger btnP" data-toggle="modal"
                                 data-target="#exampleModal">Elimina</button>
