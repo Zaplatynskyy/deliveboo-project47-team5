@@ -80,8 +80,14 @@
                                         <button type="submit" class="my_btn btn btn-danger mx-1">Annulla</button>
                                     </form>
                                 @endif
+                                @if (str_ends_with(url()->previous(), "/admin/home"))
                                 <button type="button" class="btn btn-info"><a class="text-white"
-                                        href="{{ url()->previous() }}">Indietro</a></button>
+                                    href="{{ url()->previous() }}">Indietro</a></button>
+                                    @else
+                                    <button type="button" class="btn btn-info"><a class="text-white"
+                                        href="{{route("orders.index")}}">Indietro</a></button>
+                                @endif
+                                        
                             </div>
                         </div>
                     </div>
