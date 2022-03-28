@@ -99,12 +99,7 @@
                 </div>
             </div>
             <button class="btn btn-main">
-                <router-link
-                    :to="{
-                        name: 'home',
-                    }"
-                    >Home Page
-                </router-link>
+                <a href="/">Home page</a>
             </button>
         </div>
     </div>
@@ -295,7 +290,7 @@ export default {
                 li {
                     margin-bottom: .3125rem;
                     .food_name {
-                        font-size: 12.8px;
+                        font-size: 0.85rem;
                     }
 
                     .price_food {

@@ -17,7 +17,7 @@
                                     v-for="(tag, i) in tags"
                                     :key="i"
                                 >
-                                    {{ tag.name }}
+                                    {{ tag }}
                                 </div>
                             </div>
                         </div>
@@ -67,10 +67,15 @@ export default {
                 let foodTags = [];
                 foods.forEach((food) => {
                     food.tags.forEach((tag) => {
-                        if (!foodTags.includes(tag)) foodTags.push(tag);
+                        if (!foodTags.includes(tag.name)) foodTags.push(tag.name);
                     });
                 });
-                return this.restaurant.categories.concat(foodTags);
+                console.log(foodTags);
+                let categories = [];
+                this.restaurant.categories.forEach(category => {
+                    categories.push(category.name)
+                });
+                return categories.concat(foodTags);
             }
         },
     },

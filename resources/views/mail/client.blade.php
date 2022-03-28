@@ -7,7 +7,7 @@
             body{
                 font-family: 'Lato', sans-serif;
             }
-            h1 {
+            span.color {
                 color: #3ECCBC;
             }
 
@@ -18,16 +18,6 @@
             .card{
                 text-align: center
             }
-
-            .btn{
-                border: none;
-                padding: 15px;
-                background-color: #3ECCBC;
-                border-radius: 10px;
-                cursor: pointer;
-                color: white;
-                
-            }
             li{
                 list-style: none;
             }
@@ -37,7 +27,7 @@
         
 <div class="card">
     <div class="card-header">
-        <h1>Hai ricecuto un nuovo ordine!</h1>
+        <h1>Grazie per aver ordinato su <span class="color">Deliveboo</span></h1>
 
         <h2 class="text-uppercase mb-0">Cliente: <strong>{{ $order->name }} {{ $order->cognome }}</strong></h2>
     </div>
@@ -64,9 +54,7 @@
             </ul>
         </div>
     </div>
-    <a href="{{route('orders.show', $order->id)}}">
-        <button type="button" class="btn">Visualizza nel Web</button>
-    </a>
+
 </div>
     </body>
 </html>

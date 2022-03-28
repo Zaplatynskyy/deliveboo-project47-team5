@@ -45,7 +45,7 @@
 
                         @foreach ($categories as $key => $category)
                             <div class="card-body my_item mb-3">
-                                <form class="d-inline-block edit-form" enctype="multipart/form-data"
+                                <form class="edit-form" enctype="multipart/form-data"
                                     action="{{ route('categories.update', $category) }}" method="POST">
                                     @csrf
                                     @method('PUT')
@@ -98,7 +98,7 @@
                                                     <div class="label_img">
                                                         <span>Immagine</span>
                                                     </div>
-                                                    <div class="my_txt py-2 d-flex justify-content-between">
+                                                    <div class="my_txt py-2 d-flex justify-content-lg-end">
                                                         <span>
                                                             <img class="w-50 my_image rounded"
                                                                 src="{{ asset("storage/{$category->image}") }}"
