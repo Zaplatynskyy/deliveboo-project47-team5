@@ -6,7 +6,7 @@
             <div class="col-12 col-lg-6 list_order">
                 <div class="card">
                     <h3 class="card-header">Ordini in arrivo</h3>
-                    <div class="card_orders">
+                    <div class="card_orders_all">
                         @if (count($orders) > 0)
                             @foreach ($orders as $order)
                                 <div class="card-body my-4">

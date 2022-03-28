@@ -37,14 +37,12 @@
                                 </div>
                                 
                                 @if (count($food->tags) > 0)
-                                    <div class="col-12 col-lg-7">
-                                        <div class="row_info">
-                                            <div class="label">Tag associati</div>
-                                            <div class="my_txt name_order">
-                                                @foreach ($food->tags as $tag)
-                                                    <span class="badge badge-primary">{{ $tag->name }}</span>
-                                                @endforeach
-                                            </div>
+                                    <div class="row_info">
+                                        <div class="label">Tag associati</div>
+                                        <div class="my_txt name_order">
+                                            @foreach ($food->tags as $tag)
+                                                <span class="badge badge-primary">{{ $tag->name }}</span>
+                                            @endforeach
                                         </div>
                                     </div>
                                 @endif
