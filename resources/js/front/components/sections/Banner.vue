@@ -96,7 +96,7 @@ export default {
 
   .row {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
 
     margin: 40px 0;
     gap: 15px;
@@ -121,7 +121,7 @@ export default {
   }
 }
 
-@media screen and (min-width: 360px) {
+@media screen and (min-width: 560px) {
   .blog {
     h2 {
       font-size: 25px;
@@ -129,7 +129,7 @@ export default {
     }
     .row {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr !important;
       gap: 15px;
     }
 

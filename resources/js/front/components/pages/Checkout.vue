@@ -831,7 +831,7 @@ form {
       li {
         margin-bottom: 5px;
         .food_name {
-          font-size: 0.8rem;
+          font-size: 0.85rem;
         }
 
         .price_food {

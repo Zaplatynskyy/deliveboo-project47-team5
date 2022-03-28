@@ -25,7 +25,7 @@ class OrderController extends Controller
         if (Auth::id() == $order->user->id) {
             return view('admin.orders.show', compact('order'));
         } else {
-            return redirect()->route('notAuth');
+            return response()->view('admin.notAuth');
         }
     }
 
