@@ -1,6 +1,6 @@
-@import url(https://fonts.googleapis.com/css2?family=Lato:wght@300;
+@import url(https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;
 
-400;700&display=swap);@charset "UTF-8";
+0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap);@charset "UTF-8";
 
 :root {
   --blue: #3490dc;
@@ -11048,7 +11048,7 @@ main {
 .logo .header_title {
   font-size: 1.15rem;
   font-weight: bold;
-  font-family: "Poppins", sans-serif;
+  font-family: "Lato", sans-serif;
   color: #3eccbc;
   margin-left: 5px;
 }
@@ -11085,8 +11085,13 @@ main {
   }
 
   .card_orders {
-    height: calc(100vh - 240px);
+    height: calc(100vh - 156px);
     overflow-y: auto;
+  }
+
+  .graphs {
+    height: calc(100vh - 100px);
+    overflow: auto;
   }
 }
 
@@ -11207,5 +11212,13 @@ main {
 .create_category .create-img input[type=file] {
   width: 78px;
   overflow: hidden;
+}
+
+.not_auth {
+  width: 900px;
+}
+
+.not_auth img {
+  width: 100%;
 }
 

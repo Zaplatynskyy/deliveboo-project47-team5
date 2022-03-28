@@ -1,22 +1,45 @@
-<h3>Nuovo ordine</h3>
-<a href="{{route('orders.show', $order->id)}}">
-    <button type="button" class="btn btn-primary">Visualizza</button>
-</a>
-<h3>Riepilogo Ordine</h3>
+<html>
+    <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+        <style>
+            body{
+                font-family: 'Lato', sans-serif;
+            }
+            span.color {
+                color: #3ECCBC;
+            }
 
+            h2{
+                font-weight: normal
+            }
+
+            .card{
+                text-align: center
+            }
+            li{
+                list-style: none;
+            }
+        </style>
+    </head>
+    <body>
+        
 <div class="card">
     <div class="card-header">
-        <h2 class="text-uppercase mb-0">{{ $order->name }} {{ $order->cognome }}</h2>
+        <h1>Grazie per aver ordinato su <span class="color">Deliveboo</span></h1>
+
+        <h2 class="text-uppercase mb-0">Cliente: <strong>{{ $order->name }} {{ $order->cognome }}</strong></h2>
     </div>
     <div class="card-body">
         <div class="order">
-            <p class="my-4"><span class="my_bold">Indirizzo:</span> {{ $order->address }}
+            <p class="my-4"><span class="my_bold">Indirizzo: </span><strong>{{ $order->address }}</strong>
             </p>
-            <p class="my-4"><span class="my_bold">Telefono:</span>
-                {{ $order->telephone }}</p>
-            <p class="my-4"><span class="my_bold">Totale ordine:</span>
-                {{ $order->total }}€</p>
-            <h5 class="mt-4">Dettagli ordine:</h5>
+            <p class="my-4"><span class="my_bold">Telefono: </span>
+                <strong>{{ $order->telephone }}</strong></p>
+            <p class="my-4"><span class="my_bold">Totale ordine: </span>
+             <strong>{{ $order->total }} €</strong></p>
+            <h3 class="mt-4">Dettagli ordine:</h3>
             <ul class="my-4">
                 @foreach ($order->foods as $food)
                     <li>
@@ -31,4 +54,7 @@
             </ul>
         </div>
     </div>
+
 </div>
+    </body>
+</html>
