@@ -70,15 +70,15 @@ window.validationForm = function(){
     // controllo p_iva
 
     if( registrationForm.p_iva.value == '' ) {
-        displayError('user_input_piva', 'p_iva', 'La p_iva non può essere vuota');
+        displayError('user_input_piva', 'p_iva', 'La partita iva non può essere vuota');
         
         success = false;
     } else if( isNaN(registrationForm.p_iva.value) ) {
-        displayError('user_input_piva', 'p_iva', 'La p_iva deve essere un numero');
+        displayError('user_input_piva', 'p_iva', 'La partita iva deve essere un numero');
         
         success = false;
     } else if( registrationForm.p_iva.value.length != 11 ) {
-        displayError('user_input_piva', 'p_iva', 'La p_iva deve essere di 11 caratteri');
+        displayError('user_input_piva', 'p_iva', 'La partita iva deve essere di 11 caratteri');
         
         success = false;
     } else {
