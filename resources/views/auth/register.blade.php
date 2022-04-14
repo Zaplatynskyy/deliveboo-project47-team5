@@ -169,11 +169,11 @@
                         <div class="form-group row px-5 my-4 d-flex justify-content-center">
                             <span>Scegli categoria *</span>
                             <div class="categories text-center">
-                                @foreach ($categories as $catogory)
+                                @foreach ($categories as $category)
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="checkbox" id="{{$catogory->slug}}"
-                                            value="{{$catogory->id}}" name="categories[]" @if (in_array($catogory->id, old('categories', []))) checked @endif>
-                                        <label class="form-check-label" for="{{$catogory->slug}}">{{$catogory->name}}</label>
+                                        <input class="form-check-input" type="checkbox" id="{{$category->slug}}"
+                                            value="{{$category->id}}" name="categories[]" @if (in_array($category->id, old('categories', []))) checked @endif>
+                                        <label class="form-check-label" for="{{$category->slug}}">{{$category->name}}</label>
                                     </div>
                                 @endforeach
                             </div>
